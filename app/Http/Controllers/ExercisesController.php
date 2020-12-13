@@ -41,6 +41,8 @@ class ExercisesController extends Controller
            'ievaddati' => 'required',
            'izvaddati' => 'required',
            'definicija' => 'required',
+            'memory' => 'required',
+            'time' => 'required',
 
 
 
@@ -55,7 +57,7 @@ class ExercisesController extends Controller
         \App\Models\exercise::create($data);
         $exercises = exercise::all();
 
-        return view('exercises', compact('exercises', 'exercises'));
+        return redirect('/exercises');
     }
 
     public function delete(\App\Models\exercise $exercise)

@@ -17,13 +17,15 @@
             <div class="col-5">
                 <div class="row" style="font-size: 2vh; font-weight: 600;">
                     <div class="mr-1 mb-2">Laika limits:</div>
-                    <div>Wip</div>
+                    <div class="mr-1">{{$exercise->time}}</div>
+                    <div>Sek.</div>
                 </div>
             </div>
             <div class="col-5">
                 <div class="row" style="font-size: 2vh; font-weight: 600;">
                     <div class="mr-1 mb-2">Atmiņas limits:</div>
-                    <div>Wip</div>
+                    <div class="mr-1">{{$exercise->memory}}</div>
+                    <div>MB</div>
                 </div>
             </div>
             <div class="col-5">

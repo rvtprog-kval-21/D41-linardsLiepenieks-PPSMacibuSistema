@@ -18,7 +18,7 @@
                             <div class="form-group">
                                 <label>Uzdevuma kods</label>
                                 <input class="form-control" type="text"
-                                        id="kods"
+                                       id="kods"
                                        name="kods"
                                 >
                                 @if ($errors->has('kods'))
@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label>Uzdevuma nosaukums</label>
                                 <input class="form-control" type="text"
-                                        id="nosaukums"
+                                       id="nosaukums"
                                        name="nosaukums"
                                 >
                                 @if ($errors->has('nosaukums'))
@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <label>Ievaddatu raksturojums</label>
                                 <input class="form-control" type="text"
-                                        id="ievaddati"
+                                       id="ievaddati"
                                        name="ievaddati"
                                 >
                                 @if ($errors->has('ievaddati'))
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label>Izvaddatu raksturojums</label>
                                 <input class="form-control" type="text"
-                                        id="izvaddati"
+                                       id="izvaddati"
                                        name="izvaddati"
                                 >
                                 @if ($errors->has('izvaddati'))
@@ -65,18 +65,39 @@
                             <div class="form-group">
                                 <label>Uzdevuma definīcija</label>
                                 <textarea class="form-control" type="text"
-                                        id="definicija"
-                                       name="definicija"
+                                          id="definicija"
+                                          name="definicija"
                                 ></textarea>
                                 @if ($errors->has('definicija'))
                                     <strong>{{ $errors->first('definicija') }}</strong>
                                 @endif
                             </div>
 
+                            <div class="row">
+                                <!-- Ievadlauks start -->
+                                <div class="form-group">
+                                    <label>Laika limits</label>
+                                    <input class="form-control" type="text"
+                                           id="time"
+                                           name="time"
+                                    >
 
-
-
-
+                                    </input>
+                                    @if ($errors->has('time'))
+                                        <strong>{{ $errors->first('time') }}</strong>
+                                    @endif
+                                </div><!-- Ievadlauks start -->
+                                <div class="form-group">
+                                    <label>Atmiņas limits</label>
+                                    <input class="form-control" type="text"
+                                           id="memory"
+                                           name="memory">
+                                    </input>
+                                    @if ($errors->has('memory'))
+                                        <strong>{{ $errors->first('memory') }}</strong>
+                                    @endif
+                                </div>
+                            </div>
 
 
                             <div class="form-group">
@@ -87,34 +108,9 @@
 
                         </div>
 
-                        <div class="box">
-                            <div class="box-header with-border row align-items-center justify-content-between">
-                                <div class="col-9"><h3 class="box-title">Pievienot paraugdatus WIP</h3>
-                                </div>
-                                <button type="button" class="btn btn-default bg-green"><i
-                                        class="far fa-plus-square"></i></button>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Stdin</th>
-                                            <th>Stdout</th>
-                                        </tr>
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
-
-                            <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                        <add-test id="app"></add-test>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -126,5 +122,6 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
+    <script defer src="{{ asset('js/app.js') }}"></script>
 @stop

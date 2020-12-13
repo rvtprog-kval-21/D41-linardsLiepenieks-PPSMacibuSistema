@@ -22,6 +22,8 @@ class CreateExercisesTable extends Migration
             $table->text('definicija');
             $table->integer('iesutijumi')->default('0');
             $table->integer('atrisinajumi')->default('0');
+            $table->float('time');
+            $table->float('memory');
             $table->timestamps();
 
             $table->index('uzd_id');
