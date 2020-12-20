@@ -2037,31 +2037,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    var _this = this;
+
     var code = document.createElement('script');
     code.setAttribute('src', '/js/codemirror.js');
     document.body.appendChild(code);
 
     code.onload = function () {
-      var stripeScript = document.createElement('script');
-      stripeScript.setAttribute('src', '/js/codemirrorModes/javascript.js');
+      var clike = document.createElement('script');
+      clike.setAttribute('src', '/js/codemirrorModes/clike.js');
 
-      stripeScript.onload = function () {
-        var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+      clike.onload = function () {
+        _this.editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
           lineNumbers: true,
           matchBrackets: true,
           continueComments: "Enter",
+          mode: "text/x-c++src",
           extraKeys: {
             "Ctrl-Q": "toggleComment"
           }
         });
-        console.log("CodeMirror loaded");
       };
 
-      document.body.appendChild(stripeScript);
+      document.body.appendChild(clike);
+      var js = document.createElement('script');
+      js.setAttribute('src', '/js/codemirrorModes/javascript.js');
+      document.body.appendChild(js);
+      var py = document.createElement('script');
+      py.setAttribute('src', '/js/codemirrorModes/python.js');
+      document.body.appendChild(py);
     };
+  },
+  methods: {
+    onChange: function onChange() {
+      var setMode = "";
+
+      switch (document.getElementById("mode").value) {
+        case "C++":
+          setMode = "text/x-c++src";
+          break;
+
+        case "JAVA":
+          setMode = "text/x-java";
+          break;
+
+        case "Python":
+          setMode = "python";
+          break;
+
+        case "Javascript":
+          setMode = "javascript";
+          break;
+
+        default:
+          setMode = "C++";
+        // code block
+      }
+
+      this.editor.setOption("mode", setMode);
+    }
   }
 });
 
@@ -33436,34 +33472,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "select",
+      {
+        staticClass: "m-3",
+        attrs: { id: "mode", name: "mode" },
+        on: {
+          change: function($event) {
+            return _vm.onChange()
+          }
+        }
+      },
+      [
+        _c("option", [_vm._v("C++")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Python")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Javascript")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("JAVA")])
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "select",
-        { staticClass: "m-3", attrs: { id: "mode", name: "mode" } },
-        [
-          _c("option", [_vm._v("C++")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Python")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("Javascript")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("JAVA")]),
-          _vm._v(" "),
-          _c("option", [_vm._v("CSS")])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticStyle: { border: "1px solid black", width: "100%" } }, [
-        _c("textarea", { attrs: { id: "editor", name: "code" } })
-      ])
-    ])
+    return _c(
+      "div",
+      { staticStyle: { border: "1px solid black", width: "100%" } },
+      [_c("textarea", { attrs: { id: "editor", name: "code" } })]
+    )
   }
 ]
 render._withStripped = true

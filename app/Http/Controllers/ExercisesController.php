@@ -54,6 +54,10 @@ class ExercisesController extends Controller
         $send->code = $submission['code'];
         $send->exercise_id = $exercise->id;
         $send->user_id = Auth::id();
+
+        dd($send);
+
+
         $send->save();
 
         $exercise->iesutijumi +=1;
@@ -116,6 +120,8 @@ class ExercisesController extends Controller
 
 
         $this->authorize('create', Exercise::class);
+        $exercise->tests()->delete();
+        $exercise->submission()->delete();
         $exercise->delete();
         return redirect('/exercises');
     }

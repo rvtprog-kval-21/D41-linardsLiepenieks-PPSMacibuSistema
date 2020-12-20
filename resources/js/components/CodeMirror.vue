@@ -1,12 +1,11 @@
 <template>
     <div>
 
-            <select class="m-3" id="mode" name="mode">
+            <select class="m-3" id="mode" name="mode" @change="onChange()">
                 <option>C++</option>
                 <option>Python</option>
                 <option>Javascript</option>
                 <option>JAVA</option>
-                <option>CSS</option>
             </select>
             <div style="border: 1px solid black; width:100%;">
                 <textarea id="editor" name="code"></textarea></div>
@@ -24,22 +23,57 @@
             code.onload = () => {
 
 
-                let stripeScript = document.createElement('script');
-                stripeScript.setAttribute('src', '/js/codemirrorModes/javascript.js');
-                stripeScript.onload = () => {
+                let clike = document.createElement('script');
+                clike.setAttribute('src', '/js/codemirrorModes/clike.js');
+                clike.onload = () => {
 
-                    var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+                      this.editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                         lineNumbers: true,
                         matchBrackets: true,
                         continueComments: "Enter",
+                        mode: "text/x-c++src",
                         extraKeys: {"Ctrl-Q": "toggleComment"}
                     });
-                    console.log("CodeMirror loaded");
+
+
                 };
 
-                document.body.appendChild(stripeScript);
+                document.body.appendChild(clike);
+                let js = document.createElement('script');
+                js.setAttribute('src', '/js/codemirrorModes/javascript.js');
+                document.body.appendChild(js);
+                let py = document.createElement('script');
+                py.setAttribute('src', '/js/codemirrorModes/python.js');
+                document.body.appendChild(py);
             };
 
+
+
+        },
+
+        methods: {
+            onChange() {
+                var setMode = "";
+                switch(document.getElementById("mode").value) {
+                    case "C++":
+                        setMode = "text/x-c++src";
+                        break;
+                    case "JAVA":
+                        setMode = "text/x-java";
+                        break;
+                    case "Python":
+                        setMode = "python";
+                        break;
+                    case "Javascript":
+                        setMode = "javascript";
+                        break;
+                    default:
+                        setMode = "C++";
+                    // code block
+                }
+
+                this.editor.setOption("mode", setMode);
+            }
         }
     }
 </script>
