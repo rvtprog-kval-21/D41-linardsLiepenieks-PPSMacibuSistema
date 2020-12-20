@@ -24,7 +24,7 @@
 
 @section('content')
     @foreach($rating as $rating)
-    <div class="row justify-content-between align-items-center text-center" style="color:black; background-color: white; border: 1px solid black; margin: 5px
+    <div class="row justify-content-between align-items-center text-center" style="color:black; background-color: white; border: 1px solid black; margin: 5px;
                             font-size: 2vh;
 
                             margin-top: 5px; ">
@@ -42,9 +42,6 @@
 
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-    <script defer src="{{ asset('js/app.js') }}"></script>
-@stop
+
 
 

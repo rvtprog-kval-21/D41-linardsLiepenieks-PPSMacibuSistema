@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('add-test', require('./components/AddTest.vue').default);
+Vue.component('codemirror', require('./components/CodeMirror.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1,15 +1,16 @@
 @extends('adminlte::page')
-@section('title', 'Dashboard')
+@section('title', 'Izveidot uzdevumu')
 
 @section('content_header')
     <h1>Izveidot jaunu Uzdevumu</h1>
 @stop
 @section('content')
-    <div class="box box-primary">
+
+    <div class="box box-primary" id="app">
         <div class="box-header with-border">
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="/exercises" enctype="multipart/form-data" method="post">
+            <form action="/exercises/post"  enctype="multipart/form-data" method="post">
                 @csrf
                 <div class="row d-flex justify-content-center">
                     <div class="col-6">
@@ -65,7 +66,7 @@
                             <div class="form-group">
                                 <label>Uzdevuma definīcija</label>
                                 <textarea class="form-control" type="text"
-                                          id="definicija"
+                                          iind="definicija"
                                           name="definicija"
                                 ></textarea>
                                 @if ($errors->has('definicija'))
@@ -100,28 +101,36 @@
                             </div>
 
 
-                            <div class="form-group">
                                 <label for="exampleInputFile">Pievienot attēlus WIP</label>
                                 <input type="file" id="exampleInputFile">
 
-                            </div>
 
                         </div>
 
-                        <add-test id="app"></add-test>
-                        <div class="box-footer">
+                        <add-test></add-test>
+                        @if ($errors->has('tests'))
+                            <strong>{{ $errors->first('tests') }}</strong>
+                        @endif
+
+                        <div>
                             <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                            <div class="box-footer">
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-
     </div>
 @stop
 
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
-    <script defer src="{{ asset('js/app.js') }}"></script>
+    <!--<link rel="stylesheet" href="{{ asset('css/app.css') }}"/>-->
 @stop
+
+@section('js')
+    <!--<script defer src="{{ asset('js/app.js') }}"></script>-->
+@stop
+
+

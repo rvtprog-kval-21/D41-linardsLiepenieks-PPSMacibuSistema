@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Submission extends Model
 {
     use HasFactory;
 
@@ -13,8 +13,8 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function submission()
+    public function exercise()
     {
-        return $this->hasMany(Submission::class);
+        return $this->belongsTo(exercise::class);
     }
 }

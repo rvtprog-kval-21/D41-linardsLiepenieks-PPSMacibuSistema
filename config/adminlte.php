@@ -231,20 +231,8 @@ return [
     */
 
     'menu' => [
-        [
-            'text' => 'login',
-            'topnav' => true,
-            'url'=> 'login',
-            'can'=> 'logged-in',
-        ],
-        [
-            'text' => 'register',
-            'topnav' => true,
-            'url'=> 'register',
-            'can'=> 'logged-in',
-            'classes'  => '',
 
-        ],
+
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -323,6 +311,8 @@ return [
     */
 
     'plugins' => [
+
+
         'Datatables' => [
             'active' => false,
             'files' => [
@@ -393,6 +383,17 @@ return [
                 ],
             ],
         ],
+        [
+            'name' => 'Vue',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/app.js',
+                ],
+            ],
+        ]
     ],
 
     /*

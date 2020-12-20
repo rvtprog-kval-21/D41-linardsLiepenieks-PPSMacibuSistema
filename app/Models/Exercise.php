@@ -9,5 +9,14 @@ class exercise extends Model
 {
     use HasFactory;
 
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
+    public function submission()
+    {
+        return $this->hasMany(submission::class);
+    }
+
     protected $guarded = [];
 }

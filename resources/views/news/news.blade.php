@@ -8,8 +8,39 @@
         <h1>Jaunumi</h1>
     </div>
 
-    <div class="row justify-content-center" style="height: 20vh; border: 1px solid black;">
-        <img style="max-height: 100%;" src="{{asset('banner_images/banner-placeholder.png')}}"/>
+    @can('create', \App\Models\exercise::class)
+        <div class="flex-row-reverse d-flex">
+        <button type="button" class="w-25 btn btn-block btn-warning btn-sm" onclick="location.href='/admin/banner'">
+            Rediģēt banera bildes
+        </button>
+        </div>
+    @endcan
+    <div class="row justify-content-center" >
+
+        <div id="carouselExampleControls" class="carousel slide w-100" data-ride="carousel" style="background-color: black">
+            <div class="carousel-inner text-center">
+                <div class="carousel-item active" style="height: 30vh;">
+                    <img  style="max-height: 100%;"
+                         src="{{asset('banner_images/banner-placeholder.png')}}"
+                         alt="First slide">
+                </div><div class="carousel-item" style="height: 30vh;">
+                    <img  style="max-height: 100%;"
+                         src="{{asset('banner_images/banner-placeholder.png')}}"
+                         alt="First slide">
+                </div>
+
+
+
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
     </div>
 
     @can('create', \App\Models\exercise::class)
@@ -23,31 +54,33 @@
 @section('content')
     <div class="row justify-content-around">
         @foreach($news as $news)
-        <div id="module" class="container col-5 m-2" style="border: 1px solid black; min-height: 25vh; padding: 0">
+            <div id="module" class="container col-5 m-2"
+                 style="border: 1px solid black; min-height: 25vh; padding: 0">
                 <!--<div class="col-5" style="border: 1px solid black; height: 25vh; padding: 0;">-->
 
-                <div class="p-1" style="background-color: dimgray; color: white";>{{$news->nosaukums}}</div>
-                <div class="p-1" style="border-bottom: 2px solid black;"><div><b>Datums:</b> {{$news->created_at}}</div></div>
+                <div class="p-1" style="background-color: dimgray; color: white" ;>{{$news->nosaukums}}</div>
+                <div class="p-1" style="border-bottom: 2px solid black;">
+                    <div><b>Datums:</b> {{$news->created_at}}</div>
+                </div>
 
-                <p class="collapse p-1" id="collapseExample" aria-expanded="false" >
+                <p class="collapse p-1" id="collapseExample" aria-expanded="false">
                     {{$news->apraksts}}
                 </p>
-                <a role="button" class="collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></a>
-                <div style="background-color: lightgray;" class="p-1"><b>Izveidoja:</b> {{$news->user->name}} </div>
+                <a role="button" class="collapsed" data-toggle="collapse" href="#collapseExample"
+                   aria-expanded="false" aria-controls="collapseExample"></a>
+                <div style="background-color: lightgray;" class="p-1"><b>Izveidoja:</b> {{$news->user->name}}
+                </div>
 
 
-            @can('create', \App\Models\exercise::class)
-                <button type="button" class="btn-block btn btn-danger btn-xs" onclick="location.href='news/del/{{$news->id}}'">
-                    Dzēst Ierakstu
-                </button>
-            @endcan
-        </div>
+                @can('create', \App\Models\exercise::class)
+                    <button type="button" class="btn-block btn btn-danger btn-xs"
+                            onclick="location.href='news/del/{{$news->id}}'">
+                        Dzēst Ierakstu
+                    </button>
+                @endcan
+            </div>
 
         @endforeach
-
-
-
-
 
 
     </div>
@@ -57,7 +90,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+
     <link rel="stylesheet" href="{{'css/read_more.css'}}">
 @stop
 

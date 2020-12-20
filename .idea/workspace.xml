@@ -2,18 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18c52990-d6dc-405e-9e3b-03239d5574b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../resources/js/components/AddTest.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../public/css/codemirror.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../public/js/codemirror.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../public/js/codemirrorModes/javascript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../resources/js/components/CodeMirror.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../resources/views/exercises/send.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../resources/views/exercises/submissions.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/Http/Controllers/ExercisesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Http/Controllers/ExercisesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/migrations/2020_12_10_224758_create_exercises_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../database/migrations/2020_12_10_224758_create_exercises_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Models/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/Exercise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/Models/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/../app/Models/Profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/../config/adminlte.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../public/vendor/fontawesome-free/webfonts/fa-brands-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../public/vendor/fontawesome-free/webfonts/fa-brands-400.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/js/components/AddTest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/js/components/AddTest.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../resources/views/exercises/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/exercises/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../resources/views/exercises/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/exercises/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resources/views/news/news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/news/news.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../resources/views/rating/rating.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../resources/views/rating/rating.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,13 +188,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Linards\Prakse4\public\css" />
+      <recent name="C:\Users\Linards\Prakse4\resources\css" />
+      <recent name="C:\Users\Linards\Prakse4\public\js\codemirrorModes" />
+      <recent name="C:\Users\Linards\Prakse4\public\js" />
+      <recent name="C:\Users\Linards\Prakse4\resources\views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Linards\Prakse4\resources\views\news" />
       <recent name="C:\Users\Linards\Prakse4\storage\app\public\banner_images" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Linards\Prakse4\resources\views" />
-      <recent name="C:\Users\Linards\Prakse4\public" />
     </key>
   </component>
   <component name="RunManager">
@@ -206,7 +220,13 @@
       <workItem from="1607610939865" duration="852000" />
       <workItem from="1607631428147" duration="17520000" />
       <workItem from="1607725617060" duration="23841000" />
-      <workItem from="1607801306272" duration="27022000" />
+      <workItem from="1607801306272" duration="58013000" />
+      <workItem from="1608031443647" duration="1250000" />
+      <workItem from="1608061765419" duration="2102000" />
+      <workItem from="1608147038510" duration="1068000" />
+      <workItem from="1608148193253" duration="8449000" />
+      <workItem from="1608262878809" duration="309000" />
+      <workItem from="1608425911055" duration="8749000" />
     </task>
     <servers />
   </component>
@@ -214,6 +234,14 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="705" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607892441017">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="705" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607892441017" />
+    <state x="1170" y="269" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607894667399">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1170" y="269" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607894667399" />
     <state x="1170" y="277" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1607817044412">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -242,17 +270,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="922" y="161" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607638020453" />
-    <state x="1136" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1607725617142">
+    <state width="254" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1607911406453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1136" y="342" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607725617142" />
+    <state width="254" height="198" key="ShowFilterAction_Filter_Popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607911406453" />
+    <state x="1136" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1608425922135">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1136" y="342" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608425922135" />
     <state x="616" y="235" key="run.anything.popup" timestamp="1607777111078">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="235" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607777111078" />
-    <state x="1256" y="333" width="672" height="678" key="search.everywhere.popup" timestamp="1607870726411">
+    <state x="919" y="331" width="672" height="678" key="search.everywhere.popup" timestamp="1608434320683">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1256" y="333" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607870726411" />
+    <state x="919" y="331" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1608434320683" />
   </component>
 </project>
