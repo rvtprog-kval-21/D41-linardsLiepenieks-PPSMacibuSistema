@@ -55,15 +55,45 @@ class ExercisesController extends Controller
         $send->exercise_id = $exercise->id;
         $send->user_id = Auth::id();
 
-        dd($send);
+        $user_code = $send->code; //code ir kods no form ko ievada lietotajs
+
+        $Judge = new Judge0Controller;
+        $Judge->tests($send,$exercise);
 
 
-        $send->save();
 
-        $exercise->iesutijumi +=1;
-        $exercise->save();
+        /*if($send->mode == "C++"){
+            $filename = 'tests.cpp'; //save the name of the empty file
+            $system = "g++ -o tests.cgi tests.cpp";
+            $exec_file = "tests.cgi";
+            system($system); //used the g++ compiler to create the an executable cgi file.
 
-        return redirect('/exercises');
+        }
+        if($send->mode == "Python"){
+            $filename = "tests.py";
+            $exec_file = "tests.py";
+        }
+        if($send->mode == "Javascript"){
+            $filename = "tests.html";
+            $exec_file = "tests.html";
+        }*/
+
+
+
+        /*file_put_contents($filename, $user_code); //put content into the empty file
+        $output = exec($exec_file);
+
+        echo  $output;//execute the file
+
+        //dd(file_put_contents($filename, $cpp_content));*/
+
+
+        //$send->save();
+
+        //$exercise->iesutijumi +=1;
+        //$exercise->save();
+
+        //return redirect('/exercises');
 
     }
 
