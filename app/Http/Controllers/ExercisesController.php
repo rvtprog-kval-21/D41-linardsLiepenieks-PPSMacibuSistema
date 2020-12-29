@@ -7,6 +7,7 @@ use App\Models\Submission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Null_;
 
 class ExercisesController extends Controller
 {
@@ -34,6 +35,11 @@ class ExercisesController extends Controller
     }
     public function openSend(\App\Models\exercise $exercise)
     {
+        if(Auth::user() == null)
+        {
+         return   redirect('/login');
+        }
+        else
         return view('exercises/send', compact('exercise'));
     }
     public function submissions(\App\Models\exercise $exercise)
@@ -54,6 +60,8 @@ class ExercisesController extends Controller
         $send->code = $submission['code'];
         $send->exercise_id = $exercise->id;
         $send->user_id = Auth::id();
+        $send->save();
+
 
         $user_code = $send->code; //code ir kods no form ko ievada lietotajs
 
@@ -62,38 +70,20 @@ class ExercisesController extends Controller
 
 
 
-        /*if($send->mode == "C++"){
-            $filename = 'tests.cpp'; //save the name of the empty file
-            $system = "g++ -o tests.cgi tests.cpp";
-            $exec_file = "tests.cgi";
-            system($system); //used the g++ compiler to create the an executable cgi file.
-
-        }
-        if($send->mode == "Python"){
-            $filename = "tests.py";
-            $exec_file = "tests.py";
-        }
-        if($send->mode == "Javascript"){
-            $filename = "tests.html";
-            $exec_file = "tests.html";
-        }*/
 
 
 
-        /*file_put_contents($filename, $user_code); //put content into the empty file
-        $output = exec($exec_file);
-
-        echo  $output;//execute the file
-
-        //dd(file_put_contents($filename, $cpp_content));*/
 
 
-        //$send->save();
 
-        //$exercise->iesutijumi +=1;
-        //$exercise->save();
 
-        //return redirect('/exercises');
+
+
+
+        $exercise->iesutijumi +=1;
+        $exercise->save();
+
+        return redirect('/exercises');
 
     }
 
@@ -112,6 +102,7 @@ class ExercisesController extends Controller
            'definicija' => 'required',
             'memory' => 'required',
             'time' => 'required',
+            'score'=>'required',
 
         ]);
         $tests = request()->validate([

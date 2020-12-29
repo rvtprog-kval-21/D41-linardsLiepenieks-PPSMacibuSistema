@@ -3,43 +3,113 @@
 namespace App\Http\Controllers;
 
 use App\Models\exercise;
+use App\Models\Profile;
+use App\Models\Solution;
 use App\Models\Submission;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 
 class Judge0Controller extends Controller
 {
     protected $token = '6e119475ebmsh65d847450b4e390p188601jsn33f056dec39a';
+
     public function tests(Submission $submission, exercise $exercise)
     {
+        $mode_id = 0;
+        switch ($submission->mode) {
+            case "C++":
+                $mode_id = 54;
+                break;
+            case "Python":
+                $mode_id = 71;
+                break;
+            case "Javascript":
+                $mode_id = 63;
+                break;
+            case "JAVA":
+                $mode_id = 62;
+                break;
+        }
+        $correct_solution = true;
+        foreach ($exercise->tests()->get() as $test) {
 
-        /*$response = Http::withHeaders([
-            'x-rapidapi-key' => '6e119475ebmsh65d847450b4e390p188601jsn33f056dec39a',
-            'x-rapidapi-host' => 'judge0.p.rapidapi.com'
-        ])->get('https://judge0.p.rapidapi.com/languages');*/
+            $test_output =
+                $this->testCode($mode_id, $submission->code, $test->stdin);
+            $newTest = $submission->submissionTest()->create([
+                    'time' => $test_output[1]['time'],
+                    'memory' => $test_output[1]['memory'] / 1000,
+                    'stdout' => base64_decode($test_output[1]['stdout']),
 
-        dd($this->testCode(54, $submission->code));
+
+                ]
+            );
+            $newTest->stdout = rtrim($newTest->stdout);
+            if ($newTest->stdout == $test->stdout && $exercise->time >= $newTest->time && $exercise->memory >= $newTest->memory) {
+                $newTest->correct = true;
+            } else {
+                $correct_solution = false;
+            }
+            $newTest->save();
+
+        }
+
+        if ($correct_solution == true) {
+            if (Solution::Where('user_id', Auth::id())->first() == null && Solution::Where('exercise_id', $exercise->id)->first() == null) {
+                $submission->solution()->create(
+                    [
+                        'user_id' => Auth::id(),
+                        'exercise_id' => $exercise->id,
+                    ]
+                );
+
+                $user = Profile::Where('user_id', Auth::id())->first();
+                $user->score = $user->score + $exercise->score;
+                $user->save();
+
+            }
+
+        }
+
+
+
+
     }
 
-    public function testCode($languageId, $code, $stdin = null)
+    public function testCode($languageId, $code, $stdin = null, $expected_output = null)
     {
+
         $response = Http::withHeaders([
-            'x-rapidapi-key' => '6e119475ebmsh65d847450b4e390p188601jsn33f056dec39a',
+            'x-rapidapi-key' => $this->token,
             'x-rapidapi-host' => 'judge0.p.rapidapi.com'
         ])->post('https://judge0.p.rapidapi.com/submissions', [
             'language_id' => $languageId,
             'source_code' => $code,
-            'stdin' =>  "world",
+            'stdin' => $stdin,
+            'expected_output' => $expected_output,
         ]);
         $submissionKey = $response['token'];
-        $submissionKey = '323c5c1a-933b-4a77-9741-76c7749f02e6';
 
+        for ($i = 0; $i < 4; $i++) {
 
-        $response = Http::withHeaders([
-            'x-rapidapi-key' => '6e119475ebmsh65d847450b4e390p188601jsn33f056dec39a',
-            'x-rapidapi-host' => 'judge0.p.rapidapi.com'
-        ])->get('https://judge0.p.rapidapi.com/submissions/'.$submissionKey);
-        return $response->json();
+            sleep(3);
+
+            $response = Http::withHeaders([
+                'x-rapidapi-key' => $this->token,
+                'x-rapidapi-host' => 'judge0.p.rapidapi.com'
+            ])->get('https://judge0.p.rapidapi.com/submissions/' . $submissionKey . '?base64_encoded=true');
+
+            if ($response['status']['description'] == 'Accepted') {
+
+                return array('accepted', $response->json());
+
+            }
+
+        }
+
+        return array('timed-out', $response->json());
+
     }
 }

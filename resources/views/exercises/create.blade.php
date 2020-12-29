@@ -78,7 +78,7 @@
                                 <!-- Ievadlauks start -->
                                 <div class="form-group">
                                     <label>Laika limits</label>
-                                    <input class="form-control" type="text"
+                                    <input class="form-control" type="number"
                                            id="time"
                                            name="time"
                                     >
@@ -90,12 +90,23 @@
                                 </div><!-- Ievadlauks start -->
                                 <div class="form-group">
                                     <label>Atmiņas limits</label>
-                                    <input class="form-control" type="text"
+                                    <input class="form-control" type="number"
                                            id="memory"
                                            name="memory">
                                     </input>
                                     @if ($errors->has('memory'))
                                         <strong>{{ $errors->first('memory') }}</strong>
+                                    @endif
+                                </div>
+                                <!-- Ievadlauks start -->
+                                <div class="form-group">
+                                    <label>Punkti</label>
+                                    <input class="form-control" type="number"
+                                           id="score"
+                                           name="score" step="1">
+                                    </input>
+                                    @if ($errors->has('score'))
+                                        <strong>{{ $errors->first('score') }}</strong>
                                     @endif
                                 </div>
                             </div>
@@ -125,12 +136,6 @@
 @stop
 
 
-@section('css')
-    <!--<link rel="stylesheet" href="{{ asset('css/app.css') }}"/>-->
-@stop
 
-@section('js')
-    <!--<script defer src="{{ asset('js/app.js') }}"></script>-->
-@stop
 
 

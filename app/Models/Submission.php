@@ -17,4 +17,13 @@ class Submission extends Model
     {
         return $this->belongsTo(exercise::class);
     }
+
+    public function  submissionTest()
+    {
+        return $this->hasMany(submissionTest::class);
+    }
+    public function  solution()
+    {
+        return $this->hasOne(Solution::class);
+    }
 }

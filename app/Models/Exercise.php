@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class exercise extends Model
+class Exercise extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,11 @@ class exercise extends Model
     public function submission()
     {
         return $this->hasMany(submission::class);
+    }
+
+    public function solution()
+    {
+        return $this->hasMany(solution::class);
     }
 
     protected $guarded = [];
