@@ -46,15 +46,15 @@
                 <div class="col-8 ">
                     <div class="progress">
                         <div class="progress-bar progress-bar-green " role="progressbar" aria-valuenow="40"
-                             aria-valuemin="0" aria-valuemax="100" style="width: {{$exercise->iesutijumi>0 && $exercise->atrisinajumi>0 ? $exercise->iesutijumi/$exercise->atrisinajumi : 0}}%">
+                             aria-valuemin="0" aria-valuemax="100" style="width: {{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()>0 && \App\Models\Solution::Where('exercise_id', $exercise->id)->count() ? round(\App\Models\Solution::Where('exercise_id', $exercise->id)->count() * (\App\Models\Submission::Where('exercise_id', $exercise->id)->count()/10),2) : 0}}%">
                             <span class="sr-only">40% Complete (success)</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-1">{{$exercise->iesutijumi>0 && $exercise->atrisinajumi>0 ? $exercise->iesutijumi/$exercise->atrisinajumi : 0}}%</div>
+                <div class="col-1">{{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()>0 && \App\Models\Solution::Where('exercise_id', $exercise->id)->count() ? round(\App\Models\Solution::Where('exercise_id', $exercise->id)->count() * (\App\Models\Submission::Where('exercise_id', $exercise->id)->count()/10),2) : 0}}%</div>
         </div>
-            <div class="col-1">{{$exercise->iesutijumi}} </div>
-            <div class="col-1">{{$exercise->atrisinajumi}}</div>
+            <div class="col-1">{{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()}} </div>
+            <div class="col-1">{{\App\Models\Solution::Where('exercise_id', $exercise->id)->count()}}</div>
             <div class="col-2 "><span class="badge bg-red">WIP</span></div>
         </div>
         <div class="col-2">

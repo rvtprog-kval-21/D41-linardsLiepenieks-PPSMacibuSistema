@@ -33,11 +33,16 @@ class Judge0Controller extends Controller
                 $mode_id = 62;
                 break;
         }
+
+
         $correct_solution = true;
         foreach ($exercise->tests()->get() as $test) {
 
             $test_output =
                 $this->testCode($mode_id, $submission->code, $test->stdin);
+
+
+
             $newTest = $submission->submissionTest()->create([
                     'time' => $test_output[1]['time'],
                     'memory' => $test_output[1]['memory'] / 1000,
@@ -46,6 +51,7 @@ class Judge0Controller extends Controller
 
                 ]
             );
+
             $newTest->stdout = rtrim($newTest->stdout);
             if ($newTest->stdout == $test->stdout && $exercise->time >= $newTest->time && $exercise->memory >= $newTest->memory) {
                 $newTest->correct = true;

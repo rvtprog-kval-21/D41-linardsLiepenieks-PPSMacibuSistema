@@ -17,9 +17,9 @@ class CreateSubmissionTestsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('submission_id');
-            $table->string('time');
-            $table->double('memory');
-            $table->text('stdout');
+            $table->string('time')->nullable();
+            $table->double('memory')->nullable();
+            $table->text('stdout')->nullable();
             $table->boolean('correct')->default(false);
             $table->text('compile_output')->nullable();
             $table->index('submission_id');

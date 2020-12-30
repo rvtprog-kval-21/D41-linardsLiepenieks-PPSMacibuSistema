@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewSubmissionSentEvent;
 use App\Models\exercise;
 use App\Models\Submission;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
@@ -51,37 +53,20 @@ class ExercisesController extends Controller
     {
         $this->middleware('auth');
 
-        $submission = request()->validate([
+        $submission = request()->validate([ //Validate codeMirror input
             'mode' => 'required',
             'code' => 'required',
         ]);
-        $send = new Submission();
-        $send->mode = $submission['mode'];
-        $send->code = $submission['code'];
-        $send->exercise_id = $exercise->id;
-        $send->user_id = Auth::id();
-        $send->save();
 
+        //Prepare submission to be sent
+        $send = new Submission(); //Create a new submission object
+        $send->mode = $submission['mode']; //Add compiler mode (language)
+        $send->code = $submission['code']; //Add user input Code
+        $send->exercise_id = $exercise->id; //Connect submission instance to exercise
+        $send->user_id = Auth::id();       //Connect Submission instance to current user
+        $send->save();                     //Save the submission to database
 
-        $user_code = $send->code; //code ir kods no form ko ievada lietotajs
-
-        $Judge = new Judge0Controller;
-        $Judge->tests($send,$exercise);
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $exercise->iesutijumi +=1;
-        $exercise->save();
+        event(new NewSubmissionSentEvent($send, $exercise, Auth::user()));
 
         return redirect('/exercises');
 
@@ -110,10 +95,6 @@ class ExercisesController extends Controller
             'tests' =>'required|array',
 
         ]);
-
-
-
-
 
 
         $exercise = \App\Models\exercise::create($exercise);

@@ -8,13 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Judge0Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Judge0Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exercise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Submission.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Submission.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_10_224758_create_exercises_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_10_224758_create_exercises_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_20_020446_create_submissions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_20_020446_create_submissions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_29_094107_create_submission_tests_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_29_094107_create_submission_tests_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/exercises.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +228,8 @@
       <workItem from="1608556520304" duration="4195000" />
       <workItem from="1608666991826" duration="6403000" />
       <workItem from="1609226594995" duration="246000" />
-      <workItem from="1609229165353" duration="17506000" />
+      <workItem from="1609229165353" duration="19136000" />
+      <workItem from="1609306686110" duration="6941000" />
     </task>
     <servers />
   </component>
@@ -249,5 +246,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
