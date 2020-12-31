@@ -30,9 +30,11 @@
                             margin-top: 5px; ">
         <div class="col-1">{{$loop->index+1}}.</div>
         <div class="col-3">{{$rating->user->name}}</div>
-        <div class="col-2">Risināti uzdevumi WIP</div>
-        <div class="col-1">Atrisināti uzdevumi WIP</div>
-        <div class="col-1 ">Atrisinājumu reitings WIP</div>
+        <div class="col-2">{{$rating->user->submission->count()}}</div>
+        <div class="col-1">{{$rating->user->solution->count()}}</div>
+        <div class="col-1 ">{{$rating->user->submission->count()>0 && $rating->user->solution->count()>0 ?
+                                    round($rating->user->solution->count() / $rating->user->submission->count(),2)*100
+                                     : 0}}%</div>
         <div class="col-1 ">{{$rating->score}}</div>
     </div>
 @endforeach

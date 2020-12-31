@@ -56,6 +56,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+    public function submission()
+    {
+        return $this->hasMany(Submission::class);
+    }
+    public function solution()
+    {
+        return $this->hasMany(Solution::class);
+    }
 
     public function news()
     {
