@@ -25,7 +25,6 @@
     <div id="app">
 
         @foreach($submissions as $submission)
-
             <a href="#" data-toggle="modal" data-target="#modal{{$submission->id}}">
                 <div class="row justify-content-between align-items-center text-center" style="color:dimgray; background-color: white; border: 1px solid black;
                             font-size: 2vh;
@@ -35,12 +34,18 @@
                     <div class="col-3">{{$submission->mode}}</div>
                     <div class="col-2 row align-items-center">
                         <div class="col-8 ">
-                            WIP
+                            {{$submission->submissionTest->sortBy('time')->first()->time ? $submission->submissionTest->sortBy('time')->first()->time : '----'}}
                         </div>
                     </div>
-                    <div class="col-1">WIP</div>
-                    <div class="col-1">WIP</div>
-                    <div class="col-2 ">WIP</div>
+                    <div class="col-1">
+                        {{$submission->submissionTest->sortBy('memory')->first()->memory ? $submission->submissionTest->sortBy('memory')->first()->memory : '----'}}
+                    </div>
+                    <div class="col-1">
+                        {{$submission->submissionTest->sum('correct') == $exercise->tests->count() ? 'Pareizi' : 'Nepareizi'}}
+                    </div>
+                    <div class="col-2 ">
+                        {{$submission->submissionTest->sum('correct')}} / {{$exercise->tests->count()}}
+                    </div>
                 </div>
             </a>
 
