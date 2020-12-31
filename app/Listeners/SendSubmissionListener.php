@@ -33,7 +33,7 @@ class SendSubmissionListener implements ShouldQueue
 
             $newTest = $event->submission->submissionTest()->create([
                     'time' => $test_result[1]['time'],
-                    'memory' => $test_result[1]['memory'] / 1000,
+                    'memory' => $test_result[1]['memory']/1000,
                     'stdout' => base64_decode($test_result[1]['stdout']),
                 ]
             );//Add the compiled test result data to submission
@@ -52,7 +52,7 @@ class SendSubmissionListener implements ShouldQueue
             if ($correct == true) {
 
                 //Check if the exercise was already solved by this user
-                if (Solution::Where('user_id', $event->user->id)->first() == null && Solution::Where('exercise_id', $event->exercise->id)->first() == null) {
+                if (Solution::Where('user_id', $event->user->id)->first() == null xor Solution::Where('exercise_id', $event->exercise->id)->first() == null) {
 
                     //If it has not been solved create a solution record
                     $event->submission->solution()->create([

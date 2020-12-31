@@ -5,18 +5,22 @@
 @section('content_header')
 
     <div class="row justify-content-between">
+
         <h1>Uzdevumi</h1>
+
+        <!--directive to check if user is admin - create exercise-->
         <div class="col-2 ">
             @can('create', \App\Models\exercise::class)
-            <button type="button" class=" btn btn-block btn-success btn-sm" onclick="location.href='/exercises/create'">
-                Izveidot jaunu uzdevumu
-            </button>
+                <button type="button" class=" btn btn-block btn-success btn-sm"
+                        onclick="location.href='/exercises/create'">
+                    Izveidot jaunu uzdevumu
+                </button>
             @endcan
-
-
         </div>
+
     </div>
 
+    <!--Layout of exercise indo data-->
     <div class="row justify-content-between align-items-center text-center" style="color:white; background-color: dimgray;
                             font-size: 2vh;
 
@@ -29,40 +33,60 @@
         <div class="col-2 ">Tagi</div>
     </div>
 
-
-
 @stop
+
 
 @section('content')
 
+    <!--Create and show exercises-->
     @foreach($exercises as $exercise)
-        <div class="row justify-content-between align-items-center text-center" style="color:dimgray; background-color: white; border: 1px solid black;
-                            font-size: 2vh;
+        <div class="row justify-content-between align-items-center text-center"
+             style="    color:dimgray;
+                        background-color: white;
+                        border: 1px solid black;
+                        font-size: 2vh;
+                        margin-top: 5px; ">
 
-                            margin-top: 5px; ">
             <div class="col-2">{{$exercise->kods}}</div>
-            <div class="col-3"><a style="color: black" href="/exercises/show/{{$exercise->id}}">{{$exercise->nosaukums}}</a></div>
+            <div class="col-3">
+                <a style="color: black"
+                   href="/exercises/show/{{$exercise->id}}">{{$exercise->nosaukums}}
+                </a>
+            </div>
+
             <div class="col-2 row align-items-center">
                 <div class="col-8 ">
                     <div class="progress">
-                        <div class="progress-bar progress-bar-green " role="progressbar" aria-valuenow="40"
-                             aria-valuemin="0" aria-valuemax="100" style="width: {{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()>0 && \App\Models\Solution::Where('exercise_id', $exercise->id)->count() ? round(\App\Models\Solution::Where('exercise_id', $exercise->id)->count() * (\App\Models\Submission::Where('exercise_id', $exercise->id)->count()/10),2) : 0}}%">
-                            <span class="sr-only">40% Complete (success)</span>
+                        <div class="progress-bar progress-bar-green"
+                             role="progressbar"
+                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                             style="width:
+                        {{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()>0 && \App\Models\Solution::Where('exercise_id', $exercise->id)->count() ?
+                          round(\App\Models\Solution::Where('exercise_id', $exercise->id)->count() / \App\Models\Submission::Where('exercise_id', $exercise->id)->count(),2)*100
+                        : 0}}%">
+
+                           <!-- <span class="sr-only">40% Complete (success)</span>-->
                         </div>
                     </div>
                 </div>
-                <div class="col-1">{{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()>0 && \App\Models\Solution::Where('exercise_id', $exercise->id)->count() ? round(\App\Models\Solution::Where('exercise_id', $exercise->id)->count() * (\App\Models\Submission::Where('exercise_id', $exercise->id)->count()/10),2) : 0}}%</div>
-        </div>
+
+                <div class="col-1">{{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()>0 && \App\Models\Solution::Where('exercise_id', $exercise->id)->count() ?
+                                    round(\App\Models\Solution::Where('exercise_id', $exercise->id)->count() / \App\Models\Submission::Where('exercise_id', $exercise->id)->count(),2)*100
+                                     : 0}}%</div>
+            </div>
+
             <div class="col-1">{{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()}} </div>
             <div class="col-1">{{\App\Models\Solution::Where('exercise_id', $exercise->id)->count()}}</div>
             <div class="col-2 "><span class="badge bg-red">WIP</span></div>
         </div>
+
         <div class="col-2">
             @can('create', $exercise)
-            <button type="button" class="btn-block btn btn-danger btn-xs" onclick="location.href='exercises/del/{{$exercise->id}}'">
-                Dzēst uzdevumu
-            </button>
-                @endcan
+                <button type="button" class="btn-block btn btn-danger btn-xs"
+                        onclick="location.href='exercises/del/{{$exercise->id}}'">
+                    Dzēst uzdevumu
+                </button>
+            @endcan
         </div>
     @endforeach
 

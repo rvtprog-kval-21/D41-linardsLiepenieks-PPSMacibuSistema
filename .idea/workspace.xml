@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c52990-d6dc-405e-9e3b-03239d5574b6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/autorefresh.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Judge0Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Judge0Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_29_094107_create_submission_tests_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_29_094107_create_submission_tests_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/CodeMirror.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CodeMirror.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/exercises.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/exercises/send.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/send.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/exercises/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/exercises/submissions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/submissions.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +177,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../public/js/codemirrorModes" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -182,17 +186,18 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\linar\p4\public\js" />
+      <recent name="C:\Users\Linards\Prakse4\public\js\codemirrorModes" />
+      <recent name="C:\Users\Linards\Prakse4\resources\views\news" />
+      <recent name="C:\Users\Linards\Prakse4\storage\app\public\banner_images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Linards\Prakse4\public\js\codemirrorModes" />
       <recent name="C:\Users\Linards\Prakse4\public\css" />
       <recent name="C:\Users\Linards\Prakse4\resources\css" />
       <recent name="C:\Users\Linards\Prakse4\public\js" />
       <recent name="C:\Users\Linards\Prakse4\resources\views" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Linards\Prakse4\public\js\codemirrorModes" />
-      <recent name="C:\Users\Linards\Prakse4\resources\views\news" />
-      <recent name="C:\Users\Linards\Prakse4\storage\app\public\banner_images" />
     </key>
   </component>
   <component name="RunManager">
@@ -230,6 +235,7 @@
       <workItem from="1609226594995" duration="246000" />
       <workItem from="1609229165353" duration="19136000" />
       <workItem from="1609306686110" duration="6941000" />
+      <workItem from="1609390450714" duration="12005000" />
     </task>
     <servers />
   </component>

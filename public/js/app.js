@@ -225,6 +225,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    textAreaId: {
+      "default": "editor"
+    },
+    code: {
+      "default": ""
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
@@ -233,31 +241,47 @@ __webpack_require__.r(__webpack_exports__);
     document.body.appendChild(code);
 
     code.onload = function () {
-      var clike = document.createElement('script');
-      clike.setAttribute('src', '/js/codemirrorModes/clike.js');
+      var refresh = document.createElement('script');
+      refresh.setAttribute('src', '/js/autorefresh.js');
+      document.body.appendChild(refresh);
 
-      clike.onload = function () {
-        _this.editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-          lineNumbers: true,
-          matchBrackets: true,
-          continueComments: "Enter",
-          mode: "text/x-c++src",
-          extraKeys: {
-            "Ctrl-Q": "toggleComment"
-          }
-        });
+      refresh.onload = function () {
+        var clike = document.createElement('script');
+        clike.setAttribute('src', '/js/codemirrorModes/clike.js');
+        document.body.appendChild(clike);
+
+        clike.onload = function () {
+          _this.enableCodemirror();
+        };
+
+        var js = document.createElement('script');
+        js.setAttribute('src', '/js/codemirrorModes/javascript.js');
+        document.body.appendChild(js);
+        var py = document.createElement('script');
+        py.setAttribute('src', '/js/codemirrorModes/python.js');
+        document.body.appendChild(py);
       };
-
-      document.body.appendChild(clike);
-      var js = document.createElement('script');
-      js.setAttribute('src', '/js/codemirrorModes/javascript.js');
-      document.body.appendChild(js);
-      var py = document.createElement('script');
-      py.setAttribute('src', '/js/codemirrorModes/python.js');
-      document.body.appendChild(py);
     };
   },
   methods: {
+    enableCodemirror: function enableCodemirror() {
+      console.log(this.code);
+      document.getElementById("editor").id = this.textAreaId;
+      document.getElementById(this.textAreaId).innerHTML = this.code;
+      var codemirror = document.getElementById(this.textAreaId);
+      codemirror = CodeMirror.fromTextArea(document.getElementById(this.textAreaId), {
+        lineNumbers: true,
+        autoRefresh: true,
+        matchBrackets: true,
+        continueComments: "Enter",
+        mode: "text/x-c++src",
+        extraKeys: {
+          "Ctrl-Q": "toggleComment"
+        }
+      }); //codemirror.setValue(this.code);
+
+      this.editor = codemirror;
+    },
     onChange: function onChange() {
       var setMode = "";
 

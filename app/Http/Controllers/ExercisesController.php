@@ -49,6 +49,7 @@ class ExercisesController extends Controller
         $submissions = Submission::Where('user_id', Auth::id())->Where('exercise_id', $exercise->id)->get();
         return view('exercises/submissions', compact('exercise', 'submissions'));
     }
+
     public function send(\App\Models\exercise $exercise)
     {
         $this->middleware('auth');
