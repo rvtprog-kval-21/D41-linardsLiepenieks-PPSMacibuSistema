@@ -6,7 +6,21 @@
 
 //require('./bootstrap');
 
+
+
 window.Vue = require('vue');
+import Vue from 'vue';
+import VueCodemirror from 'vue-codemirror';
+import 'codemirror/lib/codemirror.css';
+Vue.use(VueCodemirror, /* {
+  options: { theme: 'base16-dark', ... },
+  events: ['scroll', ...]
+} */);
+
+import LoadScript from 'vue-plugin-load-script';
+
+Vue.use(LoadScript);
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,11 +37,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('add-test', require('./components/AddTest.vue').default);
 Vue.component('codemirror', require('./components/CodeMirror.vue').default);
 
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+//import '../../public/js/codemirror.js';
 
 const app = new Vue({
     el: '#app',

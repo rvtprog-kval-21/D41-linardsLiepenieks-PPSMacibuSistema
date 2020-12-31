@@ -384,6 +384,61 @@ return [
             ],
         ],
         [
+            'name' => 'CM',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/codemirror.js',
+                ],
+            ],
+        ],
+        [
+            'name' => 'CMrefresh',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/autorefresh.js',
+                ],
+            ],
+        ],
+        [
+            'name' => 'CMcpp',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/codemirrorModes/clike.js',
+                ],
+            ],
+        ],
+        [
+            'name' => 'CMpy',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/codemirrorModes/python.js',
+                ],
+            ],
+        ],
+        [
+            'name' => 'CMjs',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/codemirrorModes/javascript.js',
+                ],
+            ],
+        ],
+        [
             'name' => 'Vue',
             'active' => true,
             'files' => [

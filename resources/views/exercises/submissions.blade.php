@@ -55,7 +55,11 @@
 
                         <div class="modal-body">
                             <codemirror text-area-id="{{$submission->id}}"
-                                        code="{{$submission->code}}">
+                                        code="{{$submission->code}}"
+                                        mode="{{$submission->mode}}"
+                                        mode-id ="mode{{$submission->id}}"
+                                        timestamp ="{{$submission->created_at}}"
+                                        disabled ="true">
                             </codemirror>
 
                             <div class="row justify-content-around mt-3 text-center">
@@ -72,7 +76,7 @@
                                     <div>{{$try->memory}} mb</div>
                                     <div>{{$try->stdout != null ? $try->stdout: '---'}}</div>
                                 </div>
-                                @php $i++ @endphp
+                                @php  $i++ @endphp
                             @endforeach
                         </div>
 
@@ -92,6 +96,7 @@
     <link rel="stylesheet" href="{{'/css/codemirror.css'}}">
 
 @stop
+
 
 
 

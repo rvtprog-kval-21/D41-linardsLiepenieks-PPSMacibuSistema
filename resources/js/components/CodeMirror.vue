@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 export default {
     props: {
         textAreaId: {
@@ -21,63 +22,57 @@ export default {
         },
         code: {
             default: ""
+        },
+        mode: {
+            default: "C++"
+        },
+        modeId: {
+            default: "mode"
+        },
+        timestamp: {
+            default: "---"
+        },
+        disabled: {
+            default: false
+
         }
     },
+
     mounted() {
 
-        let code = document.createElement('script');
-        code.setAttribute('src', '/js/codemirror.js');
-        document.body.appendChild(code);
-        code.onload = () => {
 
-            let refresh = document.createElement('script');
-            refresh.setAttribute('src', '/js/autorefresh.js');
-            document.body.appendChild(refresh);
-            refresh.onload = () => {
-
-                let clike = document.createElement('script');
-                clike.setAttribute('src', '/js/codemirrorModes/clike.js');
-                document.body.appendChild(clike);
-                clike.onload = () => {
-                    this.enableCodemirror();
-                }
-
-                let js = document.createElement('script');
-                js.setAttribute('src', '/js/codemirrorModes/javascript.js');
-                document.body.appendChild(js);
-
-                let py = document.createElement('script');
-                py.setAttribute('src', '/js/codemirrorModes/python.js');
-                document.body.appendChild(py);
-            }
-
-        };
-
+        this.enableCodemirror();
 
 
     },
 
     methods: {
         enableCodemirror() {
-                console.log(this.code);
-                document.getElementById("editor").id = this.textAreaId;
 
-                document.getElementById(this.textAreaId).innerHTML = this.code;
-                let codemirror = document.getElementById(this.textAreaId);
-                codemirror = CodeMirror.fromTextArea(document.getElementById(this.textAreaId), {
-                    lineNumbers: true,
-                    autoRefresh: true,
-                    matchBrackets: true,
-                    continueComments: "Enter",
-                    mode: "text/x-c++src",
-                    extraKeys: {"Ctrl-Q": "toggleComment"}
-                });
-                //codemirror.setValue(this.code);
-                this.editor = codemirror;
+            document.getElementById("editor").id = this.textAreaId;
+            document.getElementById("mode").id = this.modeId;
+
+            document.getElementById(this.textAreaId).innerHTML = this.code;
+
+            let codemirror = document.getElementById(this.textAreaId);
+            codemirror = CodeMirror.fromTextArea(document.getElementById(this.textAreaId), {
+                lineNumbers: true,
+                autoRefresh: true,
+                matchBrackets: true,
+                continueComments: "Enter",
+                mode: "text/x-c++src",
+                extraKeys: {"Ctrl-Q": "toggleComment"}
+            });
+            //codemirror.setValue(this.code);
+            this.editor = codemirror;
+            this.disableCM(this.disabled);
+
+            this.onChange(this.mode);
         },
-        onChange() {
+        onChange(mode = document.getElementById(this.modeId).value) {
+
             let setMode = "";
-            switch (document.getElementById("mode").value) {
+            switch (mode) {
                 case "C++":
                     setMode = "text/x-c++src";
                     break;
@@ -92,11 +87,21 @@ export default {
                     break;
                 default:
                     setMode = "C++";
-                // code block
             }
-
+            document.getElementById(this.modeId).value = mode;
             this.editor.setOption("mode", setMode);
+        },
+        disableCM(x){
+
+            if(x=="true")
+            {
+                this.editor.setOption("readOnly", true);
+                console.log(this.editor.getOption("readOnly"));
+
+                document.getElementById(this.modeId).disabled = true;
+            }
         }
-    }
+
+}
 }
 </script>
