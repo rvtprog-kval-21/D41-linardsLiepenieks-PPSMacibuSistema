@@ -7,7 +7,7 @@
     <div class="row align-items-center">
         <button type="button" class="btn  btn-primary btn-lg col-2 m-2" onclick="location.href='/exercises/{{$exercise->id}}/send'">Iesūtīt uzdevumu</button>
         <button type="button" class="btn  btn-primary btn-lg col-2 m-2"onclick="location.href='/exercises/{{$exercise->id}}/submissions'" >Mani iesūtījumi</button>
-        <button type="button" class="btn  btn-primary btn-lg col-2 m-2">Mani atrisinājumi Wip</button>
+        <button type="button" class="btn  btn-primary btn-lg col-2 m-2" onclick="location.href='/exercises/{{$exercise->id}}/solutions'">Mani atrisinājumi </button>
 
     </div>
     @endif

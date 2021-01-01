@@ -46,28 +46,32 @@ class SendSubmissionListener implements ShouldQueue
                 $newTest->correct = true;
             }
             else {$correct = false;}
+
             $newTest->save(); //Save changes to this testcase submission
 
-            //If all tests completed correctly
-            if ($correct == true) {
+        }
 
-                //Check if the exercise was already solved by this user
-                if (Solution::Where('user_id', $event->user->id)->first() == null xor Solution::Where('exercise_id', $event->exercise->id)->first() == null) {
+        //If all tests completed correctly
+        if ($correct == true) {
 
-                    //If it has not been solved create a solution record
-                    $event->submission->solution()->create([
-                            'user_id' => $event->user->id,
-                            'exercise_id' => $event->exercise->id,
-                        ]);
+            //Check if the exercise was already solved by this user
+            if (Solution::Where('user_id', $event->user->id)->first() == null xor Solution::Where('exercise_id', $event->exercise->id)->first() == null) {
 
-                    //Add score to user
-                    $profile = Profile::Where('user_id', $event->user->id)->first();
 
-                    $profile->score += $event->exercise->score;
-                    $profile->save();
-                }
+
+                //Add score to user
+                $profile = Profile::Where('user_id', $event->user->id)->first();
+                $profile->score = $profile->score + $event->exercise->score;
+                $profile->save();
+
 
             }
+
+            //create a solution record
+            $event->submission->solution()->create([
+                'user_id' => $event->user->id,
+                'exercise_id' => $event->exercise->id,
+            ]);
 
         }
         $event->exercise->iesutijumi +=1;

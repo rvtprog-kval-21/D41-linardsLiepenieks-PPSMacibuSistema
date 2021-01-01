@@ -28,6 +28,7 @@ Route::get('/exercises/show/{exercise}', [App\Http\Controllers\ExercisesControll
 Route::post('/exercises/post', [App\Http\Controllers\ExercisesController::class, 'store']);
 Route::post('/exercises/{exercise}/send', [App\Http\Controllers\ExercisesController::class, 'send']);
 Route::get('/exercises/{exercise}/submissions', [App\Http\Controllers\ExercisesController::class, 'submissions']);
+Route::get('/exercises/{exercise}/solutions', [App\Http\Controllers\ExercisesController::class, 'solutions']);
 Route::get('/exercises/del/{exercise}', [App\Http\Controllers\ExercisesController::class, 'delete']);
 Route::get('/exercises/{exercise}/send', [App\Http\Controllers\ExercisesController::class, 'openSend']);
 

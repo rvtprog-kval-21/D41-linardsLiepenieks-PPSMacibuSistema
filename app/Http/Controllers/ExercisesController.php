@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\NewSubmissionSentEvent;
 use App\Models\exercise;
+use App\Models\Solution;
 use App\Models\Submission;
 use App\Models\User;
 use App\Models\Profile;
@@ -46,8 +47,13 @@ class ExercisesController extends Controller
     }
     public function submissions(\App\Models\exercise $exercise)
     {
-        $submissions = Submission::Where('user_id', Auth::id())->Where('exercise_id', $exercise->id)->get();
+        $submissions = Submission::Where('user_id', Auth::id())->Where('exercise_id', $exercise->id)->get()->sortByDesc('created_at');
         return view('exercises/submissions', compact('exercise', 'submissions'));
+    }
+    public function solutions(\App\Models\exercise $exercise)
+    {
+        $solutions = Solution::Where('user_id', Auth::id())->Where('exercise_id', $exercise->id)->get();
+        return view('exercises/solutions', compact('exercise', 'solutions'));
     }
 
     public function send(\App\Models\exercise $exercise)
