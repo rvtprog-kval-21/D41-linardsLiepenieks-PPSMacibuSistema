@@ -41,6 +41,10 @@ Route::get('/news/del/{news}', [App\Http\Controllers\NewsController::class, 'del
 Route::get('/rating', [App\Http\Controllers\RatingsController::class, 'index'])->name('rating');
 
 
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('rating');
+Route::get('/admin/banner', [App\Http\Controllers\AdminController::class, 'banner'])->name('banner');
+
+
 
 
 

@@ -1,8 +1,8 @@
 @extends('adminlte::page')
-@section('title', 'Iesūtījumi')
+@section('title', 'Atrisinājumi')
 
 @section('content_header')
-    <h1>Uzdevuma {{$exercise->kods}} iesūtījumi</h1>
+    <h1>Uzdevuma {{$exercise->kods}} atrisinājumi</h1>
 
     <!--Layout of submission data tooltips-->
     <div class="row justify-content-between align-items-center text-center" style="color:white; background-color: dimgray;

@@ -58,6 +58,7 @@
             <li class="user-body">
                 @yield('usermenu_body')
             </li>
+
         @endif
 
         {{-- User menu footer --}}

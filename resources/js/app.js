@@ -36,6 +36,7 @@ Vue.use(LoadScript);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('add-test', require('./components/AddTest.vue').default);
 Vue.component('codemirror', require('./components/CodeMirror.vue').default);
+Vue.component('banner-edit', require('./components/BannerEdit.vue').default);
 
 
 

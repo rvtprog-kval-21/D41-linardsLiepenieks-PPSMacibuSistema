@@ -65,7 +65,7 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
@@ -272,6 +272,13 @@ return [
 
 
             ],
+        ],
+        [
+            //Pagaidam pieejams ari no user
+            'text'  => 'Admin panelis',
+            'url'  => 'admin',
+            'icon'  => 'fas fa-fw fa-lock',
+            'topnav_user' =>true,
         ],
 
     ],

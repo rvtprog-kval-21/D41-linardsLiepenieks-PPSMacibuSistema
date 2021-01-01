@@ -23,7 +23,8 @@
                     <img  style="max-height: 100%;"
                          src="{{asset('banner_images/banner-placeholder.png')}}"
                          alt="First slide">
-                </div><div class="carousel-item" style="height: 30vh;">
+                </div>
+                <div class="carousel-item" style="height: 30vh;">
                     <img  style="max-height: 100%;"
                          src="{{asset('banner_images/banner-placeholder.png')}}"
                          alt="First slide">
