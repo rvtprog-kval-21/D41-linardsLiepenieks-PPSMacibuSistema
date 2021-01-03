@@ -1,61 +1,143 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# "Pirmā programmēšanas skola" mācību sistēma
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+##Projekta apraksts
+PIKC "Rīgas Valsts tehnikums" kvalifikācijas darbs.
+Mērķis - izveidot mācību sistēmu uzņēmumam "Pirmā programmēšanas skola" (Turpmāk "PPS")
+Plānotā funkcionalitāte:
+- Lietotāju sistēma
+    - Reģistrēties
+    - Ielogoties
+- Jaunumu sistēma
+  - Pievienot ziņojumu
+  - Dzēst ziņojumu
+  - Labot ziņojumu
+- Uzdevumu sistēma
+    - Izveidot uzdevumu
+    - Dzēst uzdevumu
+    - Iesūtīt uzdevumu (Sakompilēt iesūtījuma kodu un salīdzināt ar testa piemēriem)
+    - Labot uzdevumu
+    
+## Izmantotās tehnoloģijas
+- Laravel
+- Vuejs
+- SQLite
+- Judge0 API
+- NodeJS
+- Composer
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Instalācija
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Sistēmai vajadzīgās programmas
+* [Composer](https://getcomposer.org/)
+* [NodeJS](hhttps://nodejs.org/en/)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Uzstādīšana caur windows cmd
+**Sekojot šīm instrukcijām jāatrodas mapē, kurā esat klonējuši github projektu!**
+1. Instalēt failus no composer
 
-## Laravel Sponsors
+`composer install`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2. Instalēt failus ar npm
 
-### Premium Partners
+`npm install`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+3. izveidot env faila kopiju no env.example
 
-## Contributing
+`cp .env.example .env`
+   
+4. Instalēt Laravel ar composer
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`composer global require laravel/installer`
 
-## Code of Conduct
+5. Instalēt Laravel UI
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+`composer require laravel/ui:^2.4`
 
-## Security Vulnerabilities
+6. Izveidot datubāzi
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+`database` mapē izveidojiet failu ar nosaukumus `database.sqlite`
 
-## License
+7. Uzstādīt datubāzi .env failā
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+`.env` failā izdzēst:
+
+`DB_CONNECTION=mysql
+ DB_HOST=127.0.0.1
+ DB_PORT=3306
+ DB_DATABASE=prakse4   
+ DB_USERNAME=root 
+ DB_PASSWORD=`
+
+Tā vietā ierakstīt:
+
+`DB_CONNECTION=sqlite`
+
+8. Mainīt queue draiveri .env failā
+
+Nomainīt:
+
+`QUEUE_CONNECTION=sync`
+
+Uz:
+
+`QUEUE_CONNECTION=database`
+
+9. Ģenerēt aplikācijas šifrēšanas atslēgu
+
+`php artisan key:generate`
+
+10. Migrēt datubāzi
+
+`php artisan migrate`
+
+### Palaist programmu
+
+**Katru no minētajiem procesiem startēt savā cmd logā un nevērt logus ciet!!!**
+
+1. Palaist vebserveri
+
+`php artisan serve`
+
+2. Palaist fona procesus
+
+`php artisan queue:work`
+
+3. Palaist npm
+
+`npm run watch`
+
+4. Pieslēgties aplikācijai
+
+Tīmekļa pārlūkā dodaties uz ip adresi kas tika parādīta palaižot vebserveri
+
+### Uzstādīt admin profilu
+0.
+
+Caur mājaslapu izveidot profilu spiežot uz pogas "Register"
+
+1. atvērt artisan tinker
+
+`php artisan tinker`
+
+2. Saglabāt lietotāju mainīgajā
+
+`$user = User::Where('id', 1)->first();`
+
+(where('id', 1) kur cipars 1 norāda uz user->id, ja vēlaties mainīt citu user atrodiet tā ID ar `User::All()` Komandu
+ 
+3. Mainīt objekta admin parametru
+
+`$user->admin = 1;`
+
+4. Saglabāt izmaiņas datubāzē
+
+`$user->save;`
+
+
+
+
+
