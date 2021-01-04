@@ -146,6 +146,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
@@ -236,6 +258,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
@@ -245,11 +283,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onFileChange: function onFileChange(e) {
-      var file = e.target.files[0];
-      console.log(URL.createObjectURL(file));
-      this.inputs.push({
-        id: URL.createObjectURL(file)
-      });
+      for (var i = 0; i < e.target.files.length; i++) {
+        var file = e.target.files[i];
+        this.inputs.push({
+          id: URL.createObjectURL(file),
+          name: file.name
+        });
+      }
+
+      document.getElementById("img").files = null;
+      document.getElementById("img").value = null;
+      var arr = [];
+
+      for (var _i = 0; _i < this.inputs.length; _i++) {
+        var blobToFile = this.inputs[_i];
+        blobToFile.lastModifiedDate = new Date();
+        blobToFile.name = this.inputs[_i].name;
+        arr[_i] = blobToFile;
+      }
+
+      console.log(this.inputs); //for(let i = 0;i<this.inputs.length;i++){
+      //  console.log(this.inputs);}
     },
     remove: function remove(index) {
       this.inputs.splice(index, 1);
@@ -11383,7 +11437,12 @@ var render = function() {
                   }
                 },
                 [
-                  _vm._v(_vm._s(input.id + 1) + "\n                    "),
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(input.id + 1) +
+                      "\n                    "
+                  ),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -11399,41 +11458,33 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("th", [
-                _c(
-                  "textarea",
-                  {
-                    staticClass: "w-100 form-control",
-                    staticStyle: {
-                      width: "100%",
-                      height: "100%",
-                      "box-sizing": "border-box"
-                    },
-                    attrs: {
-                      id: "input"[input.id],
-                      name: "tests[stdin][" + index + "]"
-                    }
+                _c("textarea", {
+                  staticClass: "w-100 form-control",
+                  staticStyle: {
+                    width: "100%",
+                    height: "100%",
+                    "box-sizing": "border-box"
                   },
-                  [_vm._v("ievaddati " + _vm._s(input.id))]
-                )
+                  attrs: {
+                    id: "input"[input.id],
+                    name: "tests[stdin][" + index + "]"
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("th", [
-                _c(
-                  "textarea",
-                  {
-                    staticClass: "w-100 form-control",
-                    staticStyle: {
-                      width: "100%",
-                      height: "100%",
-                      "box-sizing": "border-box"
-                    },
-                    attrs: {
-                      id: "output" + input.id,
-                      name: "tests[stdout][" + index + "]"
-                    }
+                _c("textarea", {
+                  staticClass: "w-100 form-control",
+                  staticStyle: {
+                    width: "100%",
+                    height: "100%",
+                    "box-sizing": "border-box"
                   },
-                  [_vm._v("ievaddati")]
-                )
+                  attrs: {
+                    id: "output" + input.id,
+                    name: "tests[stdout][" + index + "]"
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("th", { staticStyle: { width: "10px" } }, [
@@ -11522,10 +11573,20 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("label", { attrs: { for: "img" } }, [_vm._v("Select image:")]),
+    _c("label", [_vm._v("Select image: ")]),
+    _vm._v(" "),
+    _vm._m(0),
     _vm._v(" "),
     _c("input", {
-      attrs: { type: "file", id: "img", name: "img", accept: "image/*" },
+      staticStyle: { display: "none" },
+      attrs: {
+        required: "",
+        type: "file",
+        id: "img",
+        name: "img[]",
+        accept: "image/*",
+        multiple: ""
+      },
       on: { change: _vm.onFileChange }
     }),
     _vm._v(" "),
@@ -11559,6 +11620,7 @@ var render = function() {
                     top: "-10px",
                     right: "-10px"
                   },
+                  attrs: { type: "button" },
                   on: {
                     click: function($event) {
                       return _vm.remove(index)
@@ -11582,7 +11644,18 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "btn btn-default bg-green", attrs: { for: "img" } },
+      [_c("i", { staticClass: "far fa-plus-square" })]
+    )
+  }
+]
 render._withStripped = true
 
 

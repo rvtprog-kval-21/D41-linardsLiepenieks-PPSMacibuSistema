@@ -10,7 +10,15 @@
 
 @section('content')
     <div id="app">
-    <banner-edit></banner-edit>
+        <form action="/admin/banner/edit"
+              enctype="multipart/form-data"
+              method="post">
+            @csrf
+        <banner-edit></banner-edit>
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
 @stop
 

@@ -18,15 +18,25 @@ class AdminController extends Controller
             'x-rapidapi-key' => $this->token,
             'x-rapidapi-host' => $this->host,
             'useQueryString'=> true,
-        ])->get('https://judge0.p.rapidapi.com/system_info');
+        ])->get('https://judge0.p.rapidapi.com/languages');
 
-        //dd($response);
-        return view('admin_panel/admin_home');
+
+
+        $tests = $response->headers()['X-RateLimit-Individual-Submissions-Remaining'][0];
+
+        return view('admin_panel/admin_home', compact('tests'));
     }
     public function banner()
     {
-
-        //dd($response);
         return view('admin_panel/banner');
+    }
+
+    public function bannerEdit(Request $request)
+    {
+        $images = $request->validate([
+            'img' => ''
+            ]);
+
+        dd($images);
     }
 }

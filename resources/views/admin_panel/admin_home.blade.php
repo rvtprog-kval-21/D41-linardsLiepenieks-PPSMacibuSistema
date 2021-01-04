@@ -14,6 +14,7 @@
         <div class="col-5" style="border: 1px solid black">
             <div style="font-size: 35px">
                 <b>Palikuši testi:</b>
+                {{$tests}}
             </div>
         </div>
         <div class="col-5">
