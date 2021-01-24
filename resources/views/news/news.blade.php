@@ -15,20 +15,17 @@
         </button>
         </div>
     @endcan
-    <div class="row justify-content-center" >
+    <div class="row justify-content-center">
 
         <div id="carouselExampleControls" class="carousel slide w-100" data-ride="carousel" style="background-color: black">
             <div class="carousel-inner text-center">
-                <div class="carousel-item active" style="height: 30vh;">
-                    <img  style="max-height: 100%;"
-                         src="{{asset('banner_images/banner-placeholder.png')}}"
-                         alt="First slide">
-                </div>
-                <div class="carousel-item" style="height: 30vh;">
-                    <img  style="max-height: 100%;"
-                         src="{{asset('banner_images/banner-placeholder.png')}}"
-                         alt="First slide">
-                </div>
+                @foreach($images as $key => $image)
+                    <div class="carousel-item {{$key == 0 ? 'active' : '' }}"
+                        style="height: 35vh">
+                        <img src="storage/{{$image->file_path}}" class="rounded mx-auto d-block"  alt="..."
+                        style="height: 100%">
+                    </div>
+                @endforeach
 
 
 

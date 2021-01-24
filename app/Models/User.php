@@ -70,4 +70,9 @@ class User extends Authenticatable
         return $this->hasMany(News::class)->orderBy('created_at', 'asc');
     }
 
+    public function bannerPost()
+    {
+        return $this->hasMany(BannerImage::class);
+    }
+
 }

@@ -126,8 +126,6 @@ class ExercisesController extends Controller
 
     public function delete(\App\Models\exercise $exercise)
     {
-
-
         $this->authorize('create', Exercise::class);
         $exercise->tests()->delete();
         $exercise->submission()->delete();

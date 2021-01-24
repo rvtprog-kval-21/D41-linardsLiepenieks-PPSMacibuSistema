@@ -43,7 +43,7 @@ Route::get('/rating', [App\Http\Controllers\RatingsController::class, 'index'])-
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('rating');
 Route::get('/admin/banner', [App\Http\Controllers\AdminController::class, 'banner'])->name('banner');
-Route::post('/admin/banner/edit', [App\Http\Controllers\AdminController::class, 'bannerEdit'])->name('banner');
+Route::post('/admin/banner', [App\Http\Controllers\AdminController::class, 'bannerEdit']);
 
 
 

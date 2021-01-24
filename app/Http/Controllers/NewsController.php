@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\BannerImage;
 use App\Models\User;
 use App\Models\News;
 
@@ -11,7 +12,8 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all()->sortByDesc("created_at");
-        return view('news/news', compact('news', 'news'));
+        $images = BannerImage::all();
+        return view('news/news', compact('news', 'images'));
     }
 
     public function create(User $user)

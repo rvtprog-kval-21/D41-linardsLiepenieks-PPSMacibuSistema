@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BannerImage;
 use App\Models\Exercise;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use PhpParser\Builder\Class_;
+use function GuzzleHttp\json_decode;
 
 class AdminController extends Controller
 {
+
     protected $token = '6e119475ebmsh65d847450b4e390p188601jsn33f056dec39a';
-    protected $host = 'judge0.p.rapidapi.com';
+    protected $host = 'judge0-ce.p.rapidapi.com';
 
     public function index()
     {
@@ -18,11 +24,11 @@ class AdminController extends Controller
             'x-rapidapi-key' => $this->token,
             'x-rapidapi-host' => $this->host,
             'useQueryString'=> true,
-        ])->get('https://judge0.p.rapidapi.com/languages');
+        ])->get('https://judge0-ce.p.rapidapi.com/about');
 
 
-
-        $tests = $response->headers()['X-RateLimit-Individual-Submissions-Remaining'][0];
+        //dd($response);
+        $tests = $response->headers()['X-RateLimit-Submissions-Remaining'][0];
 
         return view('admin_panel/admin_home', compact('tests'));
     }
@@ -33,10 +39,23 @@ class AdminController extends Controller
 
     public function bannerEdit(Request $request)
     {
+        //Validate inputs
         $images = $request->validate([
-            'img' => ''
+            'photo' => 'required|array'
             ]);
 
-        dd($images);
+        //Store each image
+        foreach ($images['photo'] as $photo){
+        $newPath = $photo->store('bannerImages', ['disk' => 'public']);
+
+            auth()->user()->bannerPost()->create([
+                'file_path'=>$newPath,
+            ]);
+        }
+
+        redirect('/news');
+
+
+
     }
 }

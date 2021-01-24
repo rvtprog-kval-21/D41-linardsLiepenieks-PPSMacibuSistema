@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('../js/bootstrap');
+require('../../js/bootstrap');
 
 
 
@@ -37,10 +37,10 @@ Vue.use(LoadScript);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('../js/components/ExampleComponent.vue').default);
-Vue.component('add-test', require('../js/components/AddTest.vue').default);
-Vue.component('codemirror', require('../js/components/CodeMirror.vue').default);
-Vue.component('banner-edit', require('../js/components/BannerEdit.vue').default);
+Vue.component('example-component', require('../../js/components/ExampleComponent.vue').default);
+Vue.component('add-test', require('../../js/components/AddTest.vue').default);
+Vue.component('codemirror', require('../../js/components/CodeMirror.vue').default);
+Vue.component('banner-edit', require('../../js/components/BannerEdit.vue').default);
 
 
 
