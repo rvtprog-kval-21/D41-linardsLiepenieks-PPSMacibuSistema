@@ -21,7 +21,7 @@
             <div class="carousel-inner text-center">
                 @foreach($images as $key => $image)
                     <div class="carousel-item {{$key == 0 ? 'active' : '' }}"
-                        style="height: 35vh">
+                        style="height: 50vh">
                         <img src="storage/{{$image->file_path}}" class="rounded mx-auto d-block"  alt="..."
                         style="height: 100%">
                     </div>

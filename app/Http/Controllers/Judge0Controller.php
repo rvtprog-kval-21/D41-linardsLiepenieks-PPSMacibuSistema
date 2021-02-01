@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Http;
 class Judge0Controller extends Controller
 {
     protected $token = '6e119475ebmsh65d847450b4e390p188601jsn33f056dec39a';
+    protected $host = 'judge0-ce.p.rapidapi.com';
 
     public function tests(Submission $submission, exercise $exercise)
     {
@@ -89,7 +90,7 @@ class Judge0Controller extends Controller
 
         $response = Http::withHeaders([
             'x-rapidapi-key' => $this->token,
-            'x-rapidapi-host' => 'judge0.p.rapidapi.com'
+            'x-rapidapi-host' => $this->host
         ])->post('https://judge0.p.rapidapi.com/submissions', [
             'language_id' => $languageId,
             'source_code' => $code,
@@ -98,13 +99,14 @@ class Judge0Controller extends Controller
         ]);
         $submissionKey = $response['token'];
 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 4; $i++)
+        {
 
             sleep(3);
 
             $response = Http::withHeaders([
                 'x-rapidapi-key' => $this->token,
-                'x-rapidapi-host' => 'judge0.p.rapidapi.com'
+                'x-rapidapi-host' => $this->host
             ])->get('https://judge0.p.rapidapi.com/submissions/' . $submissionKey . '?base64_encoded=true');
 
             if ($response['status']['description'] == 'Accepted') {

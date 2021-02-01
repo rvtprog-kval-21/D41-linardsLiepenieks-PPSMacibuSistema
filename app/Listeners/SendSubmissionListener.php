@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 class SendSubmissionListener implements ShouldQueue
 {
     protected $token = '6e119475ebmsh65d847450b4e390p188601jsn33f056dec39a';
-    protected $host = 'judge0.p.rapidapi.com';
+    protected $host = 'judge0-ce.p.rapidapi.com';
 
     /**
      * Handle the event.
@@ -54,16 +54,14 @@ class SendSubmissionListener implements ShouldQueue
         //If all tests completed correctly
         if ($correct == true) {
 
+
             //Check if the exercise was already solved by this user
-            if (Solution::Where('user_id', $event->user->id)->first() == null xor Solution::Where('exercise_id', $event->exercise->id)->first() == null) {
-
-
+            if ($event->user->Solution()->get()->Where('exercise_id', $event->exercise->id)->first() == null) {
 
                 //Add score to user
-                $profile = Profile::Where('user_id', $event->user->id)->first();
+                $profile = $event->user->profile()->first();
                 $profile->score = $profile->score + $event->exercise->score;
                 $profile->save();
-
 
             }
 
@@ -129,9 +127,7 @@ class SendSubmissionListener implements ShouldQueue
 
             //If code is compiled return test data and stop retrying
             if ($response['status']['description'] == 'Accepted') {
-
                 return array('accepted', $response->json());
-
             }
 
         }

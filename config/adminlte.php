@@ -279,6 +279,7 @@ return [
             'url'  => 'admin',
             'icon'  => 'fas fa-fw fa-lock',
             'topnav_user' =>true,
+            'can' => 'is-admin',
         ],
 
     ],
