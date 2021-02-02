@@ -106,9 +106,12 @@ export default {
             //prevent triggering controller
             event.preventDefault();
             //create form data which through send images
+            console.log(this.delete);
+
             const data = new FormData();
             //Add each image to an array
             this.photoarr.forEach((p)=>{
+                if(p.type != "old")
                 data.append('photo[]', p);
             });
 
@@ -119,7 +122,7 @@ export default {
             //post images to controller with axios
             axios.post("/admin/banner", data)
                 .then(res => {
-                    //console.log(res.data);
+                    console.log(res.data);
                 }).catch(err => {
                 console.log(err)});
         },

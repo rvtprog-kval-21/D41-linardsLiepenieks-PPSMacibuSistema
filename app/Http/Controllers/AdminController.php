@@ -56,7 +56,7 @@ class AdminController extends Controller
             ]);
 
         //Store each image
-        if($images['photo']?? null){
+        if($images['photo'] ?? null){
         foreach ($images['photo'] as $photo){
         $newPath = $photo->store('bannerImages', ['disk' => 'public']);
 
@@ -66,7 +66,7 @@ class AdminController extends Controller
         }}
 
         //check for images to be deleted
-        if($images['photo']?? null){
+        if($images['delete']?? null){
             foreach ($images['delete'] as $del)
         {
             BannerImage::Where('file_path', $del)->delete();

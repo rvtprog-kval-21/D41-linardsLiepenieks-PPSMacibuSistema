@@ -2190,16 +2190,18 @@ __webpack_require__.r(__webpack_exports__);
       //prevent triggering controller
       event.preventDefault(); //create form data which through send images
 
+      console.log(this["delete"]);
       var data = new FormData(); //Add each image to an array
 
       this.photoarr.forEach(function (p) {
-        data.append('photo[]', p);
+        if (p.type != "old") data.append('photo[]', p);
       });
       this["delete"].forEach(function (d) {
         data.append('delete[]', d);
       }); //post images to controller with axios
 
-      axios.post("/admin/banner", data).then(function (res) {//console.log(res.data);
+      axios.post("/admin/banner", data).then(function (res) {
+        console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
       });

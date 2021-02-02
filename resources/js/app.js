@@ -41,6 +41,7 @@ Vue.component('example-component', require('../js/components/ExampleComponent.vu
 Vue.component('add-test', require('../js/components/AddTest.vue').default);
 Vue.component('codemirror', require('../js/components/CodeMirror.vue').default);
 Vue.component('banner-edit', require('../js/components/BannerEdit.vue').default);
+Vue.component('news-post', require('../js/components/NewsPost.vue').default);
 
 
 

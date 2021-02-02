@@ -51,32 +51,55 @@
 
 @section('content')
     <div class="row justify-content-around">
+
         @foreach($news as $news)
             <div id="module" class="container col-5 m-2"
-                 style="border: 1px solid black; min-height: 25vh; padding: 0">
-                <!--<div class="col-5" style="border: 1px solid black; height: 25vh; padding: 0;">-->
-
-                <div class="p-1" style="background-color: dimgray; color: white" ;>{{$news->nosaukums}}</div>
-                <div class="p-1" style="border-bottom: 2px solid black;">
-                    <div><b>Datums:</b> {{$news->created_at}}</div>
-                </div>
-
-                <p class="collapse p-1" id="collapseExample" aria-expanded="false">
-                    {{$news->apraksts}}
-                </p>
-                <a role="button" class="collapsed" data-toggle="collapse" href="#collapseExample"
-                   aria-expanded="false" aria-controls="collapseExample"></a>
-                <div style="background-color: lightgray;" class="p-1"><b>Izveidoja:</b> {{$news->user->name}}
-                </div>
-
-
+                 style="border: 1px solid black;  padding: 0">
                 @can('create', \App\Models\exercise::class)
                     <button type="button" class="btn-block btn btn-danger btn-xs"
                             onclick="location.href='news/del/{{$news->id}}'">
                         Dzēst Ierakstu
                     </button>
                 @endcan
+
+                <div style="height: 25vh;" class="overflow-hidden text-break">
+                <div class="p-1" style="background-color: dimgray; color: white" ;>{{$news->nosaukums}}</div>
+                <div class="p-1" style="border-bottom: 2px solid black;">
+                    <div><b>Datums:</b> {{$news->created_at}}</div>
+                </div>
+
+                        <p class="p-2 overflow-hidden">{{$news->apraksts}}</p>
+                </div>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal{{$loop->index}}">
+                        Lasīt variāk
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="Modal{{$loop->index}}" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">{{$news->nosaukums}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-break">
+                                    {{$news->apraksts}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                <div style="background-color: lightgray;" class="p-1 w-100"><b>Izveidoja:</b> {{$news->user->name}}
+                </div>
+
+
+
             </div>
+
+
 
         @endforeach
 
