@@ -27,7 +27,6 @@ class ExercisesController extends Controller
 
     public function create(User $user)
     {
-
         $this->authorize('create', Exercise::class);
         return view('exercises/create');
     }

@@ -2137,31 +2137,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
+  props: ['oldImages'],
+  mounted: function mounted() {
+    var _this = this;
+
+    //Add old images to upload and input array
+    this.oldImages.forEach(function (element) {
+      return _this.inputs.push({
+        id: "../storage/" + element.file_path,
+        type: "old"
+      });
+    });
+    this.oldImages.forEach(function (element) {
+      return _this.photoarr.push({
+        id: "../storage/" + element.file_path,
+        path: element.file_path,
+        type: "old"
+      });
+    });
+  },
   data: function data() {
     return {
       inputs: [],
-      test: 1,
-      data: null,
       photoarr: [],
-      photo: null
+      "delete": []
     };
   },
   methods: {
     onFileChange: function onFileChange(e) {
-      //Save the img file to the array that were actually are going to upload
-      this.photoarr.push(e.target.files[0]); //Add the file to the input arr which is used to display images
+      //Save the img file to the array that we are actually are going to upload
+      this.photoarr.push(e.target.files[0]);
+      console.log(this.photoarr); //Add the file to the input arr which is used to display images
 
       var file = e.target.files[0];
       this.inputs.push({
         id: URL.createObjectURL(file),
-        name: file.name
+        name: file.name,
+        type: "new"
       }); //console.log("ONCHANGE: ", this.inputs);
     },
     remove: function remove(index) {
       //When image deleted remove it from both the display array & upload array
+      if (this.photoarr[index].type == "old") {
+        this["delete"].push(this.photoarr[index].path);
+      }
+
       this.inputs.splice(index, 1);
       this.photoarr.splice(index, 1);
     },
@@ -2173,6 +2194,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this.photoarr.forEach(function (p) {
         data.append('photo[]', p);
+      });
+      this["delete"].forEach(function (d) {
+        data.append('delete[]', d);
       }); //post images to controller with axios
 
       axios.post("/admin/banner", data).then(function (res) {//console.log(res.data);
@@ -30616,13 +30640,7 @@ var render = function() {
     _vm._v(" "),
     _c("input", {
       staticStyle: { display: "none" },
-      attrs: {
-        type: "file",
-        id: "img",
-        name: "img[]",
-        accept: "image/*",
-        multiple: ""
-      },
+      attrs: { type: "file", id: "img", name: "img[]", accept: "image/*" },
       on: { change: _vm.onFileChange }
     }),
     _vm._v(" "),

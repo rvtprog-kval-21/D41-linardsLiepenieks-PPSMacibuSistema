@@ -29,21 +29,21 @@ Route::post('/exercises/post', [App\Http\Controllers\ExercisesController::class,
 Route::post('/exercises/{exercise}/send', [App\Http\Controllers\ExercisesController::class, 'send']);
 Route::get('/exercises/{exercise}/submissions', [App\Http\Controllers\ExercisesController::class, 'submissions']);
 Route::get('/exercises/{exercise}/solutions', [App\Http\Controllers\ExercisesController::class, 'solutions']);
-Route::get('/exercises/del/{exercise}', [App\Http\Controllers\ExercisesController::class, 'delete']);
+Route::get('/exercises/del/{exercise}', [App\Http\Controllers\ExercisesController::class, 'delete'])->middleware('auth');
 Route::get('/exercises/{exercise}/send', [App\Http\Controllers\ExercisesController::class, 'openSend']);
 
 Route::get('/news', [App\Http\Controllers\NewsController::class, 'index'])->name('news');
-Route::get('/news/create', [App\Http\Controllers\NewsController::class, 'create']);
-Route::post('/news', [App\Http\Controllers\NewsController::class, 'store']);
-Route::get('/news/del/{news}', [App\Http\Controllers\NewsController::class, 'delete']);
+Route::get('/news/create', [App\Http\Controllers\NewsController::class, 'create'])->middleware('auth');
+Route::post('/news', [App\Http\Controllers\NewsController::class, 'store'])->middleware('auth');
+Route::get('/news/del/{news}', [App\Http\Controllers\NewsController::class, 'delete'])->middleware('auth');
 
 
 Route::get('/rating', [App\Http\Controllers\RatingsController::class, 'index'])->name('rating');
 
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('rating');
-Route::get('/admin/banner', [App\Http\Controllers\AdminController::class, 'banner'])->name('banner');
-Route::post('/admin/banner', [App\Http\Controllers\AdminController::class, 'bannerEdit']);
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');
+Route::get('/admin/banner', [App\Http\Controllers\AdminController::class, 'banner'])->middleware('auth');
+Route::post('/admin/banner', [App\Http\Controllers\AdminController::class, 'bannerEdit'])->middleware('auth');
 
 
 

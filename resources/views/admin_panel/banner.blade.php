@@ -10,11 +10,12 @@
 
 @section('content')
     <div id="app">
+
         <form
             enctype="multipart/form-data"
             method="post">
             @csrf
-            <banner-edit></banner-edit>
+            <banner-edit :old-images ="{{$bannerImage}}"></banner-edit>
         </form>
     </div>
 @stop
