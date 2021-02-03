@@ -23,5 +23,10 @@ class Exercise extends Model
         return $this->hasMany(solution::class);
     }
 
+    public function tag()
+    {
+        return $this->hasMany(Tag::class);
+    }
+
     protected $guarded = [];
 }

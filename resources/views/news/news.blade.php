@@ -110,9 +110,6 @@
 
 @stop
 
-@section('css')
 
-    <link rel="stylesheet" href="{{'css/read_more.css'}}">
-@stop
 
 

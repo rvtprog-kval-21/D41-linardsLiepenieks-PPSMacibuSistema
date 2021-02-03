@@ -5,13 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18c52990-d6dc-405e-9e3b-03239d5574b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/NewsPost.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/AddTag.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin_panel/tags.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exercise.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/BannerEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/BannerEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/NewsPost.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/news/news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/news.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/rating/rating.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rating/rating.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +179,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -184,10 +189,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\linar\p4\resources\js" />
-      <recent name="C:\Users\linar\p4\resources\sass" />
       <recent name="C:\Users\linar\p4\resources\js\components" />
       <recent name="C:\Users\linar\p4\resources\views\admin_panel" />
+      <recent name="C:\Users\linar\p4\resources\js" />
+      <recent name="C:\Users\linar\p4\resources\sass" />
       <recent name="C:\Users\linar\p4\resources\views\exercises" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -252,7 +257,8 @@
       <workItem from="1609746674496" duration="9975000" />
       <workItem from="1610273367967" duration="13354000" />
       <workItem from="1611502800814" duration="19411000" />
-      <workItem from="1612211708320" duration="13705000" />
+      <workItem from="1612211708320" duration="15782000" />
+      <workItem from="1612361581442" duration="10530000" />
     </task>
     <servers />
   </component>
