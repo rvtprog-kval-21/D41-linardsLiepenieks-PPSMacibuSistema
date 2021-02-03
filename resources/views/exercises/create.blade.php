@@ -10,7 +10,7 @@
         <div class="box-header with-border">
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="/exercises/post"  enctype="multipart/form-data" method="post">
+            <form action="/exercises/post" enctype="multipart/form-data" method="post">
                 @csrf
                 <div class="row d-flex justify-content-center">
                     <div class="col-6">
@@ -112,8 +112,8 @@
                             </div>
 
 
-                                <label for="exampleInputFile">Pievienot attēlus WIP</label>
-                                <input type="file" id="exampleInputFile">
+                            <label for="exampleInputFile">Pievienot attēlus WIP</label>
+                            <input type="file" id="exampleInputFile">
 
 
                         </div>
@@ -123,10 +123,16 @@
                             <strong>{{ $errors->first('tests') }}</strong>
                         @endif
 
+                        <select id="tags" name="tags[]" multiple>
+                            @foreach($tags as $tag)
+                                <option value="{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
+                        </select>
+
                         <div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
-                            <div class="box-footer">
+                        <div class="box-footer">
                         </div>
                     </div>
                 </div>

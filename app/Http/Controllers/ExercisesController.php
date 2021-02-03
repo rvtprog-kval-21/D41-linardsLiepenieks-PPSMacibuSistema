@@ -6,6 +6,7 @@ use App\Events\NewSubmissionSentEvent;
 use App\Models\exercise;
 use App\Models\Solution;
 use App\Models\Submission;
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -22,13 +23,15 @@ class ExercisesController extends Controller
     public function index()
     {
         $exercises = Exercise::all();
-        return view('exercises', compact('exercises', 'exercises'));
+
+        return view('exercises', compact('exercises'));
     }
 
     public function create(User $user)
     {
         $this->authorize('create', Exercise::class);
-        return view('exercises/create');
+        $tags = Tag::all();
+        return view('exercises/create', compact('tags'));
     }
     public function show(\App\Models\exercise $exercise)
     {
@@ -94,8 +97,11 @@ class ExercisesController extends Controller
             'memory' => 'required',
             'time' => 'required',
             'score'=>'required',
+            'tags'=> ''
 
         ]);
+
+        //dd($exercise);
         $tests = request()->validate([
 
             'tests' =>'required|array',
@@ -103,7 +109,23 @@ class ExercisesController extends Controller
         ]);
 
 
-        $exercise = \App\Models\exercise::create($exercise);
+
+        $tags = $exercise['tags'];
+        $exercise = \App\Models\exercise::create([
+            'kods' => $exercise['kods'],
+            'nosaukums' => $exercise['nosaukums'],
+            'ievaddati' => $exercise['ievaddati'],
+            'izvaddati' => $exercise['izvaddati'],
+            'definicija' => $exercise['definicija'],
+            'memory' => $exercise['memory'],
+            'time' => $exercise['time'],
+            'score' => $exercise['score'],
+        ]);
+
+        foreach ($tags as $tag)
+        {
+            $exercise->tag()->attach(Tag::find($tag));
+        }
 
         for ($i = 0; $i < count($request->input('tests.stdin')); $i++) {
             $show = false;
@@ -128,6 +150,7 @@ class ExercisesController extends Controller
         $this->authorize('create', Exercise::class);
         $exercise->tests()->delete();
         $exercise->submission()->delete();
+        $exercise->tag()->detach();
         $exercise->delete();
         return redirect('/exercises');
     }

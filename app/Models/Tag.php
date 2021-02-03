@@ -13,6 +13,6 @@ class Tag extends Model
 
     public function exercise()
     {
-        return $this->hasMany(Exercise::class);
+        return $this->belongsToMany(Exercise::class);
     }
 }

@@ -15,6 +15,8 @@ class CreateExerciseTagTable extends Migration
     {
         Schema::create('exercise_tag', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('exercise_id');
+            $table->unsignedBigInteger('tag_id');
             $table->timestamps();
         });
     }

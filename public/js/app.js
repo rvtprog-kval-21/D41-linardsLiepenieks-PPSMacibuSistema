@@ -2029,25 +2029,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['oldTags'],
-  beforeMount: function beforeMount() {
-    for (var i = 0; i < this.oldTags.length; i++) {
-      this.inputs.push({
-        id: this.inputs.length,
-        type: "new"
-      });
-    }
-  },
   mounted: function mounted() {
-    console.log(this.oldTags);
+    var _this = this;
 
-    for (var i = 0; i < this.oldTags.length; i++) {
-      document.getElementById("Nosaukums" + i).value = this.oldTags[i]['name'];
-      document.getElementById("Apraksts" + i).value = this.oldTags[i]['desc'];
-      document.getElementById("Color" + i).value = this.oldTags[i]['color'];
-      document.getElementById("inputRow" + i).style.background = this.oldTags[i]['color'];
-    }
+    this.oldTags.forEach(function (element) {
+      return _this.inputs.push({
+        id: _this.inputs.length,
+        type: "old",
+        name: element.name,
+        desc: element.desc,
+        color: element.color
+      });
+    });
   },
   data: function data() {
     return {
@@ -30622,7 +30621,10 @@ var render = function() {
               "tr",
               {
                 staticClass: "form-group text-center",
-                attrs: { id: "inputRow" + index }
+                attrs: {
+                  id: "inputRow" + index,
+                  bgcolor: input.color ? input.color : "#F4F6F9"
+                }
               },
               [
                 _c(
@@ -30670,7 +30672,8 @@ var render = function() {
                     attrs: {
                       id: "Nosaukums" + index,
                       name: "newTags[name][" + index + "]"
-                    }
+                    },
+                    domProps: { value: input.name }
                   })
                 ]),
                 _vm._v(" "),
@@ -30685,7 +30688,8 @@ var render = function() {
                     attrs: {
                       id: "Apraksts" + index,
                       name: "newTags[desc][" + index + "]"
-                    }
+                    },
+                    domProps: { value: input.desc }
                   })
                 ]),
                 _vm._v(" "),
@@ -30696,6 +30700,7 @@ var render = function() {
                       id: "Color" + index,
                       name: "newTags[color][" + index + "]"
                     },
+                    domProps: { value: input.color ? input.color : "#F4F6F9" },
                     on: {
                       input: function($event) {
                         return _vm.changeColor(index)

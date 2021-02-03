@@ -13,6 +13,9 @@
         <form action="/admin/tags"  enctype="multipart/form-data" method="post">
             @csrf
         <add-tag :old-tags="{{$oldTags}}"></add-tag>
+            @if ($errors->has('newTags'))
+                <strong>{{ $errors->first('newTags') }}</strong>
+            @endif
         <div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

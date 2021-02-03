@@ -28,7 +28,8 @@
 
                 <!-- Dynamically added tags -->
                 <tr v-for="(input, index) in inputs" class="form-group text-center"
-                    v-bind:id="'inputRow'+ index">
+                    v-bind:id="'inputRow'+ index"
+                v-bind:bgcolor="input.color?input.color:'#F4F6F9'">
 
                     <!-- Tag id/ remove button -->
                     <th style="width: 10px" class="text-center" v-model="input.id">
@@ -45,6 +46,7 @@
                         <textarea class="w-100 form-control"
                                   v-bind:id="'Nosaukums'+index"
                                   v-bind:name="'newTags[name]['+index+']'"
+                                  v-bind:value="input.name"
                                   style="width: 100%; height: 100%; box-sizing: border-box;">
                         </textarea>
 
@@ -54,6 +56,7 @@
                         <textarea class="w-100 form-control"
                                   v-bind:id="'Apraksts'+index"
                                   v-bind:name="'newTags[desc]['+index+']'"
+                                  v-bind:value ="input.desc"
                                   style="width: 100%; height: 100%; box-sizing: border-box;">
                         </textarea>
 
@@ -62,6 +65,7 @@
                         <input type="color"
                                 v-bind:id = "'Color'+index"
                                v-bind:name="'newTags[color]['+index+']'"
+                               v-bind:value="input.color?input.color:'#F4F6F9'"
                                @input="changeColor(index)">
                     </th>
 
@@ -76,25 +80,17 @@
 export default {
 
     props:['oldTags'],
-    beforeMount(){
-        for(let i = 0;i<this.oldTags.length;i++)
-        {
-            this.inputs.push({
-                id: this.inputs.length,
-                type: "new"
-            });
-        }
-    },
+
     mounted() {
 
-        console.log(this.oldTags);
-        for(let i = 0;i<this.oldTags.length;i++)
-        {
-            document.getElementById("Nosaukums"+i).value = this.oldTags[i]['name'];
-            document.getElementById("Apraksts"+i).value = this.oldTags[i]['desc'];
-            document.getElementById("Color"+i).value = this.oldTags[i]['color'];
-            document.getElementById("inputRow"+i).style.background = this.oldTags[i]['color'];
-        }
+        this.oldTags.forEach(
+            element=>this.inputs.push({
+                id: this.inputs.length,
+                type: "old",
+                name: element.name,
+                desc: element.desc,
+                color: element.color
+            }))
 
 
     },
@@ -123,11 +119,12 @@ export default {
         removeTest(index) {
 
             this.inputs.splice(index, 1);
-
             var i = 0;
             for (i; i < this.inputs.length; i++) {
                 this.inputs[i].id = i;
             }
+
+
 
 
         },

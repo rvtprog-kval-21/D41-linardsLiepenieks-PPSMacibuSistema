@@ -89,17 +89,17 @@ class AdminController extends Controller
 
         $newTags = request()->validate([
 
-            'newTags' => '',
+            'newTags' => 'required',
 
         ]);
         Tag::Truncate();
 
         //Šī ir visslinkākā un briesmīgākā lieta, kas jebkad ir uzprogrammēta
         if ($newTags ?? null) {
-
+            //dd($newTags);
             for ($i = 0; $i < count($request->input('newTags.color')); $i++) {
 
-                if (Tag::Where('name', $request->input('newTags.name.' . $i))->first() == null) {
+                if (Tag::Where('name', $request->input('newTags.name.' . $i))->first() == null && $request->input('newTags.name.' . $i) != null) {
                     $t = new Tag;
                     $t->color = $request->input('newTags.color.' . $i);
                     $t->name = $request->input('newTags.name.' . $i);

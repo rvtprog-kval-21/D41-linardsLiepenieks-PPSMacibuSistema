@@ -61,23 +61,30 @@
                              role="progressbar"
                              aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
                              style="width:
-                        {{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()>0 && \App\Models\Solution::Where('exercise_id', $exercise->id)->count() ?
-                          round(\App\Models\Solution::Where('exercise_id', $exercise->id)->count() / \App\Models\Submission::Where('exercise_id', $exercise->id)->count(),2)*100
-                        : 0}}%">
+                             {{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()>0 && \App\Models\Solution::Where('exercise_id', $exercise->id)->count() ?
+                               round(\App\Models\Solution::Where('exercise_id', $exercise->id)->count() / \App\Models\Submission::Where('exercise_id', $exercise->id)->count(),2)*100
+                             : 0}}%">
 
-                           <!-- <span class="sr-only">40% Complete (success)</span>-->
+                            <!-- <span class="sr-only">40% Complete (success)</span>-->
                         </div>
                     </div>
                 </div>
 
                 <div class="col-1">{{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()>0 && \App\Models\Solution::Where('exercise_id', $exercise->id)->count() ?
                                     round(\App\Models\Solution::Where('exercise_id', $exercise->id)->count() / \App\Models\Submission::Where('exercise_id', $exercise->id)->count(),2)*100
-                                     : 0}}%</div>
+                                     : 0}}%
+                </div>
             </div>
 
             <div class="col-1">{{\App\Models\Submission::Where('exercise_id', $exercise->id)->count()}} </div>
             <div class="col-1">{{\App\Models\Solution::Where('exercise_id', $exercise->id)->count()}}</div>
-            <div class="col-2 "><span class="badge bg-red">WIP</span></div>
+            <div class="col-2 ">
+                @foreach($exercise->tag()->get() as $tag)
+                    <span class="badge" style="background: {{$tag->color}}">
+                        {{$tag->name}}
+                        </span>
+                @endforeach
+            </div>
         </div>
 
         <div class="col-2">
