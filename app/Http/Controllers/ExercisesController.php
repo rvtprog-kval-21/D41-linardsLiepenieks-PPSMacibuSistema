@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
 
+
 class ExercisesController extends Controller
 {
     //
@@ -23,8 +24,15 @@ class ExercisesController extends Controller
     public function index()
     {
         $exercises = Exercise::all();
-
         return view('exercises', compact('exercises'));
+    }
+
+    public function search(Request $request)
+    {
+
+        $exercises = Exercise::Where('nosaukums', 'like', '%' . $request->input('q') . '%')->get();
+        return view('exercises', compact('exercises'));
+
     }
 
     public function create(User $user)
@@ -91,12 +99,12 @@ class ExercisesController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, Exercise $exercise)
     {
         $this->authorize('create', Exercise::class);
 
 
-        $exercise = request()->validate([
+        $data = request()->validate([
             'kods' => 'required',
             'nosaukums' => 'required',
             'ievaddati' => 'required',
@@ -115,25 +123,31 @@ class ExercisesController extends Controller
 
         ]);
 
-        $tags = $exercise['tags'];
-        $exercise = \App\Models\exercise::create([
-            'kods' => $exercise['kods'],
-            'nosaukums' => $exercise['nosaukums'],
-            'ievaddati' => $exercise['ievaddati'],
-            'izvaddati' => $exercise['izvaddati'],
-            'definicija' => $exercise['definicija'],
-            'memory' => $exercise['memory'],
-            'time' => $exercise['time'],
-            'score' => $exercise['score'],
-        ]);
-
-        foreach ($tags as $tag) {
-            $exercise->tag()->attach(Tag::find($tag));
+        if ($data['tags'] ?? null) {
+            $tags = $data['tags'];
         }
 
+
+        $exercise = \App\Models\exercise::create([
+            'kods' => $data['kods'],
+            'nosaukums' => $data['nosaukums'],
+            'ievaddati' => $data['ievaddati'],
+            'izvaddati' => $data['izvaddati'],
+            'definicija' => $data['definicija'],
+            'memory' => $data['memory'],
+            'time' => $data['time'],
+            'score' => $data['score'],
+        ]);
+        if ($data['tags'] ?? null) {
+
+            foreach ($tags as $tag) {
+                $exercise->tag()->attach(Tag::find($tag));
+            }
+        }
         for ($i = 0; $i < count($request->input('tests.stdin')); $i++) {
             $show = false;
-            if ($request->input('tests.show.' . $i) != null) {
+
+            if ($request->input('tests.show.' . $i) == "on") {
                 $show = true;
             }
             $exercise->tests()->create([

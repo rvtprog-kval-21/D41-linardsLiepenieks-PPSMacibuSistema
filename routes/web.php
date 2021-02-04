@@ -33,6 +33,7 @@ Route::get('/exercises/del/{exercise}', [App\Http\Controllers\ExercisesControlle
 Route::get('/exercises/{exercise}/edit', [App\Http\Controllers\ExercisesController::class, 'edit'])->middleware('auth');
 Route::patch('/exercises/{exercise}', [App\Http\Controllers\ExercisesController::class, 'update'])->middleware('auth');
 Route::get('/exercises/{exercise}/send', [App\Http\Controllers\ExercisesController::class, 'openSend']);
+Route::any('/exercises/search', [App\Http\Controllers\ExercisesController::class, 'search']);
 
 Route::get('/news', [App\Http\Controllers\NewsController::class, 'index'])->name('news');
 Route::get('/news/create', [App\Http\Controllers\NewsController::class, 'create'])->middleware('auth');

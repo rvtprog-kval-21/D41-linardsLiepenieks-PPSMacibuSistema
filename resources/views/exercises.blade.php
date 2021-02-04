@@ -21,6 +21,17 @@
     </div>
 
     <!--Layout of exercise indo data-->
+    <form action="exercises/search">
+        <div class="input-group rounded">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                   aria-describedby="search-addon"
+                   name="q"/>
+            <span class="input-group-text border-0" id="search-addon">
+    <button type="submit"><i class="fas fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+
     <div class="row justify-content-between align-items-center text-center" style="color:white; background-color: dimgray;
                             font-size: 2vh;
 
@@ -86,24 +97,24 @@
                 @endforeach
             </div>
 
-        <div class="col-2">
-            @can('create', $exercise)
-                <div class="row">
-                    <div>
-                <button type="button" class="btn-block btn btn-danger btn-xs"
-                        onclick="location.href='exercises/del/{{$exercise->id}}'">
-                    Dzēst uzdevumu
-                </button>
+            <div class="col-2">
+                @can('create', $exercise)
+                    <div class="row">
+                        <div>
+                            <button type="button" class="btn-block btn btn-danger btn-xs"
+                                    onclick="location.href='exercises/del/{{$exercise->id}}'">
+                                Dzēst uzdevumu
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn-block btn btn-warning btn-xs"
+                                    onclick="location.href='exercises/{{$exercise->id}}/edit'">
+                                Labot uzdevumu
+                            </button>
+                        </div>
                     </div>
-                    <div>
-                <button type="button" class="btn-block btn btn-warning btn-xs"
-                        onclick="location.href='exercises/{{$exercise->id}}/edit'">
-                    Labot uzdevumu
-                </button>
-                    </div>
-                </div>
-            @endcan
-        </div>
+                @endcan
+            </div>
         </div>
 
     @endforeach
