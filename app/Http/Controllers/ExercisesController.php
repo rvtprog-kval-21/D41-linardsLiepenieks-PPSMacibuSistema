@@ -203,7 +203,7 @@ class ExercisesController extends Controller
         ]);
 
 
-        $exercise->tests()->truncate();
+        $exercise->tests()->delete();
         for ($i = 0; $i < count($request->input('tests.stdin')); $i++) {
             $show = false;
             if ($request->input('tests.show.' . $i) != null) {

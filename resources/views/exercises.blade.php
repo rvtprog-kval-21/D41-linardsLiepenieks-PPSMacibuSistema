@@ -23,8 +23,7 @@
     <!--Layout of exercise indo data-->
     <form action="exercises/search">
         <div class="input-group rounded">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                   aria-describedby="search-addon"
+            <input type="search" class="form-control rounded" placeholder="Search"
                    name="q"/>
             <span class="input-group-text border-0" id="search-addon">
     <button type="submit"><i class="fas fa-search"></i></button>
