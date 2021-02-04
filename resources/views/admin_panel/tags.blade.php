@@ -16,9 +16,7 @@
             @if ($errors->has('newTags'))
                 <strong>{{ $errors->first('newTags') }}</strong>
             @endif
-        <div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+
         </form>
     </div>
 @stop

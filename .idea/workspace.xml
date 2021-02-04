@@ -7,15 +7,10 @@
     <list default="true" id="18c52990-d6dc-405e-9e3b-03239d5574b6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exercise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_03_144232_create_exercise_tag_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_03_144232_create_exercise_tag_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/AddTag.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddTag.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/BannerEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/BannerEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin_panel/tags.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin_panel/tags.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/create.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +253,8 @@
       <workItem from="1611502800814" duration="19411000" />
       <workItem from="1612211708320" duration="15782000" />
       <workItem from="1612361581442" duration="12345000" />
-      <workItem from="1612389137402" duration="4282000" />
+      <workItem from="1612389137402" duration="4777000" />
+      <workItem from="1612441837725" duration="7728000" />
     </task>
     <servers />
   </component>

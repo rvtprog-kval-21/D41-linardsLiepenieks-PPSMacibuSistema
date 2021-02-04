@@ -122,7 +122,8 @@ export default {
             //post images to controller with axios
             axios.post("/admin/banner", data)
                 .then(res => {
-                    console.log(res.data);
+                    //console.log(res.data);
+                    alert("Izmaiņas saglabātas");
                 }).catch(err => {
                 console.log(err)});
         },

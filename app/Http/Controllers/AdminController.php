@@ -84,31 +84,45 @@ class AdminController extends Controller
         return view('admin_panel/tags', compact('oldTags'));
     }
 
-    public function tagEdit(Request $request)
+    public function tagEdit(Request $request, Response $response)
     {
 
         $newTags = request()->validate([
 
-            'newTags' => 'required',
+            'newTags' => '',
+            'delete' => '',
+            'update' => '',
 
         ]);
-        Tag::Truncate();
 
-        //Šī ir visslinkākā un briesmīgākā lieta, kas jebkad ir uzprogrammēta
-        if ($newTags ?? null) {
-            //dd($newTags);
-            for ($i = 0; $i < count($request->input('newTags.color')); $i++) {
 
-                if (Tag::Where('name', $request->input('newTags.name.' . $i))->first() == null && $request->input('newTags.name.' . $i) != null) {
-                    $t = new Tag;
-                    $t->color = $request->input('newTags.color.' . $i);
-                    $t->name = $request->input('newTags.name.' . $i);
-                    $t->desc = $request->input('newTags.desc.' . $i);
-                    $t->save();
-                }
+        foreach ($newTags['newTags'] as $newTag)
+        {
+            if (Tag::Where('name', $newTag['name'])->first() == null) {
+                $t = new Tag;
+                $t->color = $newTag['color'];
+                $t->name = $newTag['name'];
+                $t->desc = $newTag['desc'];
+                $t->save();
             }
         }
 
-        return redirect('admin/tags');
+        foreach ($newTags['delete'] as $delTag)
+        {
+            $target = Tag::Where('name', $delTag['name'])->first();
+            $target->exercise()->detach();
+            $target->delete();
+
+        }
+        foreach ($newTags['update'] as $upTag)
+        {
+            $t = Tag::Where('name', $upTag['name'])->first();
+            $t->color = $upTag['color'];
+            $t->name = $upTag['name'];
+            $t->desc = $upTag['desc'];
+            $t->save();
+
+        }
+
     }
 }

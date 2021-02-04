@@ -28,14 +28,14 @@
 
                 <!-- Dynamically added tags -->
                 <tr v-for="(input, index) in inputs" class="form-group text-center"
-                    v-bind:id="'inputRow'+ index"
                 v-bind:bgcolor="input.color?input.color:'#F4F6F9'">
 
                     <!-- Tag id/ remove button -->
-                    <th style="width: 10px" class="text-center" v-model="input.id">
-                        {{ input.id + 1 }}
+                    <th style="width: 5%" class="text-center"
+                        v-model="input.id">
+                        {{index+1}}
                         <!-- Remove tag button -->
-                        <div @click="removeTest(index)">
+                        <div @click="removeTest(index, input)">
                             <button type="button" class="btn btn-danger bg-red"><i
                                 class="far fa-minus-square"></i></button>
                         </div>
@@ -44,9 +44,7 @@
                     <!-- Nosaukums input -->
                     <th>
                         <textarea class="w-100 form-control"
-                                  v-bind:id="'Nosaukums'+index"
-                                  v-bind:name="'newTags[name]['+index+']'"
-                                  v-bind:value="input.name"
+                                  v-model="input.name"
                                   style="width: 100%; height: 100%; box-sizing: border-box;">
                         </textarea>
 
@@ -54,24 +52,24 @@
                     <!-- Apraksts input -->
                     <th>
                         <textarea class="w-100 form-control"
-                                  v-bind:id="'Apraksts'+index"
-                                  v-bind:name="'newTags[desc]['+index+']'"
-                                  v-bind:value ="input.desc"
+                                  v-model ="input.desc"
                                   style="width: 100%; height: 100%; box-sizing: border-box;">
                         </textarea>
 
                     </th>
                     <th class="align-middle">
                         <input type="color"
-                                v-bind:id = "'Color'+index"
-                               v-bind:name="'newTags[color]['+index+']'"
-                               v-bind:value="input.color?input.color:'#F4F6F9'"
-                               @input="changeColor(index)">
+                               v-model="input.color"
+                               />
                     </th>
 
 
                 </tr>
             </table>
+        </div>
+
+        <div>
+            <button @click="formSubmit" type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
 </template>
@@ -85,7 +83,6 @@ export default {
 
         this.oldTags.forEach(
             element=>this.inputs.push({
-                id: this.inputs.length,
                 type: "old",
                 name: element.name,
                 desc: element.desc,
@@ -98,7 +95,10 @@ export default {
 
     data() {
         return {
-            inputs: []
+            inputs: [],
+            delete: [],
+            newTags: [],
+            updateTags:[],
         };
     },
 
@@ -109,28 +109,51 @@ export default {
 
             this.inputs.push({
 
-                id: this.inputs.length,
-                type: "new"
+                type: "new",
+                color: "#F4F6F9",
+                desc: ""
             });
-            //document.getElementById("Color"+this.inputs.length-1).value = "#F4F6F9";
-
-
         },
-        removeTest(index) {
-
-            this.inputs.splice(index, 1);
-            var i = 0;
-            for (i; i < this.inputs.length; i++) {
-                this.inputs[i].id = i;
+        removeTest(index, input) {
+            console.log(input.type)
+            if(input.type == "old")
+            {
+                this.delete.push(input);
             }
+            this.inputs.splice(index, 1);
+
 
 
 
 
         },
 
-        changeColor(index){
-            document.getElementById('inputRow' + index).style.backgroundColor = document.getElementById('Color' + index).value;;
+        formSubmit(event) {
+            //prevent triggering controller
+            event.preventDefault();
+
+
+            this.newTags = this.inputs.filter(function(e) {
+                return e.type !== "old";
+            });
+            this.updateTags = this.inputs.filter(function(e) {
+                return e.type === "old";
+            });
+
+            axios.post("/admin/tags", {
+                newTags: this.newTags,
+                delete: this.delete,
+                update: this.updateTags,
+            })
+                .then(res => {
+                    //console.log(res.data);
+                    alert("Izmaiņas saglabātas");
+                }).catch(err => {
+                alert("Radusies kļūda");
+                console.log(err)});
+
+            location.reload();
+
         },
     }
 }

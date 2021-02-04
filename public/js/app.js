@@ -2031,8 +2031,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['oldTags'],
   mounted: function mounted() {
@@ -2040,7 +2038,6 @@ __webpack_require__.r(__webpack_exports__);
 
     this.oldTags.forEach(function (element) {
       return _this.inputs.push({
-        id: _this.inputs.length,
         type: "old",
         name: element.name,
         desc: element.desc,
@@ -2050,27 +2047,50 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      inputs: []
+      inputs: [],
+      "delete": [],
+      newTags: [],
+      updateTags: []
     };
   },
   methods: {
     addTest: function addTest() {
       this.inputs.push({
-        id: this.inputs.length,
-        type: "new"
-      }); //document.getElementById("Color"+this.inputs.length-1).value = "#F4F6F9";
+        type: "new",
+        color: "#F4F6F9",
+        desc: ""
+      });
     },
-    removeTest: function removeTest(index) {
-      this.inputs.splice(index, 1);
-      var i = 0;
+    removeTest: function removeTest(index, input) {
+      console.log(input.type);
 
-      for (i; i < this.inputs.length; i++) {
-        this.inputs[i].id = i;
+      if (input.type == "old") {
+        this["delete"].push(input);
       }
+
+      this.inputs.splice(index, 1);
     },
-    changeColor: function changeColor(index) {
-      document.getElementById('inputRow' + index).style.backgroundColor = document.getElementById('Color' + index).value;
-      ;
+    formSubmit: function formSubmit(event) {
+      //prevent triggering controller
+      event.preventDefault();
+      this.newTags = this.inputs.filter(function (e) {
+        return e.type !== "old";
+      });
+      this.updateTags = this.inputs.filter(function (e) {
+        return e.type === "old";
+      });
+      axios.post("/admin/tags", {
+        newTags: this.newTags,
+        "delete": this["delete"],
+        update: this.updateTags
+      }).then(function (res) {
+        //console.log(res.data);
+        alert("Izmaiņas saglabātas");
+      })["catch"](function (err) {
+        alert("Radusies kļūda");
+        console.log(err);
+      });
+      location.reload();
     }
   }
 });
@@ -2332,7 +2352,8 @@ __webpack_require__.r(__webpack_exports__);
       }); //post images to controller with axios
 
       axios.post("/admin/banner", data).then(function (res) {
-        console.log(res.data);
+        //console.log(res.data);
+        alert("Izmaiņas saglabātas");
       })["catch"](function (err) {
         console.log(err);
       });
@@ -30621,17 +30642,14 @@ var render = function() {
               "tr",
               {
                 staticClass: "form-group text-center",
-                attrs: {
-                  id: "inputRow" + index,
-                  bgcolor: input.color ? input.color : "#F4F6F9"
-                }
+                attrs: { bgcolor: input.color ? input.color : "#F4F6F9" }
               },
               [
                 _c(
                   "th",
                   {
                     staticClass: "text-center",
-                    staticStyle: { width: "10px" },
+                    staticStyle: { width: "5%" },
                     model: {
                       value: input.id,
                       callback: function($$v) {
@@ -30643,7 +30661,7 @@ var render = function() {
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(input.id + 1) +
+                        _vm._s(index + 1) +
                         "\n                    "
                     ),
                     _vm._v(" "),
@@ -30652,7 +30670,7 @@ var render = function() {
                       {
                         on: {
                           click: function($event) {
-                            return _vm.removeTest(index)
+                            return _vm.removeTest(index, input)
                           }
                         }
                       },
@@ -30663,47 +30681,78 @@ var render = function() {
                 _vm._v(" "),
                 _c("th", [
                   _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: input.name,
+                        expression: "input.name"
+                      }
+                    ],
                     staticClass: "w-100 form-control",
                     staticStyle: {
                       width: "100%",
                       height: "100%",
                       "box-sizing": "border-box"
                     },
-                    attrs: {
-                      id: "Nosaukums" + index,
-                      name: "newTags[name][" + index + "]"
-                    },
-                    domProps: { value: input.name }
+                    domProps: { value: input.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(input, "name", $event.target.value)
+                      }
+                    }
                   })
                 ]),
                 _vm._v(" "),
                 _c("th", [
                   _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: input.desc,
+                        expression: "input.desc"
+                      }
+                    ],
                     staticClass: "w-100 form-control",
                     staticStyle: {
                       width: "100%",
                       height: "100%",
                       "box-sizing": "border-box"
                     },
-                    attrs: {
-                      id: "Apraksts" + index,
-                      name: "newTags[desc][" + index + "]"
-                    },
-                    domProps: { value: input.desc }
+                    domProps: { value: input.desc },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(input, "desc", $event.target.value)
+                      }
+                    }
                   })
                 ]),
                 _vm._v(" "),
                 _c("th", { staticClass: "align-middle" }, [
                   _c("input", {
-                    attrs: {
-                      type: "color",
-                      id: "Color" + index,
-                      name: "newTags[color][" + index + "]"
-                    },
-                    domProps: { value: input.color ? input.color : "#F4F6F9" },
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: input.color,
+                        expression: "input.color"
+                      }
+                    ],
+                    attrs: { type: "color" },
+                    domProps: { value: input.color },
                     on: {
                       input: function($event) {
-                        return _vm.changeColor(index)
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(input, "color", $event.target.value)
                       }
                     }
                   })
@@ -30713,6 +30762,18 @@ var render = function() {
           })
         ],
         2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit" },
+          on: { click: _vm.formSubmit }
+        },
+        [_vm._v("Submit")]
       )
     ])
   ])
