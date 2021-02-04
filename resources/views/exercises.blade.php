@@ -85,16 +85,27 @@
                         </span>
                 @endforeach
             </div>
-        </div>
 
         <div class="col-2">
             @can('create', $exercise)
+                <div class="row">
+                    <div>
                 <button type="button" class="btn-block btn btn-danger btn-xs"
                         onclick="location.href='exercises/del/{{$exercise->id}}'">
                     Dzēst uzdevumu
                 </button>
+                    </div>
+                    <div>
+                <button type="button" class="btn-block btn btn-warning btn-xs"
+                        onclick="location.href='exercises/{{$exercise->id}}/edit'">
+                    Labot uzdevumu
+                </button>
+                    </div>
+                </div>
             @endcan
         </div>
+        </div>
+
     @endforeach
 
 

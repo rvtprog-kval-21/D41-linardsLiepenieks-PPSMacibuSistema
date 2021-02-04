@@ -2179,8 +2179,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {},
+  props: ['oldTests'],
+  mounted: function mounted() {
+    var _this = this;
+
+    this.oldTests.forEach(function (element) {
+      return _this.inputs.push({
+        type: "old",
+        stdin: element.stdin,
+        stdout: element.stdout,
+        show: element.show
+      });
+    });
+    console.log(this.inputs);
+  },
   data: function data() {
     return {
       inputs: []
@@ -2207,26 +2225,6 @@ __webpack_require__.r(__webpack_exports__);
       for (i; i < this.inputs.length; i++) {
         tests.push(document.getElementById('input' + i).value, document.getElementById('output' + i).value, document.getElementById('see' + i).checked);
       }
-
-      var test = "TESTS";
-      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: onsubmit,
-        type: "post",
-        data: {
-          test: 1
-        },
-        //dataType: 'text JSON',
-        success: function success(response) {
-          if (response) alert('Success!!!!:' + response);
-        },
-        error: function error(response) {
-          alert('Errormessage:' + response);
-        }
-      });
     }
   }
 });
@@ -30883,7 +30881,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(input.id + 1) +
+                      _vm._s(index + 1) +
                       "\n                    "
                   ),
                   _vm._v(" "),
@@ -30903,6 +30901,14 @@ var render = function() {
               _vm._v(" "),
               _c("th", [
                 _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: input.stdin,
+                      expression: "input.stdin"
+                    }
+                  ],
                   staticClass: "w-100 form-control",
                   staticStyle: {
                     width: "100%",
@@ -30912,12 +30918,29 @@ var render = function() {
                   attrs: {
                     id: "input"[input.id],
                     name: "tests[stdin][" + index + "]"
+                  },
+                  domProps: { value: input.stdin },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(input, "stdin", $event.target.value)
+                    }
                   }
                 })
               ]),
               _vm._v(" "),
               _c("th", [
                 _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: input.stdout,
+                      expression: "input.stdout"
+                    }
+                  ],
                   staticClass: "w-100 form-control",
                   staticStyle: {
                     width: "100%",
@@ -30927,17 +30950,64 @@ var render = function() {
                   attrs: {
                     id: "output" + input.id,
                     name: "tests[stdout][" + index + "]"
+                  },
+                  domProps: { value: input.stdout },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(input, "stdout", $event.target.value)
+                    }
                   }
                 })
               ]),
               _vm._v(" "),
               _c("th", { staticStyle: { width: "10px" } }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: input.show,
+                      expression: "input.show"
+                    }
+                  ],
                   staticClass: "form-control",
                   attrs: {
                     type: "checkbox",
                     id: "see" + input.id,
-                    name: "tests[show][" + index + "]"
+                    name: "tests[show][" + index + "]",
+                    "true-value": "1",
+                    "false-value": "0"
+                  },
+                  domProps: {
+                    checked: Array.isArray(input.show)
+                      ? _vm._i(input.show, null) > -1
+                      : _vm._q(input.show, "1")
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = input.show,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? "1" : "0"
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && _vm.$set(input, "show", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              input,
+                              "show",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(input, "show", $$c)
+                      }
+                    }
                   }
                 })
               ])

@@ -31,7 +31,7 @@
 
                     <!-- Test case id/ remove button -->
                     <th style="width: 10px" v-model="input.id">
-                        {{ input.id + 1 }}
+                        {{ index + 1 }}
                         <!-- Remove test button -->
                         <div @click="removeTest(index)">
                             <button type="button" class="btn btn-danger bg-red"><i
@@ -44,6 +44,7 @@
                         <textarea class="w-100 form-control"
                                   v-bind:id="'input'[input.id]"
                                   v-bind:name="'tests[stdin]['+index+']'"
+                                  v-model="input.stdin"
                                   style="width: 100%; height: 100%; box-sizing: border-box;">
                         </textarea>
 
@@ -54,6 +55,7 @@
                         <textarea class="w-100 form-control"
                                   v-bind:id="'output'+input.id"
                                   v-bind:name="'tests[stdout]['+index+']'"
+                                  v-model="input.stdout"
                                   style="width: 100%; height: 100%; box-sizing: border-box;">
                         </textarea>
                     </th>
@@ -63,7 +65,10 @@
                         <input type="checkbox"
                                class="form-control"
                                v-bind:id="'see'+input.id"
-                               v-bind:name="'tests[show]['+index+']'">
+                               v-bind:name="'tests[show]['+index+']'"
+                               true-value="1"
+                               false-value="0"
+                               v-model="input.show">
                     </th>
                 </tr>
             </table>
@@ -73,7 +78,18 @@
 
 <script>
 export default {
+    props:['oldTests'],
+
     mounted() {
+        this.oldTests.forEach(
+            element=>this.inputs.push({
+                type: "old",
+                stdin: element.stdin,
+                stdout: element.stdout,
+                show: element.show
+            }))
+        console.log(this.inputs);
+
     },
 
 
@@ -112,25 +128,7 @@ export default {
                     document.getElementById('see' + i).checked);
 
             }
-            var test = "TESTS";
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: onsubmit,
-                type: "post",
-                data: {test: 1},
-                //dataType: 'text JSON',
-                success: function (response) {
-                    if (response)
-                        alert('Success!!!!:' + response);
-                },
-                error: function (response) {
-                    alert('Errormessage:' + response);
-                }
-            });
 
 
         },

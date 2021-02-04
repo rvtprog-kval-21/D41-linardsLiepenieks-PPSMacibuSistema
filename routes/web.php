@@ -30,6 +30,8 @@ Route::post('/exercises/{exercise}/send', [App\Http\Controllers\ExercisesControl
 Route::get('/exercises/{exercise}/submissions', [App\Http\Controllers\ExercisesController::class, 'submissions']);
 Route::get('/exercises/{exercise}/solutions', [App\Http\Controllers\ExercisesController::class, 'solutions']);
 Route::get('/exercises/del/{exercise}', [App\Http\Controllers\ExercisesController::class, 'delete'])->middleware('auth');
+Route::get('/exercises/{exercise}/edit', [App\Http\Controllers\ExercisesController::class, 'edit'])->middleware('auth');
+Route::patch('/exercises/{exercise}', [App\Http\Controllers\ExercisesController::class, 'update'])->middleware('auth');
 Route::get('/exercises/{exercise}/send', [App\Http\Controllers\ExercisesController::class, 'openSend']);
 
 Route::get('/news', [App\Http\Controllers\NewsController::class, 'index'])->name('news');
