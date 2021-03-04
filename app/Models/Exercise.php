@@ -15,12 +15,12 @@ class Exercise extends Model
     }
     public function submission()
     {
-        return $this->hasMany(submission::class);
+        return $this->hasMany(Submission::class);
     }
 
     public function solution()
     {
-        return $this->hasMany(solution::class);
+        return $this->hasMany(Solution::class);
     }
 
     public function tag()

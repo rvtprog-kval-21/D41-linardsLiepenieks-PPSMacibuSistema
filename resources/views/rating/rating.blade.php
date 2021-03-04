@@ -4,13 +4,12 @@
 
 @section('content_header')
 
-    <div class="row justify-content-between">
-        <h1>Reitings</h1>
-    </div>
-    <div class="row justify-content-between align-items-center text-center" style="color:white; background-color: dimgray;
-                            font-size: 2vh;
 
-                            margin-top: 5px; ">
+        <div class="row justify-content-between PPS-page-title">
+            <div>Reitings</div>
+        </div>
+
+    <div class="row justify-content-between align-items-center text-center PPS-content-header" style="font-size: 20px">
         <div class="col-1">#</div>
         <div class="col-3">Lietotājs</div>
         <div class="col-2">Risināti uzdevumi</div>
@@ -24,10 +23,7 @@
 
 @section('content')
     @foreach($rating as $rating)
-    <div class="row justify-content-between align-items-center text-center" style="color:black; background-color: white; border: 1px solid black; margin: 5px;
-                            font-size: 2vh;
-
-                            margin-top: 5px; ">
+    <div class="row justify-content-between align-items-center text-center PPS-content-wrapper p-2" style="font-size: 20px; margin: 5px">
         <div class="col-1">{{$loop->index+1}}.</div>
         <div class="col-3">{{$rating->user->name}}</div>
         <div class="col-2">{{$rating->user->submission->unique('exercise_id')->count()}}</div>

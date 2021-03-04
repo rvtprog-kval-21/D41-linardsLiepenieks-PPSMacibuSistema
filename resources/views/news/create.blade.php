@@ -2,7 +2,9 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Izveidot jaunu ierakstu</h1>
+    <div class="row justify-content-between PPS-page-title">
+    <div>Izveidot jaunu ierakstu</div>
+    </div>
 
 @stop
 @section('content')
@@ -18,26 +20,27 @@
                         <div class="box-body">
 
                             <!-- Ievadlauks start -->
-                            <div class="form-group">
-                                <label>Ieraksta nosaukums</label>
+                            <div class="form-group PPS-page-title">
+                                <label style="font-size: 20px">Ieraksta nosaukums</label>
                                 <input class="form-control" type="text"
                                        id="nosaukums"
                                        name="nosaukums"
+                                       value="{{old('nosaukums')}}"
                                 >
                                 @if ($errors->has('nosaukums'))
-                                    <strong>{{ $errors->first('nosaukums') }}</strong>
+                                    <strong style="font-size: 15px;">Nosaukuma lauks ir nepieciešams</strong>
                                 @endif
                             </div>
 
                             <!-- Ievadlauks start -->
-                            <div class="form-group">
-                                <label>Ieraksta apraksts</label>
+                            <div class="form-group PPS-page-title">
+                                <label style="font-size: 20px">Ieraksta apraksts</label>
                                 <textarea class="form-control" type="text"
                                           id="apraksts"
                                           name="apraksts"
-                                ></textarea>
+                                >{{old('apraksts')}}</textarea>
                                 @if ($errors->has('apraksts'))
-                                    <strong>{{ $errors->first('apraksts') }}</strong>
+                                    <strong style="font-size: 15px;">Apraksta lauks ir nepieciešams</strong>
                                 @endif
                             </div>
 
@@ -51,7 +54,7 @@
 
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn PPS-info-button">Saglabāt</button>
                             </div>
                         </div>
                     </div>

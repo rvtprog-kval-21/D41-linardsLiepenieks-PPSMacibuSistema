@@ -3,8 +3,10 @@
 @section('title', 'Admin panel')
 
 @section('content_header')
+    <div class="row justify-content-between PPS-page-title">
 
-    <h1>Admin panelis/Tagi</h1>
+    <div>Admin panelis/Tagi</div>
+    </div>
 @stop
 
 

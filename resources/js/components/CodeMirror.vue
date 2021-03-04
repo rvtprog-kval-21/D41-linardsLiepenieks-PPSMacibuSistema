@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div >
 
-        <select class="m-3" id="mode" name="mode" @change="onChange()">
+        <select class="mb-3 ml-0 PPS-info-button" id="mode" name="mode" @change="onChange()">
             <option>C++</option>
             <option>Python</option>
             <option>Javascript</option>
@@ -9,7 +9,6 @@
         </select>
         <div style="border: 1px solid black; width:100%;">
             <textarea id="editor" name="code"></textarea></div>
-
     </div>
 </template>
 
@@ -61,6 +60,7 @@ export default {
                 matchBrackets: true,
                 continueComments: "Enter",
                 mode: "text/x-c++src",
+                theme: "cobalt",
                 extraKeys: {"Ctrl-Q": "toggleComment"}
             });
             //codemirror.setValue(this.code);
@@ -91,10 +91,9 @@ export default {
             document.getElementById(this.modeId).value = mode;
             this.editor.setOption("mode", setMode);
         },
-        disableCM(x){
+        disableCM(x) {
 
-            if(x=="true")
-            {
+            if (x == "true") {
                 this.editor.setOption("readOnly", true);
                 console.log(this.editor.getOption("readOnly"));
 
@@ -102,6 +101,6 @@ export default {
             }
         }
 
-}
+    }
 }
 </script>

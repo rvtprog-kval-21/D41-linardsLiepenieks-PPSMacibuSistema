@@ -32,6 +32,11 @@
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #343a40;
+    --PPSLBlue: #2967D1;
+    --PPSBlack: #000000;
+    --PPSDBLue: #0000b6;
+    --PPSSilver: #c0bcb5;
+    --PPSLGray: #f4fff8;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -10240,6 +10245,7 @@ a.text-dark:hover, a.text-dark:focus {
   }
   body {
     min-width: 992px !important;
+
   }
   .container {
     min-width: 992px !important;
@@ -10386,6 +10392,11 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm .wrapper .main-sidebar .side
   transition: width 0.3s ease-in-out;
   width: 250px;
   z-index: 1035;
+}
+
+
+.PPS-sidebar{
+    backround-color: PPSBlack;
 }
 
 .layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
@@ -29490,7 +29501,7 @@ a.text-muted:hover {
 }
 
 .accent-primary [class*="sidebar-light-"] .sidebar a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link) {
-  color: #343a40;
+  color: red;
 }
 
 .accent-primary [class*="sidebar-light-"] .sidebar a:not(.dropdown-item):not(.btn-app):not(.nav-link):not(.brand-link):hover {

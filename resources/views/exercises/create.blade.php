@@ -2,7 +2,9 @@
 @section('title', 'Izveidot uzdevumu')
 
 @section('content_header')
-    <h1>Izveidot jaunu Uzdevumu</h1>
+    <div class="row justify-content-between PPS-page-title">
+    <div>Izveidot jaunu Uzdevumu</div>
+    </div>
 @stop
 @section('content')
 
@@ -14,106 +16,126 @@
                 @csrf
                 <div class="row d-flex justify-content-center">
                     <div class="col-6">
-                        <div class="box-body">
+                        <div class="box-body" style="font-size: 20px;">
                             <!-- Ievadlauks start -->
-                            <div class="form-group">
-                                <label>Uzdevuma kods</label>
+                            <div class="form-group PPS-page-title">
+                                <label style="font-size: 20px;">Uzdevuma kods</label>
                                 <input class="form-control" type="text"
                                        id="kods"
                                        name="kods"
+                                       value="{{old('kods')}}"
                                 >
                                 @if ($errors->has('kods'))
-                                    <strong>{{ $errors->first('kods') }}</strong>
+                                    <strong style="font-size: 15px;">{{ $errors->first('kods') }}</strong>
                                 @endif
                             </div>
                             <!-- Ievadlauks start -->
-                            <div class="form-group">
-                                <label>Uzdevuma nosaukums</label>
+                            <div class="form-group PPS-page-title">
+                                <label style="font-size: 20px;">Uzdevuma nosaukums</label>
                                 <input class="form-control" type="text"
                                        id="nosaukums"
                                        name="nosaukums"
+                                       value="{{old('nosaukums')}}"
+
                                 >
                                 @if ($errors->has('nosaukums'))
-                                    <strong>{{ $errors->first('nosaukums') }}</strong>
+                                    <strong style="font-size: 15px;">{{ $errors->first('nosaukums') }}</strong>
                                 @endif
                             </div>
 
                             <!-- Ievadlauks start -->
-                            <div class="form-group">
-                                <label>Ievaddatu raksturojums</label>
+                            <div class="form-group PPS-page-title">
+                                <label style="font-size: 20px;">Ievaddatu raksturojums</label>
                                 <input class="form-control" type="text"
                                        id="ievaddati"
                                        name="ievaddati"
+                                       value="{{old('ievaddati')}}"
+
                                 >
                                 @if ($errors->has('ievaddati'))
-                                    <strong>{{ $errors->first('ievaddati') }}</strong>
+                                    <strong style="font-size: 15px;">{{ $errors->first('ievaddati') }}</strong>
                                 @endif
                             </div>
 
                             <!-- Ievadlauks start -->
-                            <div class="form-group">
-                                <label>Izvaddatu raksturojums</label>
+                            <div class="form-group PPS-page-title">
+                                <label style="font-size: 20px;">Izvaddatu raksturojums</label>
                                 <input class="form-control" type="text"
                                        id="izvaddati"
                                        name="izvaddati"
+                                       value="{{old('izvaddati')}}"
+
                                 >
                                 @if ($errors->has('izvaddati'))
-                                    <strong>{{ $errors->first('izvaddati') }}</strong>
+                                    <strong style="font-size: 15px;">{{ $errors->first('izvaddati') }}</strong>
                                 @endif
                             </div>
 
                             <!-- Ievadlauks start -->
-                            <div class="form-group">
-                                <label>Uzdevuma definīcija</label>
+                            <div class="form-group PPS-page-title">
+                                <label style="font-size: 20px;">Uzdevuma definīcija</label>
                                 <textarea class="form-control" type="text"
                                           iind="definicija"
                                           name="definicija"
-                                ></textarea>
+
+
+                                >{{old('definicija')}}</textarea>
                                 @if ($errors->has('definicija'))
-                                    <strong>{{ $errors->first('definicija') }}</strong>
+                                    <strong style="font-size: 15px;">{{ $errors->first('definicija') }}</strong>
                                 @endif
                             </div>
 
-                            <div class="row">
+                            <div class="row align-content-center p-2">
                                 <!-- Ievadlauks start -->
-                                <div class="form-group">
-                                    <label>Laika limits</label>
+                                <div class="form-group PPS-page-title p-0 m-0">
+                                    <label style="font-size: 20px;">Laika limits</label>
                                     <input class="form-control" type="number"
                                            id="time"
                                            name="time"
+                                           value="{{old('time')}}"
                                     >
 
                                     </input>
                                     @if ($errors->has('time'))
-                                        <strong>{{ $errors->first('time') }}</strong>
+                                        <strong style="font-size: 15px;">{{ $errors->first('time') }}</strong>
                                     @endif
                                 </div><!-- Ievadlauks start -->
-                                <div class="form-group">
-                                    <label>Atmiņas limits</label>
+                                <div class="form-group PPS-page-title m-0 p-0">
+                                    <label style="font-size: 20px;">Atmiņas limits</label>
                                     <input class="form-control" type="number"
                                            id="memory"
-                                           name="memory">
+                                           name="memory"
+                                           value="{{old('memory')}}"
+                                    >
+
                                     </input>
                                     @if ($errors->has('memory'))
-                                        <strong>{{ $errors->first('memory') }}</strong>
+                                        <strong style="font-size: 15px;">{{ $errors->first('memory') }}</strong>
                                     @endif
                                 </div>
                                 <!-- Ievadlauks start -->
-                                <div class="form-group">
-                                    <label>Punkti</label>
+                                <div class="form-group PPS-page-title p-0 m-0">
+                                    <label style="font-size: 20px;">Punkti</label>
                                     <input class="form-control" type="number"
                                            id="score"
-                                           name="score" step="1">
+                                           name="score" step="1" min="0"
+                                           value="{{old('score')}}"
+                                    >
                                     </input>
                                     @if ($errors->has('score'))
-                                        <strong>{{ $errors->first('score') }}</strong>
+                                        <strong style="font-size: 15px;">{{ $errors->first('score') }}</strong>
                                     @endif
                                 </div>
+                                <select id="tags" name="tags[]" multiple class="PPS-info-button" style="font-size: 20px;">
+                                    @foreach($tags as $tag)
+                                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
-
+                            <!---
                             <label for="exampleInputFile">Pievienot attēlus WIP</label>
-                            <input type="file" id="exampleInputFile">
+                            <input type="file" id="exampleInputFile">--->
 
 
                         </div>
@@ -123,14 +145,10 @@
                             <strong>{{ $errors->first('tests') }}</strong>
                         @endif
 
-                        <select id="tags" name="tags[]" multiple>
-                            @foreach($tags as $tag)
-                                <option value="{{$tag->id}}">{{$tag->name}}</option>
-                            @endforeach
-                        </select>
+
 
                         <div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn PPS-info-button">Saglabāt</button>
                         </div>
                         <div class="box-footer">
                         </div>

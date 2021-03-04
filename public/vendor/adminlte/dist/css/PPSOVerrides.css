@@ -1,0 +1,140 @@
+
+:root{
+    --PPSLBlue: #2967D1;
+    --PPSBlack: #000000;
+    --PPSDBLue: #2F21C4;
+    --PPSSilver: #c0bcb5;
+    --PPSLGray: #c5d7cc;
+    --PPSGray: #828282;
+    --PPSDBrown: #494949;
+}
+
+.PPS-sidebar{
+    background-color: black !important;
+    border: 1.5px solid var(--PPSDBLue) !important;
+}
+
+.PPS-navbar{
+    background-color: var(--PPSBlack) !important;
+    border: 1.5px solid var(--PPSDBLue) !important;
+
+    color: white !important;
+
+}
+
+.nav-link{
+    color: var(--PPSLGray) !important;
+    font-weight: 500;
+}
+.nav-link:hover{
+    color: white !important;
+}
+
+.PPS-page-title{
+    color: white !important;
+    font-size: 5vh !important;
+    padding: 10px;
+}
+
+.PPS-content-wrapper{
+    border: 3px solid var(--PPSDBLue) !important;
+    background-color: var(--PPSDBrown) !important;
+    padding: 0 !important;
+    color: var(--PPSLGray) !important;
+    font-size: 20px!important;
+    margin: 15px!important;
+
+}
+
+.PPS-content-header{
+    background-color: var(--PPSLBlue);
+    border: 2px solid var(--PPSDBLue) !important;
+
+    color: white;
+}
+
+.PPS-content-footer{
+    background-color: var(--PPSGray);
+    color: black;
+}
+
+.PPS-info-button{
+    background-color: black !important;
+    color: var(--PPSLGray) !important;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid var(--PPSDBLue) !important;
+
+
+}
+
+.PPS-info-button:hover{
+    color: white !important;
+    background-color: var(--PPSDBLue) !important;
+}
+
+
+.PPS-edit-button{
+    background-color: black !important;
+    color: yellow !important;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid yellow !important;
+
+
+}
+
+.PPS-edit-button:hover{
+    color: black !important;
+    background-color: yellow !important;
+}
+.PPS-delete-button{
+    background-color: black !important;
+    color: red !important;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid red !important;
+
+
+}
+
+.PPS-delete-button:hover{
+    color: black !important;
+    background-color: red !important;
+}
+
+.PPS-add-button{
+    background-color: black !important;
+    color: greenyellow !important;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid green !important;
+
+
+}
+
+.PPS-add-button:hover{
+    color: black !important;
+    background-color: green !important;
+}
+
+
+@-webkit-keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.PPS-Wrapper {
+    background: linear-gradient(-45deg, var(--PPSDBLue), var(--PPSLBlue), var(--PPSBlack)) !important;
+    /*background-size: 400% 400% !important;
+    animation-name: gradient;
+    animation: gradient 1s ease infinite !important;*/
+}
+
+

@@ -1,10 +1,11 @@
 <template>
-    <div>
-
-        <label>Select image: </label>
-        <label for="img" class="btn btn-default bg-green"><i class="far fa-plus-square">
-
+    <div class="p-3">
+        <div class="PPS-page-title row">
+        <label class="mr-3 mb-0 align-self-center" style="font-size: 25px;">Pievienot bildi: </label>
+        <label for="img" class="btn PPS-add-button align-self-center"><i class="far fa-plus-square ">
         </i></label>
+        </div>
+
 
 
         <input
@@ -17,46 +18,39 @@
 
 
         <div class="row w-100">
-
-
             <div v-for="(input, index) in inputs" class="row center w-100 m-2">
                 <div class="carousel slide w-100 d-flex flex-wrap align-items-center"
                      v-model="input.id"
                      style="
-                        background-color: black;
                         height: 30vh;">
-                    <button type="button"
-                            @click="remove(index)"
-                            style="position: absolute;
-                                   background: red;
-                                   color: white;
-                                   top: -10px;
-                                   right: -10px;">
-                        X
+                    <button type="button" class="PPS-delete-button nav-link"
+                            @click="remove(index)">
+                        <i
+                            class="far fa-minus-square">   </i>
                     </button>
                     <img v-if="input.id" :src="input.id" class="rounded mx-auto d-block"
-                         style="max-height: 100%;">
+                         style="max-height: 100%; border: 2px solid white;">
                 </div>
             </div>
         </div>
         <div>
-            <button @click="formSubmit" type="submit" class="btn btn-primary">Submit</button>
+            <button @click="formSubmit" type="submit" class="btn PPS-info-button">Saglabāt izmaiņas</button>
         </div>
     </div>
 </template>
 <script>
 export default {
-    props:['oldImages'],
+    props: ['oldImages'],
 
     mounted() {
         //Add old images to upload and input array
         this.oldImages.forEach(
-            element=>this.inputs.push({
+            element => this.inputs.push({
                 id: "../storage/" + element.file_path,
                 type: "old"
             }))
         this.oldImages.forEach(
-            element=>this.photoarr.push({
+            element => this.photoarr.push({
                 id: "../storage/" + element.file_path,
                 path: element.file_path,
                 type: "old"
@@ -92,8 +86,7 @@ export default {
         remove(index) {
             //When image deleted remove it from both the display array & upload array
 
-            if(this.photoarr[index].type == "old")
-            {
+            if (this.photoarr[index].type == "old") {
                 this.delete.push(this.photoarr[index].path);
             }
             this.inputs.splice(index, 1);
@@ -110,12 +103,12 @@ export default {
 
             const data = new FormData();
             //Add each image to an array
-            this.photoarr.forEach((p)=>{
-                if(p.type != "old")
-                data.append('photo[]', p);
+            this.photoarr.forEach((p) => {
+                if (p.type != "old")
+                    data.append('photo[]', p);
             });
 
-            this.delete.forEach((d)=>{
+            this.delete.forEach((d) => {
                 data.append('delete[]', d);
             });
 
@@ -125,7 +118,8 @@ export default {
                     //console.log(res.data);
                     alert("Izmaiņas saglabātas");
                 }).catch(err => {
-                console.log(err)});
+                console.log(err)
+            });
         },
     }
 

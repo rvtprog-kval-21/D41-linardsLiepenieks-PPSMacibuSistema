@@ -24,15 +24,17 @@ class ExercisesController extends Controller
     public function index()
     {
         $exercises = Exercise::all();
-        return view('exercises', compact('exercises'));
+        return view('/exercises', compact('exercises'));
     }
 
     public function search(Request $request)
     {
 
+       $request->validate(['q'=>'required']);
         $exercises = Exercise::Where('nosaukums', 'like', '%' . $request->input('q') . '%')->get();
-        return view('exercises', compact('exercises'));
 
+
+        return view('/exercises', compact('exercises'));
     }
 
     public function create(User $user)

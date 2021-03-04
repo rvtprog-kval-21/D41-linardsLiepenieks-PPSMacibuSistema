@@ -2280,12 +2280,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['oldImages'],
   mounted: function mounted() {
@@ -2384,7 +2378,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     textAreaId: {
@@ -2421,6 +2414,7 @@ __webpack_require__.r(__webpack_exports__);
         matchBrackets: true,
         continueComments: "Enter",
         mode: "text/x-c++src",
+        theme: "cobalt",
         extraKeys: {
           "Ctrl-Q": "toggleComment"
         }
@@ -30614,26 +30608,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass:
-          "box-header with-border row align-items-center justify-content-between"
-      },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { on: { click: _vm.addTest } }, [_vm._m(1)])
-      ]
-    ),
+  return _c("div", { staticClass: "p-3" }, [
+    _c("div", { staticClass: "row m-0 PPS-page-title" }, [
+      _c(
+        "div",
+        {
+          staticClass: "box-title align-self-center ml-3",
+          staticStyle: { "font-size": "25px" }
+        },
+        [_vm._v("Pievienot Tagu")]
+      ),
+      _vm._v(" "),
+      _c("div", { on: { click: _vm.addTest } }, [_vm._m(0)])
+    ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row PPS-content-header mb-3" }, [
       _c(
         "table",
-        { staticClass: "table table-bordered" },
+        { staticClass: "table table-bordered " },
         [
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _vm._l(_vm.inputs, function(input, index) {
             return _c(
@@ -30672,7 +30666,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._m(3, true)]
+                      [_vm._m(2, true)]
                     )
                   ]
                 ),
@@ -30687,7 +30681,7 @@ var render = function() {
                         expression: "input.name"
                       }
                     ],
-                    staticClass: "w-100 form-control",
+                    staticClass: " PPS-content-footer w-100 form-control ",
                     staticStyle: {
                       width: "100%",
                       height: "100%",
@@ -30767,11 +30761,11 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "btn btn-primary",
+          staticClass: "btn PPS-info-button",
           attrs: { type: "submit" },
           on: { click: _vm.formSubmit }
         },
-        [_vm._v("Submit")]
+        [_vm._v("Saglabāt izmaiņas")]
       )
     ])
   ])
@@ -30781,17 +30775,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-9" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Pievienot paraugdatus")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "button",
-      { staticClass: "btn btn-default bg-green", attrs: { type: "button" } },
+      { staticClass: "btn PPS-add-button", attrs: { type: "button" } },
       [_c("i", { staticClass: "far fa-plus-square" })]
     )
   },
@@ -30817,7 +30803,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "button",
-      { staticClass: "btn btn-danger bg-red", attrs: { type: "button" } },
+      { staticClass: "btn PPS-delete-button", attrs: { type: "button" } },
       [_c("i", { staticClass: "far fa-minus-square" })]
     )
   }
@@ -30843,7 +30829,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "m-3" }, [
     _c(
       "div",
       {
@@ -30857,18 +30843,19 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row PPS-content-header" }, [
       _c(
         "table",
-        { staticClass: "table table-bordered" },
+        { staticClass: "table table-bordered " },
         [
           _vm._m(2),
           _vm._v(" "),
           _vm._l(_vm.inputs, function(input, index) {
-            return _c("tr", { staticClass: "form-group" }, [
+            return _c("tr", { staticClass: "form-group PPS-content-wrapper" }, [
               _c(
                 "th",
                 {
+                  staticClass: "text-center",
                   staticStyle: { width: "10px" },
                   model: {
                     value: input.id,
@@ -31024,7 +31011,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-9" }, [
+    return _c("div", { staticClass: "col-9 PPS-page-title" }, [
       _c("h3", { staticClass: "box-title" }, [_vm._v("Pievienot paraugdatus")])
     ])
   },
@@ -31034,7 +31021,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "button",
-      { staticClass: "btn btn-default bg-green", attrs: { type: "button" } },
+      { staticClass: "btn PPS-add-button", attrs: { type: "button" } },
       [_c("i", { staticClass: "far fa-plus-square" })]
     )
   },
@@ -31060,7 +31047,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "button",
-      { staticClass: "btn btn-danger bg-red", attrs: { type: "button" } },
+      { staticClass: "btn PPS-delete-button", attrs: { type: "button" } },
       [_c("i", { staticClass: "far fa-minus-square" })]
     )
   }
@@ -31086,9 +31073,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("label", [_vm._v("Select image: ")]),
-    _vm._v(" "),
+  return _c("div", { staticClass: "p-3" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("input", {
@@ -31107,7 +31092,7 @@ var render = function() {
             {
               staticClass:
                 "carousel slide w-100 d-flex flex-wrap align-items-center",
-              staticStyle: { "background-color": "black", height: "30vh" },
+              staticStyle: { height: "30vh" },
               model: {
                 value: input.id,
                 callback: function($$v) {
@@ -31120,13 +31105,7 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticStyle: {
-                    position: "absolute",
-                    background: "red",
-                    color: "white",
-                    top: "-10px",
-                    right: "-10px"
-                  },
+                  staticClass: "PPS-delete-button nav-link",
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
@@ -31134,13 +31113,16 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n                    X\n                ")]
+                [_c("i", { staticClass: "far fa-minus-square" })]
               ),
               _vm._v(" "),
               input.id
                 ? _c("img", {
                     staticClass: "rounded mx-auto d-block",
-                    staticStyle: { "max-height": "100%" },
+                    staticStyle: {
+                      "max-height": "100%",
+                      border: "2px solid white"
+                    },
                     attrs: { src: input.id }
                   })
                 : _vm._e()
@@ -31155,11 +31137,11 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "btn btn-primary",
+          staticClass: "btn PPS-info-button",
           attrs: { type: "submit" },
           on: { click: _vm.formSubmit }
         },
-        [_vm._v("Submit")]
+        [_vm._v("Saglabāt izmaiņas")]
       )
     ])
   ])
@@ -31169,11 +31151,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      { staticClass: "btn btn-default bg-green", attrs: { for: "img" } },
-      [_c("i", { staticClass: "far fa-plus-square" })]
-    )
+    return _c("div", { staticClass: "PPS-page-title row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "mr-3 mb-0 align-self-center",
+          staticStyle: { "font-size": "25px" }
+        },
+        [_vm._v("Pievienot bildi: ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "label",
+        {
+          staticClass: "btn PPS-add-button align-self-center",
+          attrs: { for: "img" }
+        },
+        [_c("i", { staticClass: "far fa-plus-square " })]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -31201,7 +31197,7 @@ var render = function() {
     _c(
       "select",
       {
-        staticClass: "m-3",
+        staticClass: "mb-3 ml-0 PPS-info-button",
         attrs: { id: "mode", name: "mode" },
         on: {
           change: function($event) {

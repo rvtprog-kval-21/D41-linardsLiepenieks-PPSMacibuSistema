@@ -2,26 +2,25 @@
 @section('title', 'Nosūtīt uzdevumu')
 
 @section('content_header')
-    <h1>Nosūtīt uzdevumu {{$exercise->kods}}</h1>
-@stop
-@section('content')
-    <div id="app" class="row justify-content-center">
-        <form action="/exercises/{{$exercise->id}}/send" enctype="multipart/form-data" method="post">
-            @csrf
-        <div style="width: 125vh;" >
-            <codemirror></codemirror>
-        </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+    <div class="row justify-content-between PPS-page-title">
 
-@stop
-@section('css')
+        <div>Nosūtīt uzdevumu {{$exercise->kods}}</div>
+        <div>
+            @stop
+            @section('content')
+                <div id="app" class="row justify-content-center w-100" >
+                    <form action="/exercises/{{$exercise->id}}/send" enctype="multipart/form-data" method="post" class=" row w-100 justify-content-center mt-3">
+                        @csrf
+                        <div class="w-75" >
+                            <div style="width: 100%;">
+                                <codemirror></codemirror>
+                            </div>
+                            <button type="submit" class="btn PPS-info-button mt-2" style="margin: 0; width: 100px;">Sūtīt</button>
+                        </div>
+                    </form>
+                </div>
 
-    <link rel="stylesheet" href="{{'/css/codemirror.css'}}">
 
-@stop
-@section('js')
 
 @stop
 

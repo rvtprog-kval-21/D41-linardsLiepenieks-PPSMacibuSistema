@@ -2,20 +2,12 @@
 @section('title', 'Atrisinājumi')
 
 @section('content_header')
-    <h1>Uzdevuma {{$exercise->kods}} atrisinājumi</h1>
+    <div class="row justify-content-between PPS-page-title">
+        <div>Uzdevuma {{$exercise->kods}} atrisinājumi</div>
+    </div>
 
     <!--Layout of submission data tooltips-->
-    <div class="row justify-content-between align-items-center text-center" style="color:white; background-color: dimgray;
-                            font-size: 2vh;
 
-                            margin-top: 5px; ">
-        <div class="col-2">Iesūtīts</div>
-        <div class="col-3">Valoda</div>
-        <div class="col-2">laiks</div>
-        <div class="col-1">Atmiņa</div>
-        <div class="col-1 ">Statuss</div>
-        <div class="col-2 ">Testi</div>
-    </div>
 @stop
 
 
@@ -23,22 +15,29 @@
 
     <!--Create submission objects-->
     <div id="app">
+        <div class="container-fluid">
 
-        @foreach($solutions as $submission)
+        <div class="row justify-content-around align-items-center text-center PPS-content-header p-2"
+             style="font-size: 25px">
+            <div class="col-2">Iesūtīts</div>
+            <div class="col-3">Valoda</div>
+            <div class="col-2">laiks</div>
+            <div class="col-1">Atmiņa</div>
+            <div class="col-1 ">Statuss</div>
+            <div class="col-2 ">Testi</div>
+        </div>
+            <div class="container-fluid w-100">
+
+            @foreach($solutions as $submission)
             @php
                 $submission = $submission->submission
             @endphp
             <a href="#" data-toggle="modal" data-target="#modal{{$submission->id}}">
-                <div class="row justify-content-between align-items-center text-center" style="color:dimgray; background-color: white; border: 1px solid black;
-                            font-size: 2vh;
-
-                            margin-top: 5px; ">
+                <div class="row justify-content-around text-center PPS-content-wrapper">
                     <div class="col-2">{{$submission->created_at}}</div>
                     <div class="col-3">{{$submission->mode}}</div>
-                    <div class="col-2 row align-items-center">
-                        <div class="col-8 ">
+                    <div class="col-2">
                             {{$submission->submissionTest->sortBy('time')->first()->time ? $submission->submissionTest->sortBy('time')->first()->time : '----'}}
-                        </div>
                     </div>
                     <div class="col-1">
                         {{$submission->submissionTest->sortBy('memory')->first()->memory ? $submission->submissionTest->sortBy('memory')->first()->memory : '----'}}
@@ -53,12 +52,15 @@
             </a>
 
             <div id="modal{{$submission->id}}" class="modal fade container-fluid" role="dialog">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-xl">
 
                     <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="modal-content PPS-content-wrapper">
+                        <div class="PPS-content-header p-3">
+                            <span class="align-middle">{{$submission->created_at}}</span>
+                            <button type="button" class="close nav-link" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
 
                         <div class="modal-body">
@@ -71,18 +73,20 @@
                             </codemirror>
 
                             <div class="row justify-content-around mt-3 text-center">
-                                <div>#</div>
-                                <div>Laiks</div>
-                                <div>Atmiņa</div>
-                                <div>stdout</div>
+                                <div class="col">#</div>
+                                <div class="col">Laiks</div>
+                                <div class="col">Atmiņa</div>
+                                <div class="col-3">stdout</div>
                             </div>
                             @php $i = 1 @endphp
                             @foreach($submission->submissionTest as $try)
-                                <div class="row justify-content-around mt-2 text-center">
-                                    <div>{{$i}}</div>
-                                    <div>{{$try->time != null ? $try->time: '---'}}s</div>
-                                    <div>{{$try->memory}} mb</div>
-                                    <div>{{$try->stdout != null ? $try->stdout: '---'}}</div>
+                                <div class="row justify-content-around mt-2 text-center"
+                                     style="border: 3px solid {{$try->correct?'green':'red'}};
+                                         border-radius:10px;">
+                                    <div class="col align-self-center">{{$i}}</div>
+                                    <div class="col align-self-center">{{$try->time != null ? $try->time: '---'}}s</div>
+                                    <div class="col align-self-center">{{$try->memory}} mb</div>
+                                    <div class="col-3 overflow-auto align-self-center" style="white-space: pre-line;">{{$try->stdout != null ? $try->stdout: '---'}}</div>
                                 </div>
                                 @php  $i++ @endphp
                             @endforeach
@@ -93,6 +97,8 @@
                 </div>
             </div>
         @endforeach
+            </div>
+        </div>
     </div>
 
 

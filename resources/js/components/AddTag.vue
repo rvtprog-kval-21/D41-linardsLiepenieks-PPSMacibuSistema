@@ -1,23 +1,22 @@
 <template>
-    <div>
+    <div class="p-3">
         <!-- Header -->
-        <div class="box-header with-border row align-items-center justify-content-between">
 
             <!-- Title -->
-            <div class="col-9">
-                <h3 class="box-title">Pievienot paraugdatus</h3>
+            <div class="row m-0 PPS-page-title">
+                <div class="box-title align-self-center ml-3" style="font-size: 25px;">Pievienot Tagu</div>
+                <div @click="addTest">
+                    <button type="button" class="btn PPS-add-button">
+                        <i class="far fa-plus-square"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Addtest button-->
-            <div @click="addTest">
-                <button type="button" class="btn btn-default bg-green">
-                    <i class="far fa-plus-square"></i>
-                </button>
-            </div>
-        </div>
 
-        <div class="row">
-            <table class="table table-bordered">
+
+        <div class="row PPS-content-header mb-3">
+            <table class="table table-bordered ">
                 <!-- Info tags -->
                 <tr>
                     <th style="width: 7%" class="text-center">#</th>
@@ -36,16 +35,17 @@
                         {{index+1}}
                         <!-- Remove tag button -->
                         <div @click="removeTest(index, input)">
-                            <button type="button" class="btn btn-danger bg-red"><i
+                            <button type="button" class="btn PPS-delete-button"><i
                                 class="far fa-minus-square"></i></button>
                         </div>
                     </th>
 
                     <!-- Nosaukums input -->
-                    <th>
-                        <textarea class="w-100 form-control"
+                    <th >
+                        <textarea class=" PPS-content-footer w-100 form-control "
                                   v-model="input.name"
-                                  style="width: 100%; height: 100%; box-sizing: border-box;">
+                                  style="width: 100%; height: 100%; box-sizing: border-box;
+                    ">
                         </textarea>
 
                     </th>
@@ -69,7 +69,7 @@
         </div>
 
         <div>
-            <button @click="formSubmit" type="submit" class="btn btn-primary">Submit</button>
+            <button @click="formSubmit" type="submit" class="btn PPS-info-button">Saglabāt izmaiņas</button>
         </div>
     </div>
 </template>

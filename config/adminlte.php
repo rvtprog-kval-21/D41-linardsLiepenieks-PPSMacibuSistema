@@ -255,7 +255,7 @@ return [
             'url'  => 'rating',
             'icon' => 'fas fa-crown',
         ],
-[
+        /*[
             'text' => 'Teorija',
             'url'  => 'theory',
             'icon' => 'fas fa-atlas',
@@ -272,7 +272,7 @@ return [
 
 
             ],
-        ],
+        ],*/
         [
             //Pagaidam pieejams ari no user
             'text'  => 'Admin panelis',
@@ -456,7 +456,30 @@ return [
                     'location' => 'js/app.js',
                 ],
             ],
-        ]
+        ],
+        [
+            'name' => 'PPSOverrides',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/adminlte/dist/css/PPSOverrides.css',
+                ],
+            ],
+        ],
+        [
+            'name' => 'CMCobalt',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'css/cobalt.css',
+                ],
+            ],
+        ],
+
     ],
 
     /*
