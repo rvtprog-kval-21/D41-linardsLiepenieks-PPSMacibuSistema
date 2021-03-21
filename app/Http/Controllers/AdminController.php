@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BannerImage;
 use App\Models\Exercise;
 use App\Models\Tag;
+use App\Models\User;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -37,6 +38,11 @@ class AdminController extends Controller
         $tests = $response->headers()['X-RateLimit-Submissions-Remaining'][0];
 
         return view('admin_panel/admin_home', compact('tests'));
+    }
+
+    public function userEdit(){
+        $users = User::all();
+        return view('admin_panel/users', compact('users'));
     }
 
     public function banner(BannerImage $bannerImage)

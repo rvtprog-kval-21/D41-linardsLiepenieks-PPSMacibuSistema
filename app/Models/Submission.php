@@ -19,12 +19,12 @@ class Submission extends Model
     }
     public function exercise()
     {
-        return $this->belongsTo(exercise::class);
+        return $this->belongsTo(Exercise::class);
     }
 
     public function  submissionTest()
     {
-        return $this->hasMany(submissionTest::class);
+        return $this->hasMany(SubmissionTest::class);
     }
     public function  solution()
     {

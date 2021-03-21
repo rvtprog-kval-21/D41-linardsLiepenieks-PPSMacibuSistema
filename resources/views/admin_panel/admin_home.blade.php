@@ -27,6 +27,10 @@
                     onclick="location.href='/admin/tags'">
                 Rediģēt tagus
             </button>
+            <button type="button" class="w-100 btn btn-block PPS-edit-button btn-sm"
+                    onclick="location.href='/admin/users'">
+                Rediģēt lietotāju privilēģijas
+            </button>
         </div>
     </div>
 

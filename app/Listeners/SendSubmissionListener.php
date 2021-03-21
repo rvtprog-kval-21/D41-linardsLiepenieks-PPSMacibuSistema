@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class SendSubmissionListener implements ShouldQueue
 {
@@ -29,7 +30,7 @@ class SendSubmissionListener implements ShouldQueue
         foreach ($event->exercise->tests()->get() as $test) //Go through all test cases for exercise
         {
             $test_result = $this->testCode($mode_id, $event->submission->code, $test->stdin); //Compile code with this tests stdin
-
+            //dd($test_result, base64_decode($test_result[1]['stdout']));
 
             $newTest = $event->submission->submissionTest()->create([
                     'time' => $test_result[1]['time'],
@@ -113,24 +114,29 @@ class SendSubmissionListener implements ShouldQueue
 
         //Get unique Submission token for this test from API
         $submissionKey = $response['token'];
+        $status = null;
 
-        //Retry for 10 seconds to check if code is compiled
-        for ($i = 0; $i < 11; $i++) {
-
-            sleep(1);
-
+        while($status != 'Accepted' && $status != 'timed-out')
+        {
             //Get submission test data from Judge0
+
             $response = Http::withHeaders([
                 'x-rapidapi-key' => $this->token,
                 'x-rapidapi-host' => $this->host
             ])->get('https://judge0.p.rapidapi.com/submissions/' . $submissionKey . '?base64_encoded=true');
+            $status = $response['status']['description'];
+        }
+
+
+
+
 
             //If code is compiled return test data and stop retrying
-            if ($response['status']['description'] == 'Accepted') {
+            if ($status == 'Accepted') {
                 return array('accepted', $response->json());
             }
 
-        }
+
 
         //If code is not compiled at this point something went wrong or it has timed out
         return array('timed-out', $response->json());

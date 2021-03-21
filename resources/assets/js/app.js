@@ -42,6 +42,7 @@ Vue.component('add-test', require('../../js/components/AddTest.vue').default);
 Vue.component('codemirror', require('../../js/components/CodeMirror.vue').default);
 Vue.component('banner-edit', require('../../js/components/BannerEdit.vue').default);
 Vue.component('add-tag', require('../../js/components/AddTag.vue').default);
+Vue.component('user-edit', require('../../js/components/UserEdit.vue').default);
 
 
 

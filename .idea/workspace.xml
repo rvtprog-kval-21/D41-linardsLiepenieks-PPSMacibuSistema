@@ -5,45 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e7c1963-f02d-40fb-bd8e-f4824eb88a0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/cobalt.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/vendor/adminlte/dist/css/PPSOVerrides.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Prakse4.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/UserEdit.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin_panel/users.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exercise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Submission.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Submission.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_10_224758_create_exercises_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_10_224758_create_exercises_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/adminlte/dist/css/adminlte.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/adminlte/dist/css/adminlte.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/adminlte/dist/css/adminlte.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/adminlte/dist/css/adminlte.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AddTag.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddTag.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AddTest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddTest.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/BannerEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/BannerEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/CodeMirror.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CodeMirror.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/adminlte/dist/css/PPSOVerrides.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/PPSOVerrides.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin_panel/admin_home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin_panel/admin_home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin_panel/banner.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin_panel/banner.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin_panel/tags.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin_panel/tags.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises/send.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/send.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises/solutions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/solutions.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/exercises/submissions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/submissions.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/news/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/news/news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/news.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/rating/rating.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rating/rating.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/adminlte/page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/adminlte/page.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/adminlte/partials/navbar/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/adminlte/partials/navbar/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/adminlte/partials/sidebar/left-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/adminlte/partials/sidebar/left-sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -188,6 +163,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -195,6 +171,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\linar\p4\resources\js\components" />
+      <recent name="C:\Users\linar\p4\resources\views\admin_panel" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\linar\p4\public\css" />
       <recent name="C:\Users\linar\p4\resources\css" />
@@ -216,7 +196,11 @@
       <updated>1612826342365</updated>
       <workItem from="1612826346884" duration="12000" />
       <workItem from="1612874747716" duration="1773000" />
-      <workItem from="1614856630563" duration="27673000" />
+      <workItem from="1614856630563" duration="28482000" />
+      <workItem from="1614939080633" duration="1961000" />
+      <workItem from="1615126681006" duration="2305000" />
+      <workItem from="1615743975764" duration="9245000" />
+      <workItem from="1616360307202" duration="1604000" />
     </task>
     <servers />
   </component>
@@ -233,5 +217,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

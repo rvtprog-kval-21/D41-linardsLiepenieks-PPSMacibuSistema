@@ -34,10 +34,10 @@
                             <div class="col-2" >{{$submission->created_at}}</div>
                             <div class="col-3" >{{$submission->mode}}</div>
                             <div class="col-2" >
-                                    {{$submission->submissionTest->sortBy('time')->first()->time ? $submission->submissionTest->sortBy('time')->first()->time : '----'}}
+                                    {{$submission->submissionTest->sortBy('time')->first() === null ? 'Gaida' : ($submission->submissionTest->sortBy('time')->first()->time ? $submission->submissionTest->sortBy('time')->first()->time : '----')}}
                             </div>
                             <div class="col-1">
-                                {{$submission->submissionTest->sortBy('memory')->first()->memory ? $submission->submissionTest->sortBy('memory')->first()->memory : '----'}}
+                                {{$submission->submissionTest->sortBy('memory')->first() === null ? 'Gaida' : ($submission->submissionTest->sortBy('memory')->first()->memory ? $submission->submissionTest->sortBy('memory')->first()->memory : '----')}}
                             </div>
                             <div class="col-1">
                                 {{$submission->submissionTest->sum('correct') == $exercise->tests->count() ? 'Pareizi' : 'Nepareizi'}}

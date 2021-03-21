@@ -44,13 +44,13 @@ class ExercisesController extends Controller
         return view('exercises/create', compact('tags'));
     }
 
-    public function show(\App\Models\exercise $exercise)
+    public function show(\App\Models\Exercise $exercise)
     {
 
         return view('exercises/show', compact('exercise'));
     }
 
-    public function openSend(\App\Models\exercise $exercise)
+    public function openSend(\App\Models\Exercise $exercise)
     {
         if (Auth::user() == null) {
             return redirect('/login');
@@ -58,26 +58,26 @@ class ExercisesController extends Controller
             return view('exercises/send', compact('exercise'));
     }
 
-    public function submissions(\App\Models\exercise $exercise)
+    public function submissions(\App\Models\Exercise $exercise)
     {
         $submissions = Submission::Where('user_id', Auth::id())->Where('exercise_id', $exercise->id)->get()->sortByDesc('created_at');
         return view('exercises/submissions', compact('exercise', 'submissions'));
     }
 
-    public function solutions(\App\Models\exercise $exercise)
+    public function solutions(\App\Models\Exercise $exercise)
     {
         $solutions = Solution::Where('user_id', Auth::id())->Where('exercise_id', $exercise->id)->get();
         return view('exercises/solutions', compact('exercise', 'solutions'));
     }
 
-    public function edit(\App\Models\exercise $exercise)
+    public function edit(\App\Models\Exercise $exercise)
     {
         $this->authorize('create', Exercise::class);
         $tags = Tag::all();
         return view('exercises/edit', compact('exercise', 'tags'));
     }
 
-    public function send(\App\Models\exercise $exercise)
+    public function send(\App\Models\Exercise $exercise)
     {
         $this->middleware('auth');
 
@@ -130,7 +130,7 @@ class ExercisesController extends Controller
         }
 
 
-        $exercise = \App\Models\exercise::create([
+        $exercise = \App\Models\Exercise::create([
             'kods' => $data['kods'],
             'nosaukums' => $data['nosaukums'],
             'ievaddati' => $data['ievaddati'],
@@ -221,7 +221,7 @@ class ExercisesController extends Controller
         return redirect('/exercises');
     }
 
-    public function delete(\App\Models\exercise $exercise)
+    public function delete(\App\Models\Exercise $exercise)
     {
         $this->authorize('create', Exercise::class);
         $exercise->tests()->delete();

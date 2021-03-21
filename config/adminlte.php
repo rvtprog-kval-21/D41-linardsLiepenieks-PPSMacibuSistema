@@ -458,13 +458,13 @@ return [
             ],
         ],
         [
-            'name' => 'PPSOverrides',
+            'name' => 'PPSOVerrides',
             'active' => true,
             'files' => [
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => 'vendor/adminlte/dist/css/PPSOverrides.css',
+                    'location' => 'css/PPSOVerrides.css',
                 ],
             ],
         ],
