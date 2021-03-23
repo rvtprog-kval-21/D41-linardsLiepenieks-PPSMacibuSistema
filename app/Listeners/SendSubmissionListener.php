@@ -8,7 +8,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class SendSubmissionListener implements ShouldQueue
 {
@@ -29,13 +28,21 @@ class SendSubmissionListener implements ShouldQueue
 
         foreach ($event->exercise->tests()->get() as $test) //Go through all test cases for exercise
         {
+            if($mode_id == 71)
+            {
+                $test->stdin = $this->convToPy($test->stdin);
+            }
+            //dd($test->stdin);
             $test_result = $this->testCode($mode_id, $event->submission->code, $test->stdin); //Compile code with this tests stdin
-            //dd($test_result, base64_decode($test_result[1]['stdout']));
+            //dd($test_result);
+            
+            
+
 
             $newTest = $event->submission->submissionTest()->create([
                     'time' => $test_result[1]['time'],
                     'memory' => $test_result[1]['memory']/1000,
-                    'stdout' => base64_decode($test_result[1]['stdout']),
+                    'stdout' => $test_result[1]['stdout'],
                 ]
             );//Add the compiled test result data to submission
 
@@ -83,7 +90,7 @@ class SendSubmissionListener implements ShouldQueue
     {
         switch ($mode) {
             case "C++":
-                return 54;
+                return 52;
                 break;
             case "Python":
                 return 71;
@@ -104,35 +111,46 @@ class SendSubmissionListener implements ShouldQueue
 
         $response = Http::withHeaders([
             'x-rapidapi-key' => $this->token,
-            'x-rapidapi-host' => $this->host
-        ])->post('https://judge0.p.rapidapi.com/submissions', [
+            'x-rapidapi-host' => $this->host,
+            'content-type' => 'application/json',
+
+            
+        ])->post('https://judge0-ce.p.rapidapi.com/submissions', [
             'language_id' => $languageId,
             'source_code' => $code,
             'stdin' => $stdin,
             'expected_output' => $expected_output,
         ]);
+        //dd($response);
+
 
         //Get unique Submission token for this test from API
-        $submissionKey = $response['token'];
-        $status = null;
+        $submissionKey = json_decode($response);
+        $submissionKey = $submissionKey->token;
 
-        while($status != 'Accepted' && $status != 'timed-out')
+         $status = 'In Queue';
+
+        while($status === 'In Queue' || $status === 'Processing')
         {
             //Get submission test data from Judge0
 
             $response = Http::withHeaders([
                 'x-rapidapi-key' => $this->token,
                 'x-rapidapi-host' => $this->host
-            ])->get('https://judge0.p.rapidapi.com/submissions/' . $submissionKey . '?base64_encoded=true');
-            $status = $response['status']['description'];
+            ])->get('https://judge0-ce.p.rapidapi.com/submissions/' . $submissionKey);
+            $status = json_decode($response)->status->description;
+            //dd($status);
+
         }
+        //dd(json_decode($response));
+
 
 
 
 
 
             //If code is compiled return test data and stop retrying
-            if ($status == 'Accepted') {
+            if ($status === 'Accepted') {
                 return array('accepted', $response->json());
             }
 
@@ -141,6 +159,13 @@ class SendSubmissionListener implements ShouldQueue
         //If code is not compiled at this point something went wrong or it has timed out
         return array('timed-out', $response->json());
 
+    }
+    
+    public function convToPy($stdin)
+    {
+        $newstr = str_replace(' ', "\n", $stdin);
+        //$newstr = base64_encode($newstr);
+        return $newstr;
     }
 
 }
