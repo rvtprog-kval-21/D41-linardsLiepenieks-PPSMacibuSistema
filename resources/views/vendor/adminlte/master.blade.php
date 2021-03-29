@@ -47,6 +47,7 @@
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
     @yield('adminlte_css')
+    <link rel="stylesheet" href="{{ url('/css/PPSOVerrides.css') }}">
 
     {{-- Favicon --}}
     @if(config('adminlte.use_ico_only'))

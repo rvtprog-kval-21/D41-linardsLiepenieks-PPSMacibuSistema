@@ -1,6 +1,6 @@
-<nav class=" PPS-navbar main-header navbar
+<nav class=" PPS-navbar main-header navbar layout-navbar-fixed
     {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
-{{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }}">
+{{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }}" >
 
     {{-- Navbar left links --}}
     <ul class="navbar-nav">

@@ -1,30 +1,40 @@
 
 :root{
-    --PPSLBlue: #2967D1;
+    --PPSLBlue: royalblue;
     --PPSBlack: #000000;
-    --PPSDBLue: #2F21C4;
+    --PPSDBLue: #1c5bc7;
     --PPSSilver: #c0bcb5;
     --PPSLGray: #c5d7cc;
     --PPSGray: #828282;
     --PPSDBrown: #494949;
 }
 
+.center {
+    display: flex;
+    align-items: center;
+}
+
+.brand-link{background-color: black !important;
+    border-color: var(--PPSGray) !important;}
+
 .PPS-sidebar{
     background-color: black !important;
-    border: 1.5px solid var(--PPSDBLue) !important;
+    border: none;
 }
 
 .PPS-navbar{
     background-color: var(--PPSBlack) !important;
-    border: 1.5px solid var(--PPSDBLue) !important;
-
+    border-color: var(--PPSGray) !important;
     color: white !important;
-
 }
 
 .nav-link{
     color: var(--PPSLGray) !important;
     font-weight: 500;
+}
+
+.nav-link.active{
+    background-color: var(--PPSLBlue) !important;
 }
 .nav-link:hover{
     color: white !important;
@@ -37,25 +47,35 @@
 }
 
 .PPS-content-wrapper{
-    border: 3px solid var(--PPSDBLue) !important;
+    border: 3px solid black !important;
     background-color: var(--PPSDBrown) !important;
-    padding: 0 !important;
     color: var(--PPSLGray) !important;
-    font-size: 20px!important;
-    margin: 15px!important;
+    font-size: 2vh;
 
+}
+.PPS-content-wrapper.PPS-exercise{
+    transition: 0.2s !important;
+}
+.PPS-content-wrapper.PPS-exercise:hover{
+    filter: drop-shadow(3px 3px 3px black) !important;
 }
 
 .PPS-content-header{
     background-color: var(--PPSLBlue);
     border: 2px solid var(--PPSDBLue) !important;
-
+    color: lightgray;
+}
+.PPS-content-heading{
+    background-color: var(--PPSDBLue) !important;
+    font-size: 3vh;
     color: white;
+    padding: 5px;
 }
 
 .PPS-content-footer{
     background-color: var(--PPSGray);
     color: black;
+
 }
 
 .PPS-info-button{
@@ -118,8 +138,35 @@
     background-color: green !important;
 }
 
+.PPSHeader{
+    background: gray;
+    position: relative;
+}
 
-@-webkit-keyframes gradient {
+.PPSHeader:before {
+    content: '';
+    position: absolute;
+    top: 30%; right: 0;
+    border-bottom: 80px solid white;
+    border-left: 80px solid red;
+    width: 0;
+}
+
+
+
+
+/*.PPS-Wrapper {
+    background: linear-gradient(-45deg, var(--PPSLBlue), var(--PPSBlack)) !important;
+    /*background-size: 400% 400% !important;
+    animation-name: gradient;
+    animation: gradient 1s ease infinite !important;
+}*/
+
+.PPS-Wrapper {
+    background: linear-gradient(90deg,  #152236,  var(--PPSLBlue));
+}
+
+/*@keyframes gradient {
     0% {
         background-position: 0% 50%;
     }
@@ -129,12 +176,7 @@
     100% {
         background-position: 0% 50%;
     }
-}
-.PPS-Wrapper {
-    background: linear-gradient(-45deg, var(--PPSDBLue), var(--PPSLBlue), var(--PPSBlack)) !important;
-    /*background-size: 400% 400% !important;
-    animation-name: gradient;
-    animation: gradient 1s ease infinite !important;*/
-}
+}*/
+
 
 

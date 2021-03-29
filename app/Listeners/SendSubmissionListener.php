@@ -35,8 +35,8 @@ class SendSubmissionListener implements ShouldQueue
             //dd($test->stdin);
             $test_result = $this->testCode($mode_id, $event->submission->code, $test->stdin); //Compile code with this tests stdin
             //dd($test_result);
-            
-            
+
+
 
 
             $newTest = $event->submission->submissionTest()->create([
@@ -114,7 +114,7 @@ class SendSubmissionListener implements ShouldQueue
             'x-rapidapi-host' => $this->host,
             'content-type' => 'application/json',
 
-            
+
         ])->post('https://judge0-ce.p.rapidapi.com/submissions', [
             'language_id' => $languageId,
             'source_code' => $code,
@@ -143,12 +143,6 @@ class SendSubmissionListener implements ShouldQueue
 
         }
         //dd(json_decode($response));
-
-
-
-
-
-
             //If code is compiled return test data and stop retrying
             if ($status === 'Accepted') {
                 return array('accepted', $response->json());
@@ -160,7 +154,7 @@ class SendSubmissionListener implements ShouldQueue
         return array('timed-out', $response->json());
 
     }
-    
+
     public function convToPy($stdin)
     {
         $newstr = str_replace(' ', "\n", $stdin);

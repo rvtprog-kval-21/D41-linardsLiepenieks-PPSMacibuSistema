@@ -5,21 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e7c1963-f02d-40fb-bd8e-f4824eb88a0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/UserEdit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin_panel/users.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Submission.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Submission.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/PPSOVerrides.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/PPSOVerrides.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vendor/adminlte/dist/css/PPSOVerrides.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/PPSOVerrides.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin_panel/admin_home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin_panel/admin_home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises/submissions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/submissions.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/exercises.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/news/news.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/news.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/adminlte/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/adminlte/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/adminlte/page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/adminlte/page.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/adminlte/partials/navbar/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/adminlte/partials/navbar/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/adminlte/partials/sidebar/left-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/adminlte/partials/sidebar/left-sidebar.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,6 +200,7 @@
       <workItem from="1615126681006" duration="2305000" />
       <workItem from="1615743975764" duration="9245000" />
       <workItem from="1616360307202" duration="1604000" />
+      <workItem from="1617043709688" duration="17126000" />
     </task>
     <servers />
   </component>
