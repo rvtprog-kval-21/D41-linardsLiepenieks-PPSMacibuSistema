@@ -12,6 +12,7 @@
         <div class="box-header with-border">
             <!-- /.box-header -->
             <!-- form start -->
+            <add-polygon></add-polygon>
             <form action="/exercises/post" enctype="multipart/form-data" method="post">
                 @csrf
                 <div class="row d-flex justify-content-center">
@@ -75,7 +76,7 @@
                             <div class="form-group PPS-page-title">
                                 <label style="font-size: 20px;">Uzdevuma definīcija</label>
                                 <textarea class="form-control" type="text"
-                                          iind="definicija"
+                                          id="definicija"
                                           name="definicija"
 
 
@@ -140,7 +141,7 @@
 
                         </div>
 
-                        <add-test></add-test>
+                        <add-test id="at"></add-test>
                         @if ($errors->has('tests'))
                             <strong>{{ $errors->first('tests') }}</strong>
                         @endif

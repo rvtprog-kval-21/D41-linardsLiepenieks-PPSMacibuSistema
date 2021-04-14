@@ -78,17 +78,27 @@
 
 <script>
 export default {
-    props:['oldTests'],
+    props: ['oldTests'],
 
     mounted() {
-        this.oldTests.forEach(
-            element=>this.inputs.push({
-                type: "old",
-                stdin: element.stdin,
-                stdout: element.stdout,
-                show: element.show
-            }))
-        console.log(this.inputs);
+        this.$root.$on('send-test', data => {
+            this.inputs.push({
+                stdin: data.stdin,
+                stdout: data.stdout,
+                show: data.show
+            })
+
+        })
+        if (this.oldtests) {
+            this.oldTests.forEach(
+                element => this.inputs.push({
+                    type: "old",
+                    stdin: element.stdin,
+                    stdout: element.stdout,
+                    show: element.show
+                }))
+        }
+
 
     },
 
@@ -128,7 +138,6 @@ export default {
                     document.getElementById('see' + i).checked);
 
             }
-
 
 
         },

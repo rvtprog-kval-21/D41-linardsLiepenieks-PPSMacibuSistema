@@ -23,6 +23,7 @@ Vue.use(VueCodemirror, /* {
 
 import LoadScript from 'vue-plugin-load-script';
 
+
 Vue.use(LoadScript);
 
 
@@ -43,6 +44,7 @@ Vue.component('codemirror', require('../../js/components/CodeMirror.vue').defaul
 Vue.component('banner-edit', require('../../js/components/BannerEdit.vue').default);
 Vue.component('add-tag', require('../../js/components/AddTag.vue').default);
 Vue.component('user-edit', require('../../js/components/UserEdit.vue').default);
+Vue.component('add-polygon', require('../../js/components/AddPolygon.vue').default);
 
 
 
