@@ -89,7 +89,9 @@ export default {
             })
 
         })
-        if (this.oldtests) {
+
+        if (this.oldTests != null) {
+
             this.oldTests.forEach(
                 element => this.inputs.push({
                     type: "old",

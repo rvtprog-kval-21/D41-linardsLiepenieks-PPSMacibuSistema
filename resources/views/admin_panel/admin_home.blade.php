@@ -17,6 +17,10 @@
                 <b>Palikuši testi:</b>
                 {{$tests}}
             </div>
+            <div style="font-size: 35px">
+                <b>Palikuši Uzdevumi:</b>
+                {{$batch}}
+            </div>
         </div>
         <div class="col-5">
             <button type="button" class="w-100 btn btn-block PPS-edit-button btn-sm"

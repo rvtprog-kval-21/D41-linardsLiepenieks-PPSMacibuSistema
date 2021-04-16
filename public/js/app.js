@@ -2345,7 +2345,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
 
-    if (this.oldtests) {
+    if (this.oldTests != null) {
       this.oldTests.forEach(function (element) {
         return _this.inputs.push({
           type: "old",

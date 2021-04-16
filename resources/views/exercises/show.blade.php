@@ -84,12 +84,13 @@
                              font-family: Monaco,monospace;
                              font-size: 2.5vh;
                              font-weight: 600;">
-                            {{$test->stdin}}</div>
+                            <span style="white-space: pre-line">{{$test->stdin}}</span>
+                            </div>
                         <div class="col-5 p-2 PPS-content-footer"
                              style="background-color:lightgray;
                              font-family: Monaco,monospace;
                              font-size: 2.5vh;
-                             font-weight: 600;">{{$test->stdout}}</div>
+                             font-weight: 600;"> <span style="white-space: pre-line">{{$test->stdout}}</span></div>
                     </div>
                     @php $i++@endphp
 

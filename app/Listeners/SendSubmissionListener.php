@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use function GuzzleHttp\json_decode;
 
 class SendSubmissionListener implements ShouldQueue
 {
@@ -26,30 +27,33 @@ class SendSubmissionListener implements ShouldQueue
         $mode_id = $this->pickLanguage($event->submission->mode); //Id of programming language
         $correct = true; // Bool to check if solution is correct
 
-        foreach ($event->exercise->tests()->get() as $test) //Go through all test cases for exercise
+        $data = $this->sendBatch($mode_id, $event);
+        //dd($data['submissions']);
+        $tests = $event->exercise->tests;
+
+        foreach ($data['submissions'] as $index => $test_result) //Go through all test cases for exercise
         {
-            if($mode_id == 71)
+            /*if($mode_id == 71)
             {
                 $test->stdin = $this->convToPy($test->stdin);
-            }
+            }*/
             //dd($test->stdin);
-            $test_result = $this->testCode($mode_id, $event->submission->code, $test->stdin); //Compile code with this tests stdin
+            //$test_result = $this->testCode($mode_id, $event->submission->code, $test->stdin); //Compile code with these tests stdin
             //dd($test_result);
 
 
 
-
             $newTest = $event->submission->submissionTest()->create([
-                    'time' => $test_result[1]['time'],
-                    'memory' => $test_result[1]['memory']/1000,
-                    'stdout' => $test_result[1]['stdout'],
+                    'time' => $test_result['time'],
+                    'memory' => $test_result['memory']/1000,
+                    'stdout' => $test_result['stdout'],
                 ]
             );//Add the compiled test result data to submission
 
             $newTest->stdout = rtrim($newTest->stdout);//Remove trailing whitespace
 
             //Check if test is completed correctly
-            if ($newTest->stdout == $test->stdout && $event->exercise->time >= $newTest->time && $event->exercise->memory >= $newTest->memory)
+            if ($newTest->stdout == $event->exercise->tests[$index]->stdout && $event->exercise->time >= $newTest->time && $event->exercise->memory >= $newTest->memory)
             {
                 $newTest->correct = true;
             }
@@ -102,6 +106,74 @@ class SendSubmissionListener implements ShouldQueue
                 return 62;
                 break;
         }
+    }
+
+    public function sendBatch($mode, $event)
+    {
+
+        $tests = array();
+
+        foreach ($event->exercise->tests()->get() as $test)
+        {
+            if($mode == 71)
+            {
+                $test->stdin = $this->convToPy($test->stdin);
+            }
+            array_push($tests,
+                ['source_code'=>$event->submission->code,
+                    'language_id' => $mode,
+                    'stdin'=>$test->stdin,
+                    'expected_output'=>$test->stdout]);
+        }
+
+        $response = Http::withHeaders([
+            'x-rapidapi-key' => $this->token,
+            'x-rapidapi-host' => $this->host,
+            'content-type' => 'application/json',
+
+
+        ])->post('https://judge0-ce.p.rapidapi.com/submissions/batch', [
+            'submissions' => $tests
+        ]);
+
+        $submissionKeys = json_decode($response);
+        $key = '';
+        foreach($submissionKeys as $token)
+        {
+            $key .= $token->token . ',';
+
+        }
+        $key = mb_substr($key, 0, -1);
+
+
+        $response = Http::withHeaders([
+            'x-rapidapi-key' => $this->token,
+            'x-rapidapi-host' => $this->host
+        ])->get('https://judge0-ce.p.rapidapi.com/submissions/batch?tokens=' . $key);
+        $temp = false;
+        foreach (json_decode($response)->submissions as $test)
+        {
+            $status = 'In Queue';
+            $thisToken  = $test->token;
+
+            while($status === 'In Queue' || $status === 'Processing') {
+
+                $testResponse = Http::withHeaders([
+                    'x-rapidapi-key' => $this->token,
+                    'x-rapidapi-host' => $this->host
+                ])->get('https://judge0-ce.p.rapidapi.com/submissions/' . $thisToken);
+
+                $status = json_decode($testResponse)->status->description;
+
+            }
+
+
+        }
+        $response = Http::withHeaders([
+            'x-rapidapi-key' => $this->token,
+            'x-rapidapi-host' => $this->host
+        ])->get('https://judge0-ce.p.rapidapi.com/submissions/batch?tokens=' . $key);
+        return $response->json();
     }
 
     public function testCode($languageId, $code, $stdin = null, $expected_output = null)

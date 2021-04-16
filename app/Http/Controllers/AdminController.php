@@ -36,8 +36,9 @@ class AdminController extends Controller
         ])->get('https://judge0-ce.p.rapidapi.com/about');
 
         $tests = $response->headers()['X-RateLimit-Submissions-Remaining'][0];
+        $batch = $response->headers()['X-RateLimit-Batched-Submissions-Remaining'][0];
 
-        return view('admin_panel/admin_home', compact('tests'));
+        return view('admin_panel/admin_home', compact('tests'), compact('batch'));
     }
 
     public function userEdit(){
