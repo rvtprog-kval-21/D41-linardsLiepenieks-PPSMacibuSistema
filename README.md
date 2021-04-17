@@ -135,7 +135,7 @@ Caur mājaslapu izveidot profilu spiežot uz pogas "Register"
 
 4. Saglabāt izmaiņas datubāzē
 
-`$user->save;`
+`$user->save();`
 
 
 
