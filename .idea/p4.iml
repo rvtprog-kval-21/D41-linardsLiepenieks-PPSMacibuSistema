@@ -123,6 +123,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/graham-campbell/result-type" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/graphviz" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/beyondcode/laravel-er-diagram-generator" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/clue/graph" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/graphp/graphviz" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

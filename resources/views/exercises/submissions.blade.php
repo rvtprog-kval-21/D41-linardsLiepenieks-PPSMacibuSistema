@@ -3,7 +3,6 @@
 
 @section('content_header')
     <div class="row justify-content-between PPS-page-title">
-
         <div>Uzdevuma {{$exercise->kods}} iesūtījumi</div>
     </div>
 
@@ -17,32 +16,31 @@
     <!--Create submission objects-->
     <div id="app">
         <div class="container-fluid">
-            <div class="row justify-content-around align-items-center text-center PPS-content-header p-2"
-                 style="font-size: 25px">
-                <div class="col-2" >Iesūtīts</div>
-                <div class="col-3" >Valoda</div>
-                <div class="col-2" >laiks</div>
-                <div class="col-1">Atmiņa</div>
-                <div class="col-1 ">Statuss</div>
-                <div class="col-2 ">Testi</div>
+            <div class="rounded row justify-content-around align-items-center text-center PPS-content-header p-2 m-2">
+                <div class="col">Iesūtīts</div>
+                <div class="col">Valoda</div>
+                <div class="col">laiks</div>
+                <div class="col">Atmiņa</div>
+                <div class="col">Statuss</div>
+                <div class="col">Testi</div>
             </div>
-            <div class="container-fluid w-100">
+            <div class="justify-content-around align-items-center text-center p-2 m-2">
 
                 @foreach($submissions as $submission)
                     <a href="#" data-toggle="modal" data-target="#modal{{$submission->id}}">
-                        <div class="row justify-content-around text-center PPS-content-wrapper">
-                            <div class="col-2" >{{$submission->created_at}}</div>
-                            <div class="col-3" >{{$submission->mode}}</div>
-                            <div class="col-2" >
-                                    {{$submission->submissionTest->sortBy('time')->first() === null ? 'Gaida' : ($submission->submissionTest->sortBy('time')->first()->time ? $submission->submissionTest->sortBy('time')->first()->time : '----')}}
+                        <div class="row justify-content-around PPS-content-wrapper rounded">
+                            <div class="col">{{$submission->created_at}}</div>
+                            <div class="col">{{$submission->mode}}</div>
+                            <div class="col">
+                                {{$submission->submissionTest->sortBy('time')->first() === null ? 'Gaida' : ($submission->submissionTest->sortBy('time')->first()->time ? $submission->submissionTest->sortBy('time')->first()->time : '----')}}
                             </div>
-                            <div class="col-1">
+                            <div class="col">
                                 {{$submission->submissionTest->sortBy('memory')->first() === null ? 'Gaida' : ($submission->submissionTest->sortBy('memory')->first()->memory ? $submission->submissionTest->sortBy('memory')->first()->memory : '----')}}
                             </div>
-                            <div class="col-1">
+                            <div class="col">
                                 {{$submission->submissionTest->sum('correct') == $exercise->tests->count() ? 'Pareizi' : 'Nepareizi'}}
                             </div>
-                            <div class="col-2 ">
+                            <div class="col">
                                 {{$submission->submissionTest->sum('correct')}} / {{$exercise->tests->count()}}
                             </div>
                         </div>
@@ -52,10 +50,11 @@
                         <div class="modal-dialog modal-xl">
 
                             <!-- Modal content-->
-                            <div class="modal-content PPS-content-wrapper">
-                                <div class="PPS-content-header p-3">
-                                    <span class="align-middle">{{$submission->created_at}}</span>
-                                    <button type="button" class="close nav-link" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-content PPS-content-wrapper text-left">
+                                <div class="PPS-content-header p-3 ">
+                                    <span>{{$submission->created_at}}</span>
+                                    <button type="button" class="close nav-link" data-dismiss="modal"
+                                            aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -73,17 +72,22 @@
                                         <div class="col">#</div>
                                         <div class="col">Laiks</div>
                                         <div class="col">Atmiņa</div>
-                                        <div class="col-3">stdout</div>
+                                        <div class="col">stdout</div>
                                     </div>
                                     @php $i = 1 @endphp
                                     @foreach($submission->submissionTest as $try)
-                                        <div class="row justify-content-around mt-2 text-center"
-                                        style="border: 3px solid {{$try->correct?'green':'red'}};
-                                            border-radius:10px;">
+                                        <div class="row justify-content-around mt-2 text-center "
+                                             style="
+                                                 border: 3px solid {{$try->correct?'green':'red'}};
+                                                 border-radius:10px;">
                                             <div class="col align-self-center">{{$i}}</div>
-                                            <div class="col align-self-center">{{$try->time != null ? $try->time: '---'}}s</div>
-                                            <div class="col align-self-center">{{$try->memory}} mb</div>
-                                            <div class="col-3 overflow-auto align-self-center" style="white-space: pre-line;">{{$try->stdout != null ? $try->stdout: '---'}}</div>
+                                            <div
+                                                class="col align-self-center">{{$try->time != null ? $try->time: '---'}}
+                                                s
+                                            </div>
+                                            <div class="col align-self-center">{{$try->memory}}mb</div>
+                                            <div class="col overflow-auto align-self-center"
+                                                 style="white-space: pre-line;">{{$try->stdout != null ? $try->stdout: '---'}}</div>
                                         </div>
                                         @php  $i++ @endphp
                                     @endforeach

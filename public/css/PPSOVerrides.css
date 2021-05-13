@@ -2,95 +2,98 @@
 :root{
     --PPSLBlue: royalblue;
     --PPSBlack: #000000;
-    --PPSDBLue: #1c5bc7;
+    --PPSDBLue: #3a71ec;
     --PPSSilver: #c0bcb5;
-    --PPSLGray: #c5d7cc;
+    --PPSLGray: #ebebed;
     --PPSGray: #828282;
     --PPSDBrown: #494949;
 }
-
+html, body, body.page, .wf-container > * {
+    font: normal 14px / 26px "Open Sans", Helvetica, Arial, Verdana, sans-serif;
+    word-spacing: normal;
+    color: #777777;
+    background-color: #e0f0ff !important;
+}
 .center {
     display: flex;
     align-items: center;
 }
 
-.brand-link{background-color: black !important;
-    border-color: var(--PPSGray) !important;}
-
+.elementor-kit-1557 {
+    --e-global-color-primary: #6EC1E4;
+    --e-global-color-secondary: #54595F;
+    --e-global-color-text: #7A7A7A;
+    --e-global-color-accent: #61CE70;
+    --e-global-color-ad15e06: #4054B2;
+    --e-global-color-60c71ff4: #23A455;
+    --e-global-color-7df2f713: #000;
+    --e-global-color-6f1bf004: #FFF;
+    --e-global-color-6c603d54: #55B2FE;
+    --e-global-color-7e206fd1: #777777;
+    --e-global-color-7ef68820: #333333;
+    --e-global-color-5615a6bf: #FCFBFB;
+    --e-global-typography-primary-font-family: "Roboto";
+    --e-global-typography-primary-font-weight: 600;
+    --e-global-typography-secondary-font-family: "Roboto Slab";
+    --e-global-typography-secondary-font-weight: 400;
+    --e-global-typography-text-font-family: "Roboto";
+    --e-global-typography-text-font-weight: 400;
+    --e-global-typography-accent-font-family: "Roboto";
+    --e-global-typography-accent-font-weight: 500;
+}
+.brand-link {
+}
 .PPS-sidebar{
-    background-color: black !important;
     border: none;
 }
-
-.PPS-navbar{
-    background-color: var(--PPSBlack) !important;
-    border-color: var(--PPSGray) !important;
-    color: white !important;
-}
-
-.nav-link{
-    color: var(--PPSLGray) !important;
-    font-weight: 500;
-}
-
-.nav-link.active{
-    background-color: var(--PPSLBlue) !important;
-}
-.nav-link:hover{
-    color: white !important;
-}
-
 .PPS-page-title{
-    color: white !important;
-    font-size: 5vh !important;
-    padding: 10px;
+    font-weight: 150;
+    font-size: 6vh;
+    padding: 20px;
+    color: black;
 }
 
 .PPS-content-wrapper{
-    border: 3px solid black !important;
-    background-color: var(--PPSDBrown) !important;
-    color: var(--PPSLGray) !important;
     font-size: 2vh;
-
+    border: 2px solid black;
+    background-color: var(--PPSLGray);
 }
 .PPS-content-wrapper.PPS-exercise{
-    transition: 0.2s !important;
+    transition: 0.05s ;
 }
 .PPS-content-wrapper.PPS-exercise:hover{
-    filter: drop-shadow(3px 3px 3px black) !important;
+    filter: drop-shadow(3px 3px 3px black) ;
 }
 
 .PPS-content-header{
-    background-color: var(--PPSLBlue);
-    border: 2px solid var(--PPSDBLue) !important;
-    color: lightgray;
+    color: #f7faff;
+    background-color: var(--PPSDBLue);
+    font-size: 2vh;
 }
+
 .PPS-content-heading{
-    background-color: var(--PPSDBLue) !important;
-    font-size: 3vh;
+    font-size: 2.5vh;
     color: white;
-    padding: 5px;
+    padding: 7px;
+    background-color: var(--PPSLBlue);
 }
 
 .PPS-content-footer{
-    background-color: var(--PPSGray);
     color: black;
-
+    background-color: var(--PPSGray);
 }
 
 .PPS-info-button{
-    background-color: black !important;
-    color: var(--PPSLGray) !important;
+    background-color: var(--PPSLBlue) ;
+    color: white ;
     margin: 5px;
     padding: 5px;
-    border: 2px solid var(--PPSDBLue) !important;
-
-
+    border: 2px solid var(--PPSGray) ;
 }
 
 .PPS-info-button:hover{
-    color: white !important;
-    background-color: var(--PPSDBLue) !important;
+    background-color: var(--PPSDBLue) ;
+    color: white;
 }
 
 
@@ -100,8 +103,6 @@
     margin: 5px;
     padding: 5px;
     border: 2px solid yellow !important;
-
-
 }
 
 .PPS-edit-button:hover{
@@ -163,7 +164,7 @@
 }*/
 
 .PPS-Wrapper {
-    background: linear-gradient(90deg,  #152236,  var(--PPSLBlue));
+    background:#e4ecf2;
 }
 
 /*@keyframes gradient {

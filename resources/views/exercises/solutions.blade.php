@@ -17,35 +17,34 @@
     <div id="app">
         <div class="container-fluid">
 
-        <div class="row justify-content-around align-items-center text-center PPS-content-header p-2"
-             style="font-size: 25px">
-            <div class="col-2">Iesūtīts</div>
-            <div class="col-3">Valoda</div>
-            <div class="col-2">laiks</div>
-            <div class="col-1">Atmiņa</div>
-            <div class="col-1 ">Statuss</div>
-            <div class="col-2 ">Testi</div>
-        </div>
-            <div class="container-fluid w-100">
+            <div class="row justify-content-around align-items-center text-center PPS-content-header p-2 m-2 rounded">
+                <div class="col">Iesūtīts</div>
+                <div class="col">Valoda</div>
+                <div class="col">laiks</div>
+                <div class="col">Atmiņa</div>
+                <div class="col">Statuss</div>
+                <div class="col">Testi</div>
+            </div>
+            <div class="justify-content-around align-items-center text-center p-2 m-2">
 
             @foreach($solutions as $submission)
             @php
                 $submission = $submission->submission
             @endphp
             <a href="#" data-toggle="modal" data-target="#modal{{$submission->id}}">
-                <div class="row justify-content-around text-center PPS-content-wrapper">
-                    <div class="col-2">{{$submission->created_at}}</div>
-                    <div class="col-3">{{$submission->mode}}</div>
-                    <div class="col-2">
+                <div class="row justify-content-around text-center PPS-content-wrapper rounded">
+                    <div class="col">{{$submission->created_at}}</div>
+                    <div class="col">{{$submission->mode}}</div>
+                    <div class="col">
                             {{$submission->submissionTest->sortBy('time')->first()->time ? $submission->submissionTest->sortBy('time')->first()->time : '----'}}
                     </div>
-                    <div class="col-1">
+                    <div class="col">
                         {{$submission->submissionTest->sortBy('memory')->first()->memory ? $submission->submissionTest->sortBy('memory')->first()->memory : '----'}}
                     </div>
-                    <div class="col-1">
+                    <div class="col">
                         {{$submission->submissionTest->sum('correct') == $exercise->tests->count() ? 'Pareizi' : 'Nepareizi'}}
                     </div>
-                    <div class="col-2 ">
+                    <div class="col">
                         {{$submission->submissionTest->sum('correct')}} / {{$exercise->tests->count()}}
                     </div>
                 </div>
@@ -55,7 +54,7 @@
                 <div class="modal-dialog modal-xl">
 
                     <!-- Modal content-->
-                    <div class="modal-content PPS-content-wrapper">
+                    <div class="modal-content PPS-content-wrapper text-left">
                         <div class="PPS-content-header p-3">
                             <span class="align-middle">{{$submission->created_at}}</span>
                             <button type="button" class="close nav-link" data-dismiss="modal" aria-label="Close">

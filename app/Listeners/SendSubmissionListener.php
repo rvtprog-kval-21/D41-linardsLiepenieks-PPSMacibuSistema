@@ -84,7 +84,6 @@ class SendSubmissionListener implements ShouldQueue
             ]);
 
         }
-        $event->exercise->iesutijumi +=1;
         $event->exercise->save();
 
 
@@ -193,7 +192,6 @@ class SendSubmissionListener implements ShouldQueue
             'stdin' => $stdin,
             'expected_output' => $expected_output,
         ]);
-        //dd($response);
 
 
         //Get unique Submission token for this test from API
@@ -211,7 +209,6 @@ class SendSubmissionListener implements ShouldQueue
                 'x-rapidapi-host' => $this->host
             ])->get('https://judge0-ce.p.rapidapi.com/submissions/' . $submissionKey);
             $status = json_decode($response)->status->description;
-            //dd($status);
 
         }
         //dd(json_decode($response));
@@ -230,7 +227,6 @@ class SendSubmissionListener implements ShouldQueue
     public function convToPy($stdin)
     {
         $newstr = str_replace(' ', "\n", $stdin);
-        //$newstr = base64_encode($newstr);
         return $newstr;
     }
 

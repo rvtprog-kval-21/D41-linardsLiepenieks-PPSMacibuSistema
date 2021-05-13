@@ -11,6 +11,7 @@
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "graphp/graphviz": "0.2.2",
         "guzzlehttp/guzzle": "^7.0.1",
         "jeroennoten/laravel-adminlte": "^3.5",
         "jxlwqq/code-mirror": "^1.0",
@@ -19,6 +20,7 @@
         "laravel/ui": "^3.1"
     },
     "require-dev": {
+        "beyondcode/laravel-er-diagram-generator": "^1.5",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.2",
@@ -28,7 +30,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "7.4.3"
+        }
     },
     "extra": {
         "laravel": {

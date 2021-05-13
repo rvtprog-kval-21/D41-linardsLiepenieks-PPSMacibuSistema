@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="PPS-content-wrapper ">
+            <div class="PPS-content-wrapper rounded">
                 <div class="PPS-content-header p-2">{{ __('Login') }}</div>
 
                 <div class="card-body">

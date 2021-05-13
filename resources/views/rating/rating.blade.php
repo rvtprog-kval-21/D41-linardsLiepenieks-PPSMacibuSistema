@@ -5,17 +5,18 @@
 @section('content_header')
 
 
-        <div class="row justify-content-between PPS-page-title">
-            <div>Reitings</div>
-        </div>
+    <div class="row justify-content-between PPS-page-title p-10">
+        <div>Reitings</div>
+    </div>
 
-    <div class="row justify-content-between align-items-center text-center PPS-content-header" style="font-size: 20px">
-        <div class="col-1">#</div>
-        <div class="col-3">Lietotājs</div>
-        <div class="col-2">Risināti uzdevumi</div>
-        <div class="col-1">Atrisināti uzdevumi</div>
-        <div class="col-1 ">Atrisinājumu reitings</div>
-        <div class="col-1 ">Punkti</div>
+    <div class="row PPS-content-header text-center align-items-center p-2 rounded"
+         style="margin: 10px 0px 10px 0px;">
+        <div class="col">#</div>
+        <div class="col">Lietotājs</div>
+        <div class="col">Risināti uzdevumi</div>
+        <div class="col">Atrisināti uzdevumi</div>
+        <div class="col ">Atrisinājumu reitings</div>
+        <div class="col">Punkti</div>
     </div>
 
 
@@ -23,17 +24,20 @@
 
 @section('content')
     @foreach($rating as $rating)
-    <div class="row justify-content-between align-items-center text-center PPS-content-wrapper p-2" style="font-size: 20px; margin: 5px">
-        <div class="col-1">{{$loop->index+1}}.</div>
-        <div class="col-3">{{$rating->user->name}}</div>
-        <div class="col-2">{{$rating->user->submission->unique('exercise_id')->count()}}</div>
-        <div class="col-1">{{$rating->user->solution->unique('exercise_id')->count()}}</div>
-        <div class="col-1 ">{{$rating->user->submission->count()>0 && $rating->user->solution->count()>0 ?
+        <div class="m-0 mb-2 p-2 row PPS-content-wrapper text-center align-items-center rounded"
+             style="font-size: 1.5rem;
+                            color: black;">
+            <div class="col">{{$loop->index+1}}.</div>
+            <div class="col">{{$rating->user->name}}</div>
+            <div class="col">{{$rating->user->submission->unique('exercise_id')->count()}}</div>
+            <div class="col">{{$rating->user->solution->unique('exercise_id')->count()}}</div>
+            <div class="col ">{{$rating->user->submission->count()>0 && $rating->user->solution->count()>0 ?
                                     round($rating->user->solution->unique('exercise_id')->count() / $rating->user->submission->unique('exercise_id')->count(),2)*100
-                                     : 0}}%</div>
-        <div class="col-1 ">{{$rating->score}}</div>
-    </div>
-@endforeach
+                                     : 0}}%
+            </div>
+            <div class="col ">{{$rating->score}}</div>
+        </div>
+    @endforeach
 
 
 
