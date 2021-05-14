@@ -42,12 +42,14 @@ Route::get('/news/del/{news}', [App\Http\Controllers\NewsController::class, 'del
 
 
 Route::get('/rating', [App\Http\Controllers\RatingsController::class, 'index'])->name('rating');
+Route::get('/profile', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile');
 
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');
 Route::get('/admin/banner', [App\Http\Controllers\AdminController::class, 'banner'])->middleware('auth');
 Route::get('/admin/tags', [App\Http\Controllers\AdminController::class, 'tags'])->middleware('auth');
 Route::get('/admin/users', [App\Http\Controllers\AdminController::class, 'userEdit'])->middleware('auth');
+Route::post('/admin/users', [App\Http\Controllers\AdminController::class, 'saveUsers'])->middleware('auth');
 Route::post('/admin/banner', [App\Http\Controllers\AdminController::class, 'bannerEdit'])->middleware('auth');
 Route::post('/admin/tags', [App\Http\Controllers\AdminController::class, 'tagEdit'])->middleware('auth');
 

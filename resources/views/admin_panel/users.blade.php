@@ -12,11 +12,11 @@
 
 @section('content')
     <div id="app">
-        <div class="row PPS-content-header text-center" style="font-size: 25px">
+        <div class="row justify-content-around align-items-center text-center PPS-content-header p-2 m-2 rounded">
             <div class="col">Lietotājvārds</div>
-            <div class="col">Epasts</div>
-            <div class="col-2">Admins</div>
-            <div class="col-2">Skolotājs</div>
+            <div class="col-3">Epasts</div>
+            <div class="col">Admins</div>
+            <div class="col">Skolotājs</div>
             <div class="col-1"><i class="fas fa-trash"></i></div>
         </div>
 

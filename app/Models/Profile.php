@@ -21,4 +21,7 @@ class Profile extends Model
     {
         return $this->hasMany(Solution::class);
     }
+
+    protected $fillable = ['user_id', 'username'];
+
 }

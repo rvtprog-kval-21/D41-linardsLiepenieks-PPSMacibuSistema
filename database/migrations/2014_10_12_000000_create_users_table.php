@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->boolean('admin')->default(false);
+            $table->boolean('teacher')->default(false);
 
         });
     }

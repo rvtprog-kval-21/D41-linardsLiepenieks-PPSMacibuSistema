@@ -42,6 +42,8 @@ class AdminController extends Controller
     }
 
     public function userEdit(){
+        $this->authorize('create', Exercise::class);
+
         $users = User::all();
         return view('admin_panel/users', compact('users'));
     }
@@ -87,12 +89,15 @@ class AdminController extends Controller
 
     public function tags()
     {
+        $this->authorize('create', Exercise::class);
+
         $oldTags = Tag::All();
         return view('admin_panel/tags', compact('oldTags'));
     }
 
     public function tagEdit(Request $request, Response $response)
     {
+        $this->authorize('create', Exercise::class);
 
         $newTags = request()->validate([
 
@@ -127,6 +132,36 @@ class AdminController extends Controller
             $t->color = $upTag['color'];
             $t->name = $upTag['name'];
             $t->desc = $upTag['desc'];
+            $t->save();
+
+        }
+
+    }
+
+    public function saveUsers(Request $request, Response $response)
+    {
+        $this->authorize('create', Exercise::class);
+
+        $users = $request->validate([
+            'update' =>'',
+            'delete' =>'',
+        ]);
+
+        foreach ($users['delete'] as $delUser)
+        {
+            $target = User::Where('id', $delUser['id'])->first();
+            $target->submission()->delete();
+            $target->solution()->delete();
+            $target->profile()->delete();
+            $target->delete();
+
+        }
+
+        foreach ($users['update'] as $upUser)
+        {
+            $t = User::Where('id', $upUser['id'])->first();
+            $t->teacher = $upUser['teacher'];
+            $t->admin = $upUser['admin'];
             $t->save();
 
         }

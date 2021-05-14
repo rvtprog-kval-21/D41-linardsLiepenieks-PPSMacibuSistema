@@ -2210,8 +2210,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     removeTest: function removeTest(index, input) {
-      console.log(input.type);
-
+      //console.log(input.type)
       if (input.type == "old") {
         this["delete"].push(input);
       }
@@ -2686,17 +2685,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users'],
-  mounted: function mounted() {
-    console.log(this.users);
-  },
+  mounted: function mounted() {},
   data: function data() {
-    return {};
+    return {
+      Lusers: this.users,
+      "delete": []
+    };
   },
   methods: {
-    changeAdmin: function changeAdmin(event) {
-      console.log(event.target.model);
+    changeAdmin: function changeAdmin($event, user) {
+      if ($event.target.checked === true) {
+        user.admin = 1;
+      } else {
+        user.admin = 0;
+      }
+    },
+    changeTeacher: function changeTeacher($event, user) {
+      if ($event.target.checked === true) {
+        user.teacher = 1;
+      } else {
+        user.teacher = 0;
+      }
+    },
+    deleteUser: function deleteUser(user, index) {
+      if (confirm('Vai tiešām izdzēst lietotāju: ' + user.name + '\n izmaiņas tiks veiktas, kad nospiedīsiet pogu "saglabāt"')) {
+        this.Lusers.splice(index, 1);
+        this["delete"].push(user);
+      }
+
+      console.log(this["delete"]);
+    },
+    formSubmit: function formSubmit(event) {
+      //prevent triggering controller
+      console.log(this["delete"]);
+      axios.post("/admin/users", {
+        update: this.Lusers,
+        "delete": this["delete"]
+      }).then(function (res) {
+        //console.log(res.data);
+        alert("Izmaiņas saglabātas");
+      })["catch"](function (err) {
+        alert(err);
+        console.log(err);
+      });
+      location.reload();
     }
   }
 });
@@ -33675,7 +33736,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-start align-items-center" }, [
-      _c("h3", { staticStyle: { color: "white" } }, [
+      _c("h3", { staticStyle: { color: "black" } }, [
         _vm._v("Pievienot ar polygon")
       ]),
       _vm._v(" "),
@@ -34408,72 +34469,192 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "p-3" },
-    _vm._l(_vm.users, function(user) {
-      return _c(
-        "div",
-        {
-          staticClass: "row PPS-content-wrapper text-center",
-          staticStyle: { "font-size": "25px", "align-items": "center" }
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass: "col",
-              model: {
-                value: user.name,
-                callback: function($$v) {
-                  _vm.$set(user, "name", $$v)
-                },
-                expression: "user.name"
-              }
-            },
-            [_vm._v(_vm._s(user.name))]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col" }, [_vm._v(_vm._s(user.email))]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-2 row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("input", {
-                attrs: {
-                  "true-value": "1",
-                  "false-value": "0",
-                  type: "checkbox"
-                },
-                domProps: { value: user.admin },
-                on: {
-                  click: function($event) {
-                    return _vm.changeAdmin($event)
-                  }
-                }
-              })
+    [
+      _vm._l(_vm.Lusers, function(user, index) {
+        return _c(
+          "div",
+          {
+            staticClass:
+              "row justify-content-around align-items-center text-center PPS-content-wrapper p-2 rounded mb-2",
+            staticStyle: { "font-size": "25px", "align-items": "center" }
+          },
+          [
+            _c("div", { staticClass: "col text-truncate" }, [
+              _vm._v(_vm._s(user.name))
             ]),
             _vm._v(" "),
-            _c("label", { staticClass: "col", attrs: { for: "checkbox" } }, [
-              _vm._v(_vm._s(user.admin == 0 ? "Nav" : "Ir"))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-2" }, [_vm._v("WIP")]),
-          _vm._v(" "),
-          _vm._m(0, true)
-        ]
-      )
-    }),
-    0
+            _c("div", { staticClass: "col-3 text-truncate" }, [
+              _vm._v(_vm._s(user.email))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "col row text-center d-flex justify-content-center p-0"
+              },
+              [
+                _c("div", { staticClass: "col text-right p-0" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: user.admin,
+                        expression: "user.admin"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: "admin_checkbox",
+                      "true-value": "1",
+                      "false-value": "0"
+                    },
+                    domProps: {
+                      checked: Array.isArray(user.admin)
+                        ? _vm._i(user.admin, null) > -1
+                        : _vm._q(user.admin, "1")
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = user.admin,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? "1" : "0"
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(user, "admin", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  user,
+                                  "admin",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(user, "admin", $$c)
+                          }
+                        },
+                        function($event) {
+                          return _vm.changeAdmin($event, user)
+                        }
+                      ]
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "col text-left" }, [
+                  _vm._v(_vm._s(user.admin == 0 ? "NAV" : "IR"))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "col row text-center d-flex justify-content-center"
+              },
+              [
+                _c("div", { staticClass: "col text-right" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: user.teacher,
+                        expression: "user.teacher"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: "teacher_checkbox",
+                      "true-value": "1",
+                      "false-value": "0"
+                    },
+                    domProps: {
+                      checked: Array.isArray(user.teacher)
+                        ? _vm._i(user.teacher, null) > -1
+                        : _vm._q(user.teacher, "1")
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = user.teacher,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? "1" : "0"
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(user, "teacher", $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  user,
+                                  "teacher",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(user, "teacher", $$c)
+                          }
+                        },
+                        function($event) {
+                          return _vm.changeTeacher($event, user)
+                        }
+                      ]
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("label", { staticClass: "col text-left" }, [
+                  _vm._v(_vm._s(user.teacher == 0 ? "NAV" : "IR"))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: " col-1 btn PPS-delete-button",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.deleteUser(user, index)
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-trash" })]
+            )
+          ]
+        )
+      }),
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "button",
+          {
+            staticClass: "btn PPS-info-button",
+            attrs: { type: "submit" },
+            on: {
+              click: function($event) {
+                return _vm.formSubmit($event)
+              }
+            }
+          },
+          [_vm._v("Saglabāt izmaiņas")]
+        )
+      ])
+    ],
+    2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "col-1 PPS-delete-button" }, [
-      _c("i", { staticClass: "fas fa-trash" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

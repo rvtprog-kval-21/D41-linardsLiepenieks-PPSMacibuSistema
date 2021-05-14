@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-start align-items-center">
-            <h3 style="color: white;">Pievienot ar polygon</h3>
+            <h3 style="color: black;">Pievienot ar polygon</h3>
             <input style="background-color:lightgrey" type="file" class="m-2" @change="extract">
         </div>
     </div>

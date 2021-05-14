@@ -279,6 +279,12 @@ return [
             'topnav_user' =>true,
             'can' => 'is-admin',
         ],
+        [
+            'text'  => 'Profils' ,
+            'url'  => 'profile',
+            'icon'  => 'fas fa-id-card-alt',
+            'topnav_user' =>true,
+        ],
 
     ],
 

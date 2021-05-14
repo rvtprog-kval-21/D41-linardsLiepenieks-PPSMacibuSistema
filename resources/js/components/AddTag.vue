@@ -115,7 +115,7 @@ export default {
             });
         },
         removeTest(index, input) {
-            console.log(input.type)
+            //console.log(input.type)
             if(input.type == "old")
             {
                 this.delete.push(input);

@@ -21,6 +21,7 @@ class CreateExercisesTable extends Migration
             $table->text('izvaddati');
             $table->text('definicija');
             $table->integer('score')->default('0');
+            $table->integer('difficulty')->default('0');
             $table->float('time');
             $table->float('memory');
             $table->timestamps();
