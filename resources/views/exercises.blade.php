@@ -25,36 +25,19 @@
 
 @section('content')
     <!--Layout of exercise search data-->
-    @if ($errors->has('q'))
-        <strong style="color: white">Lūdzu ierakstiet, ko vēlaties meklēt</strong>
-    @endif
-
-    <div class="w-100">
-
-        <form action="/exercises/search">
-            <div class="input-group row m-0">
-                <input type="search" class="form-control" placeholder="Meklēt pēc nosaukuma"
-                       name="q"/>
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-outline-secondary PPS-info-button m-0"
-                            type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </form>
 
 
-        <div class="row PPS-content-header text-center align-items-center p-2 rounded"
-             style="margin: 10px 0px 10px 0px;">
-            <div class="col">Uzdevuma kods</div>
-            <div class="col">Nosaukums</div>
-            <div class="col">Veiksmīgi atrisinājumi</div>
-            <div class="col">Iesūtījumi</div>
-            <div class="col">Atrisinājumi</div>
-            <div class="col">Tagi</div>
-        </div>
+    <div id="app">
 
 
-        <!--Create and show exercises-->
+
+        <exercise-search :exercises="{{$exercises}}"
+        :solutions="{{\App\Models\Solution::All()}}" :submissions="{{\App\Models\Submission::All()}}"
+        :exercise_tags="{{DB::table('exercise_tag')->get()}}"
+        :tags="{{\App\Models\Tag::All()}}"></exercise-search>
+
+
+        <!-- Vecs kods - viss šis pārnests uz VUE comp., lai dinamiski meklētu
         @foreach($exercises as $exercise)
             <a href="/exercises/show/{{$exercise->id}}">
 
@@ -70,6 +53,7 @@
                         <div class="col-9 p-0">
                             <div class="progress" style="border: 1px solid black">
                                 <div class="progress-bar"
+                                     role="progressbar"
                                      aria-valuemin="0"
                                      aria-valuemax="100"
                                      style="width:
@@ -100,25 +84,8 @@
                 </div>
             </a>
 
-            <div class="col">
-                @can('create', $exercise)
-                    <div class="row">
-                        <div>
-                            <button type="button" class="btn-block btn PPS-delete-button btn-xs"
-                                    onclick="location.href='exercises/del/{{$exercise->id}}'">
-                                Dzēst uzdevumu
-                            </button>
-                        </div>
-                        <div>
-                            <button type="button" class="btn-block btn PPS-edit-button btn-xs"
-                                    onclick="location.href='exercises/{{$exercise->id}}/edit'">
-                                Labot uzdevumu
-                            </button>
-                        </div>
-                    </div>
-                @endcan
-            </div>
-        @endforeach
+
+        @endforeach --->
     </div>
 
 

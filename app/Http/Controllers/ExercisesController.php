@@ -115,6 +115,7 @@ class ExercisesController extends Controller
             'memory' => 'required',
             'time' => 'required',
             'score' => 'required',
+            'difficulty' => 'required',
             'tags' => ''
 
         ]);

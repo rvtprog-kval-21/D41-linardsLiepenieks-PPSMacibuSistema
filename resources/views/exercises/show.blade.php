@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Dashboard')
+@section('title', 'Uzdevums')
 
 @section('content_header')
     <div class="row justify-content-between PPS-page-title">
@@ -20,6 +20,16 @@
                     style="font-size: 2.5vh"
                     onclick="location.href='/exercises/{{$exercise->id}}/solutions'">Mani atrisinājumi
             </button>
+            @can('create', $exercise)
+                <button type="button" class="btn PPS-delete-button btn-lg  m-2 d-table-cell"
+                        onclick="window.location='/exercises/del/{{$exercise->id}}'">
+                    Dzēst uzdevumu
+                </button>
+                <button type="button" class="btn PPS-edit-button btn-lg  m-2 d-table-cell"
+                        onclick="window.location='/exercises/{{$exercise->id}}/edit'">
+                    Labot uzdevumu
+                </button>
+            @endcan
         </div>
     @endif
 @stop

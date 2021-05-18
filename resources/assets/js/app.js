@@ -39,6 +39,7 @@ Vue.use(LoadScript);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('../../js/components/ExampleComponent.vue').default);
+Vue.component('exercise-search', require('../../js/components/ExerciseSearch.vue').default);
 Vue.component('add-test', require('../../js/components/AddTest.vue').default);
 Vue.component('codemirror', require('../../js/components/CodeMirror.vue').default);
 Vue.component('banner-edit', require('../../js/components/BannerEdit.vue').default);

@@ -199,4 +199,23 @@ html, body, body.page, .wf-container > * {
 }
 
 
+.dual.active {
+    display: none;
+}
+
+.dual span:nth-of-type(1) {
+    display: none;
+}
+
+.dual span:last-child {
+    display: block;
+}
+
+.dual.active span:nth-of-type(1) {
+    display: block;
+}
+
+.dual.active span:last-child {
+    display: none;
+}
 
