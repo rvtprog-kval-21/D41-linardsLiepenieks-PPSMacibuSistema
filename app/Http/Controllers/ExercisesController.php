@@ -140,6 +140,7 @@ class ExercisesController extends Controller
             'memory' => $data['memory'],
             'time' => $data['time'],
             'score' => $data['score'],
+            'difficulty' => $data['difficulty'],
         ]);
         if ($data['tags'] ?? null) {
 
@@ -177,6 +178,7 @@ class ExercisesController extends Controller
             'memory' => 'required',
             'time' => 'required',
             'score' => 'required',
+            'difficulty' => 'required',
             'tags' => ''
 
         ]);
@@ -203,6 +205,7 @@ class ExercisesController extends Controller
             'memory' => $data['memory'],
             'time' => $data['time'],
             'score' => $data['score'],
+            'difficulty' => $data['difficulty'],
         ]);
 
 

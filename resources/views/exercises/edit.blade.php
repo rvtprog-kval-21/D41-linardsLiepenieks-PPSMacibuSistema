@@ -4,7 +4,7 @@
 @section('content_header')
     <div class="row justify-content-between PPS-page-title">
 
-    <div>Labot uzdevumu {{$exercise->nosaukums}}</div>
+        <div>Labot uzdevumu {{$exercise->nosaukums}}</div>
     </div>
 @stop
 @section('content')
@@ -88,7 +88,7 @@
 
                             <div class="row">
                                 <!-- Ievadlauks start -->
-                                <div class="form-group PPS-page-title">
+                                <div class="form-group ">
                                     <label style="font-size: 20px;">Laika limits</label>
                                     <input class="form-control" type="number"
                                            id="time"
@@ -102,7 +102,7 @@
                                         <strong style="font-size: 15px;">{{ $errors->first('time') }}</strong>
                                     @endif
                                 </div><!-- Ievadlauks start -->
-                                <div class="form-group PPS-page-title">
+                                <div class="form-group ">
                                     <label style="font-size: 20px;">Atmiņas limits</label>
                                     <input class="form-control" type="number"
                                            id="memory"
@@ -115,7 +115,7 @@
                                     @endif
                                 </div>
                                 <!-- Ievadlauks start -->
-                                <div class="form-group PPS-page-title">
+                                <div class="form-group">
                                     <label style="font-size: 20px;">Punkti</label>
                                     <input class="form-control" type="number"
                                            id="score"
@@ -127,17 +127,31 @@
                                         <strong style="font-size: 15px;">{{ $errors->first('score') }}</strong>
                                     @endif
                                 </div>
-                                <select id="tags" name="tags[]" multiple class="PPS-info-button" style="font-size: 20px;">
-                                    @foreach($tags as $tag)
-                                        <option value="{{$tag->id}}"
-                                            {{$exercise->tag()->find($tag->id) ? 'selected' : null}}>{{$tag->name}}</option>
-                                    @endforeach
-                                </select>
+                                <div class="form-group  p-0 m-0">
+                                    <label style="font-size: 20px;">Grūtība</label>
+                                    <input class="form-control" type="number"
+                                           id="difficulty"
+                                           name="difficulty" step="1" min="0"
+                                           value="{{old('difficulty')??$exercise->difficulty}}"
+                                    >
+                                    </input>
+                                    @if ($errors->has('difficulty'))
+                                        <strong style="font-size: 15px;">{{ $errors->first('difficulty') }}</strong>
+                                    @endif
+                                </div>
                             </div>
+                            <div class="w-100 text-center">
+                                Tagi
+                                <select id="tags" name="tags[]" multiple class="PPS-info-button w-100 text-center"
+                                        style="font-size: 20px;">
+                                    @foreach($tags as $tag)
+                                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                    @endforeach
+                                </select></div>
 
 
-                           <!--- <label for="exampleInputFile">Pievienot attēlus WIP</label>
-                            <input type="file" id="exampleInputFile"> --->
+                            <!--- <label for="exampleInputFile">Pievienot attēlus WIP</label>
+                             <input type="file" id="exampleInputFile"> --->
 
 
                         </div>
@@ -145,7 +159,6 @@
                         @if ($errors->has('tests'))
                             <strong>{{ $errors->first('tests') }}</strong>
                         @endif
-
 
 
                         <div>

@@ -9,7 +9,6 @@
             @change="changeFilter(filter)">
                 <option disabled value="0">Filtrs</option>
 
-                <option value="1">Bez filtra</option>
                 <option value="2">Pievienošanas laiks</option>
                 <option value="3">Grūtība</option>
                 <option value="4">Atrisinājumu reitings</option>
@@ -164,30 +163,25 @@ export default {
 
         changeFilter(e)
         {
-          if(e==1)
+            if(e==2)
           {
-              this.searchExercises = [];
-              this.searchExercises = this.exercises;
-          }
-          else if(e==2)
-          {
-              this.searchExercises.sort((prev, curr) => Date.parse(curr.created_at) - Date.parse(prev.created_at)
+              this.searchExercises.sort((prev, curr) => Date.parse(prev.created_at) - Date.parse(curr.created_at)
               )
 
           }
           else if(e==3)
           {
-              this.searchExercises.sort((prev, curr) => curr.difficulty - prev.difficulty)
-              console.log(this.searchExercises);
+              this.searchExercises.sort((prev, curr) => prev.difficulty - curr.difficulty)
 
           }
           else if(e==4)
           {
               this.searchExercises.sort((prev, curr) => (this.findInArr(this.solutions, prev.id) / this.findInArr(this.submissions, prev.id) * 100) -
                   (this.findInArr(this.solutions, curr.id) / this.findInArr(this.submissions, curr.id) * 100))
-              console.log(this.searchExercises);
+
 
           }
+          this.way = 1;
         },
         changeWay(filter, way)
         {

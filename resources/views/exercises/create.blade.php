@@ -127,12 +127,28 @@
                                         <strong style="font-size: 15px;">{{ $errors->first('score') }}</strong>
                                     @endif
                                 </div>
-                                <select id="tags" name="tags[]" multiple class="PPS-info-button" style="font-size: 20px;">
+                                <!-- Ievadlauks start -->
+                                <div class="form-group PPS-page-title p-0 m-0">
+                                    <label style="font-size: 20px;">Grūtība</label>
+                                    <input class="form-control" type="number"
+                                           id="score"
+                                           name="difficulty" step="1" min="0"
+                                           value="{{old('difficulty')}}"
+                                    >
+                                    </input>
+                                    @if ($errors->has('difficulty'))
+                                        <strong style="font-size: 15px;">{{ $errors->first('difficulty') }}</strong>
+                                    @endif
+                                </div>
+
+                            </div>
+                            <div class="w-100 text-center">
+                                Tagi
+                                <select id="tags" name="tags[]" multiple class="PPS-info-button w-100 text-center" style="font-size: 20px;">
                                     @foreach($tags as $tag)
                                         <option value="{{$tag->id}}">{{$tag->name}}</option>
                                     @endforeach
-                                </select>
-                            </div>
+                                </select></div>
 
                             <!---
                             <label for="exampleInputFile">Pievienot attēlus WIP</label>

@@ -2760,7 +2760,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['exercises', 'solutions', 'submissions', 'exercise_tags', 'tags'],
   mounted: function mounted() {
@@ -2811,24 +2810,21 @@ __webpack_require__.r(__webpack_exports__);
     changeFilter: function changeFilter(e) {
       var _this = this;
 
-      if (e == 1) {
-        this.searchExercises = [];
-        this.searchExercises = this.exercises;
-      } else if (e == 2) {
+      if (e == 2) {
         this.searchExercises.sort(function (prev, curr) {
-          return Date.parse(curr.created_at) - Date.parse(prev.created_at);
+          return Date.parse(prev.created_at) - Date.parse(curr.created_at);
         });
       } else if (e == 3) {
         this.searchExercises.sort(function (prev, curr) {
-          return curr.difficulty - prev.difficulty;
+          return prev.difficulty - curr.difficulty;
         });
-        console.log(this.searchExercises);
       } else if (e == 4) {
         this.searchExercises.sort(function (prev, curr) {
           return _this.findInArr(_this.solutions, prev.id) / _this.findInArr(_this.submissions, prev.id) * 100 - _this.findInArr(_this.solutions, curr.id) / _this.findInArr(_this.submissions, curr.id) * 100;
         });
-        console.log(this.searchExercises);
       }
+
+      this.way = 1;
     },
     changeWay: function changeWay(filter, way) {
       $(this).attr('disabled', true).siblings().removeAttr('disabled');
@@ -34698,8 +34694,6 @@ var render = function() {
             _c("option", { attrs: { disabled: "", value: "0" } }, [
               _vm._v("Filtrs")
             ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "1" } }, [_vm._v("Bez filtra")]),
             _vm._v(" "),
             _c("option", { attrs: { value: "2" } }, [
               _vm._v("Pievienošanas laiks")
