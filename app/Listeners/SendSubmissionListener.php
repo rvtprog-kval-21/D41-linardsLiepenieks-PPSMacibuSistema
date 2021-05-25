@@ -28,7 +28,7 @@ class SendSubmissionListener implements ShouldQueue
         $correct = true; // Bool to check if solution is correct
 
         $data = $this->sendBatch($mode_id, $event);
-        //dd($data['submissions']);
+        //dd($data);
         $tests = $event->exercise->tests;
         foreach ($data['submissions'] as $index => $test_result) //Go through all test cases for exercise
         {
@@ -41,22 +41,21 @@ class SendSubmissionListener implements ShouldQueue
             //dd($test_result);
 
 
-
             $newTest = $event->submission->submissionTest()->create([
                     'time' => $test_result['time'],
-                    'memory' => $test_result['memory']/1000,
+                    'memory' => $test_result['memory'] / 1000,
                     'stdout' => $test_result['stdout'],
                 ]
             );//Add the compiled test result data to submission
 
-            $newTest->stdout = rtrim($newTest->stdout);//Remove trailing whitespace
+            $newTest->stdout = base64_decode(rtrim($newTest->stdout));//Remove trailing whitespace
 
             //Check if test is completed correctly
-            if ($newTest->stdout == $event->exercise->tests[$index]->stdout && $event->exercise->time >= $newTest->time && $event->exercise->memory >= $newTest->memory)
-            {
+            if ($newTest->stdout == $event->exercise->tests[$index]->stdout && $event->exercise->time >= $newTest->time && $event->exercise->memory >= $newTest->memory) {
                 $newTest->correct = true;
+            } else {
+                $correct = false;
             }
-            else {$correct = false;}
 
             $newTest->save(); //Save changes to this testcase submission
 
@@ -85,6 +84,8 @@ class SendSubmissionListener implements ShouldQueue
         }
         $event->exercise->save();
 
+        return;
+
 
     }
 
@@ -111,17 +112,15 @@ class SendSubmissionListener implements ShouldQueue
 
         $tests = array();
 
-        foreach ($event->exercise->tests()->get() as $test)
-        {
-            if($mode == 71)
-            {
+        foreach ($event->exercise->tests()->get() as $test) {
+            if ($mode == 71) {
                 $test->stdin = $this->convToPy($test->stdin);
             }
             array_push($tests,
-                ['source_code'=>$event->submission->code,
+                ['source_code' => $event->submission->code,
                     'language_id' => $mode,
-                    'stdin'=>$test->stdin,
-                    'expected_output'=>$test->stdout]);
+                    'stdin' => $test->stdin,
+                    'expected_output' => $test->stdout]);
         }
 
         $response = Http::withHeaders([
@@ -135,8 +134,7 @@ class SendSubmissionListener implements ShouldQueue
         ]);
         $submissionKeys = json_decode($response);
         $key = '';
-        foreach($submissionKeys as $token)
-        {
+        foreach ($submissionKeys as $token) {
             $key .= $token->token . ',';
 
         }
@@ -147,20 +145,19 @@ class SendSubmissionListener implements ShouldQueue
             'x-rapidapi-key' => $this->token,
             'x-rapidapi-host' => $this->host
         ])->get('https://judge0-ce.p.rapidapi.com/submissions/batch?tokens=' . $key
-        . '&base64_encoded=true');
+            . '&base64_encoded=true');
         $temp = false;
-        foreach (json_decode($response)->submissions as $test)
-        {
+        foreach (json_decode($response)->submissions as $test) {
             $status = 'In Queue';
-            $thisToken  = $test->token;
+            $thisToken = $test->token;
 
-            while($status === 'In Queue' || $status === 'Processing') {
+            while ($status === 'In Queue' || $status === 'Processing') {
 
                 $testResponse = Http::withHeaders([
                     'x-rapidapi-key' => $this->token,
                     'x-rapidapi-host' => $this->host
                 ])->get('https://judge0-ce.p.rapidapi.com/submissions/' . $thisToken
-                    . '?base64_encoded=true'  );
+                    . '?base64_encoded=true');
 
                 //dd(json_decode($testResponse));
                 $status = json_decode($testResponse)->status->description;
@@ -175,6 +172,7 @@ class SendSubmissionListener implements ShouldQueue
             'x-rapidapi-host' => $this->host
         ])->get('https://judge0-ce.p.rapidapi.com/submissions/batch?tokens=' . $key
             . '&base64_encoded=true');
+
         return $response->json();
     }
 
@@ -201,10 +199,9 @@ class SendSubmissionListener implements ShouldQueue
         $submissionKey = json_decode($response);
         $submissionKey = $submissionKey->token;
 
-         $status = 'In Queue';
+        $status = 'In Queue';
 
-        while($status === 'In Queue' || $status === 'Processing')
-        {
+        while ($status === 'In Queue' || $status === 'Processing') {
             //Get submission test data from Judge0
 
             $response = Http::withHeaders([
@@ -215,11 +212,10 @@ class SendSubmissionListener implements ShouldQueue
 
         }
         //dd(json_decode($response));
-            //If code is compiled return test data and stop retrying
-            if ($status === 'Accepted') {
-                return array('accepted', $response->json());
-            }
-
+        //If code is compiled return test data and stop retrying
+        if ($status === 'Accepted') {
+            return array('accepted', $response->json());
+        }
 
 
         //If code is not compiled at this point something went wrong or it has timed out

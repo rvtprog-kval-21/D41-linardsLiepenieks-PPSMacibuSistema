@@ -8,8 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProfilesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProfilesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Submission.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Submission.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/ExerciseSearch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExerciseSearch.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/profile_home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/profile_home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +210,8 @@
       <workItem from="1620967256317" duration="605000" />
       <workItem from="1621297706263" duration="16888000" />
       <workItem from="1621434792780" duration="2957000" />
-      <workItem from="1621917611680" duration="6428000" />
+      <workItem from="1621917611680" duration="20819000" />
+      <workItem from="1621971779353" duration="5526000" />
     </task>
     <servers />
   </component>

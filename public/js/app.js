@@ -2766,6 +2766,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.searchExercises = this.exercises;
+    console.log(this.searchExercises);
     this.searchExercises.forEach(function (element) {
       return element['reitings'] = _this.findInArr(_this.solutions, element.id) / _this.findInArr(_this.submissions, element.id) ? _this.findInArr(_this.solutions, element.id) / _this.findInArr(_this.submissions, element.id) : 0;
     });

@@ -103,7 +103,7 @@ export default {
 
     mounted() {
         this.searchExercises = this.exercises;
-
+        console.log(this.searchExercises);
         this.searchExercises.forEach(
             element => element['reitings'] =
                 (this.findInArr(this.solutions, element.id) / this.findInArr(this.submissions, element.id))
