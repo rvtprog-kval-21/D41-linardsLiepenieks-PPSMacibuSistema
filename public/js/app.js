@@ -2763,7 +2763,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['exercises', 'solutions', 'submissions', 'exercise_tags', 'tags'],
   mounted: function mounted() {
+    var _this = this;
+
     this.searchExercises = this.exercises;
+    this.searchExercises.forEach(function (element) {
+      return element['reitings'] = _this.findInArr(_this.solutions, element.id) / _this.findInArr(_this.submissions, element.id) ? _this.findInArr(_this.solutions, element.id) / _this.findInArr(_this.submissions, element.id) : 0;
+    });
+    console.log(this.searchExercises);
   },
   data: function data() {
     return {
@@ -2808,8 +2814,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     changeFilter: function changeFilter(e) {
-      var _this = this;
-
       if (e == 2) {
         this.searchExercises.sort(function (prev, curr) {
           return Date.parse(prev.created_at) - Date.parse(curr.created_at);
@@ -2820,7 +2824,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else if (e == 4) {
         this.searchExercises.sort(function (prev, curr) {
-          return _this.findInArr(_this.solutions, prev.id) / _this.findInArr(_this.submissions, prev.id) * 100 - _this.findInArr(_this.solutions, curr.id) / _this.findInArr(_this.submissions, curr.id) * 100;
+          return prev.reitings - curr.reitings;
         });
       }
 
@@ -34825,16 +34829,19 @@ var render = function() {
                           staticClass: "progress-bar",
                           style:
                             "width: " +
-                            parseInt(
-                              _vm.findInArr(_vm.submissions, exercise.id) > 0 &&
-                                _vm.findInArr(_vm.solutions, exercise.id) > 0
-                                ? (_vm.findInArr(_vm.solutions, exercise.id) /
-                                    _vm.findInArr(
-                                      _vm.submissions,
-                                      exercise.id
-                                    )) *
-                                    100
-                                : 0
+                            Math.round(
+                              parseInt(
+                                _vm.findInArr(_vm.submissions, exercise.id) >
+                                  0 &&
+                                  _vm.findInArr(_vm.solutions, exercise.id) > 0
+                                  ? (_vm.findInArr(_vm.solutions, exercise.id) /
+                                      _vm.findInArr(
+                                        _vm.submissions,
+                                        exercise.id
+                                      )) *
+                                      100
+                                  : 0
+                              )
                             ) +
                             "%;",
                           attrs: {
@@ -34850,12 +34857,14 @@ var render = function() {
                     _vm._v(
                       "\n                        " +
                         _vm._s(
-                          _vm.findInArr(_vm.submissions, exercise.id) > 0 &&
-                            _vm.findInArr(_vm.solutions, exercise.id) > 0
-                            ? (_vm.findInArr(_vm.solutions, exercise.id) /
-                                _vm.findInArr(_vm.submissions, exercise.id)) *
-                                100
-                            : 0
+                          Math.round(
+                            _vm.findInArr(_vm.submissions, exercise.id) > 0 &&
+                              _vm.findInArr(_vm.solutions, exercise.id) > 0
+                              ? (_vm.findInArr(_vm.solutions, exercise.id) /
+                                  _vm.findInArr(_vm.submissions, exercise.id)) *
+                                  100
+                              : 0
+                          )
                         ) +
                         "%\n                    "
                     )

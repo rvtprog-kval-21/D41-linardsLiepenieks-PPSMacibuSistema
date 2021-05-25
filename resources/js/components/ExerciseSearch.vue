@@ -6,7 +6,7 @@
 
             <select class="m-0 form-select PPS-info-button"
                     v-model="filter"
-            @change="changeFilter(filter)">
+                    @change="changeFilter(filter)">
                 <option disabled value="0">Filtrs</option>
 
                 <option value="2">Pievienošanas laiks</option>
@@ -15,8 +15,8 @@
             </select>
 
             <select class="PPS-info-button m-0"
-            v-model="way"
-            @change="changeWay(filter, way)">
+                    v-model="way"
+                    @change="changeWay(filter, way)">
                 <option disabled value="0">Secība</option>
                 <option value="1">Augošā</option>
                 <option value="2">Dilstošā</option>
@@ -62,7 +62,7 @@
                                      aria-valuemax="100"
                                      :style="'width: '+
 
-                            parseInt(findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0 ? findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0)
+                            Math.round(parseInt(findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0 ? findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0))
 
                                 +'%;'"
                                 >
@@ -72,8 +72,8 @@
 
                         <div class="col-2 p-1">
                             {{
-                                findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0 ?
-                                    findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0
+                                Math.round(findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0 ?
+                                    findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0)
                             }}%
                         </div>
                     </div>
@@ -103,6 +103,18 @@ export default {
 
     mounted() {
         this.searchExercises = this.exercises;
+
+        this.searchExercises.forEach(
+            element => element['reitings'] =
+                (this.findInArr(this.solutions, element.id) / this.findInArr(this.submissions, element.id))
+                    ?
+                    (this.findInArr(this.solutions, element.id) / this.findInArr(this.submissions, element.id))
+                    : 0
+        )
+
+        console.log(this.searchExercises);
+
+
     },
 
     data() {
@@ -161,38 +173,32 @@ export default {
 
         },
 
-        changeFilter(e)
-        {
-            if(e==2)
-          {
-              this.searchExercises.sort((prev, curr) => Date.parse(prev.created_at) - Date.parse(curr.created_at)
-              )
+        changeFilter(e) {
+            if (e == 2) {
+                this.searchExercises.sort((prev, curr) => Date.parse(prev.created_at) - Date.parse(curr.created_at)
+                )
 
-          }
-          else if(e==3)
-          {
-              this.searchExercises.sort((prev, curr) => prev.difficulty - curr.difficulty)
+            } else if (e == 3) {
+                this.searchExercises.sort((prev, curr) => prev.difficulty - curr.difficulty)
 
-          }
-          else if(e==4)
-          {
-              this.searchExercises.sort((prev, curr) => (this.findInArr(this.solutions, prev.id) / this.findInArr(this.submissions, prev.id) * 100) -
-                  (this.findInArr(this.solutions, curr.id) / this.findInArr(this.submissions, curr.id) * 100))
+            } else if (e == 4) {
+                this.searchExercises.sort(
+                    (prev, curr) =>
+                        prev.reitings
+                        -
+                        curr.reitings
+                )
 
 
-          }
-          this.way = 1;
+            }
+            this.way = 1;
         },
-        changeWay(filter, way)
-        {
+        changeWay(filter, way) {
             $(this).attr('disabled', true).siblings().removeAttr('disabled');
 
-            if(filter!=0&&filter!=1)
-            {
+            if (filter != 0 && filter != 1) {
                 this.searchExercises.reverse();
-            }
-            else
-            {
+            } else {
                 this.way = 1;
             }
 

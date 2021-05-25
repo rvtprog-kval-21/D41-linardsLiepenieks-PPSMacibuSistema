@@ -30,7 +30,6 @@ class SendSubmissionListener implements ShouldQueue
         $data = $this->sendBatch($mode_id, $event);
         //dd($data['submissions']);
         $tests = $event->exercise->tests;
-
         foreach ($data['submissions'] as $index => $test_result) //Go through all test cases for exercise
         {
             /*if($mode_id == 71)
@@ -134,7 +133,6 @@ class SendSubmissionListener implements ShouldQueue
         ])->post('https://judge0-ce.p.rapidapi.com/submissions/batch', [
             'submissions' => $tests
         ]);
-
         $submissionKeys = json_decode($response);
         $key = '';
         foreach($submissionKeys as $token)
@@ -148,7 +146,8 @@ class SendSubmissionListener implements ShouldQueue
         $response = Http::withHeaders([
             'x-rapidapi-key' => $this->token,
             'x-rapidapi-host' => $this->host
-        ])->get('https://judge0-ce.p.rapidapi.com/submissions/batch?tokens=' . $key);
+        ])->get('https://judge0-ce.p.rapidapi.com/submissions/batch?tokens=' . $key
+        . '&base64_encoded=true');
         $temp = false;
         foreach (json_decode($response)->submissions as $test)
         {
@@ -160,9 +159,12 @@ class SendSubmissionListener implements ShouldQueue
                 $testResponse = Http::withHeaders([
                     'x-rapidapi-key' => $this->token,
                     'x-rapidapi-host' => $this->host
-                ])->get('https://judge0-ce.p.rapidapi.com/submissions/' . $thisToken);
+                ])->get('https://judge0-ce.p.rapidapi.com/submissions/' . $thisToken
+                    . '?base64_encoded=true'  );
 
+                //dd(json_decode($testResponse));
                 $status = json_decode($testResponse)->status->description;
+
 
             }
 
@@ -171,7 +173,8 @@ class SendSubmissionListener implements ShouldQueue
         $response = Http::withHeaders([
             'x-rapidapi-key' => $this->token,
             'x-rapidapi-host' => $this->host
-        ])->get('https://judge0-ce.p.rapidapi.com/submissions/batch?tokens=' . $key);
+        ])->get('https://judge0-ce.p.rapidapi.com/submissions/batch?tokens=' . $key
+            . '&base64_encoded=true');
         return $response->json();
     }
 
