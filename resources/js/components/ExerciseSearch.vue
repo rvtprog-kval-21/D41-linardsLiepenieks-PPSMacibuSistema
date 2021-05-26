@@ -55,7 +55,7 @@
                         {{ exercise.nosaukums }}
                     </div>
                     <div class="col row align-items-center">
-                        <div class="col-9 p-0">
+                        <div class="col p-0">
                             <div class="progress" style="border: 1px solid black">
                                 <div class="progress-bar"
                                      aria-valuemin="0"
@@ -70,10 +70,11 @@
                             </div>
                         </div>
 
-                        <div class="col-2 p-1">
+                        <div class="col p-1">
                             {{
-                                Math.round(findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0 ?
-                                    findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0)
+                            Math.round(findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0
+                            ?
+                            findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0)
                             }}%
                         </div>
                     </div>

@@ -33,8 +33,11 @@ class ProfilesController extends Controller
             }
         }
         $unsolved = $submissions->pluck('exercise');
+        $solved = $user->solution()
+            ->join('exercises', 'solutions.exercise_id', 'exercises.id')
+            ->get()->pluck('exercise');
         //dd($unsolved);
 
-        return view('profile/profile_home', compact('unsolved'))->with('user', $user);
+        return view('profile/profile_home', compact('unsolved', 'solved'))->with('user', $user);
     }
 }

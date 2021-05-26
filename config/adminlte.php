@@ -254,6 +254,11 @@ return [
             'url'  => 'rating',
             'icon' => 'fas fa-crown',
         ],
+        [
+            'text' => 'Profils',
+            'url'  => 'profile',
+            'icon' => 'fas fa-id-card-alt',
+        ],
         /*[
             'text' => 'Teorija',
             'url'  => 'theory',
