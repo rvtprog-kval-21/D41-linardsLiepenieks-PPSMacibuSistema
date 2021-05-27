@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Exercise;
 use App\Models\Submission;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 
 class ProfilesController extends Controller
@@ -39,5 +44,61 @@ class ProfilesController extends Controller
         //dd($unsolved);
 
         return view('profile/profile_home', compact('unsolved', 'solved'))->with('user', $user);
+    }
+
+    public function edit()
+    {
+        $this->middleware('auth');
+        $user= Auth::user();
+        return view('profile/profile_edit', compact('user'));
+    }
+
+    public function update(Response $response, User $user)
+    {
+        $this->middleware('auth');
+        $profile = $user->profile()->first();
+
+        $data = request()->validate([
+            'name'=>'required',
+            'username'=>'required',
+            'email'=>'required',
+            'password'=>'',
+            'rpassword'=>'',
+
+
+        ]);
+
+
+        if($data['name']!==$user->name)
+        {
+            $user->name = $data['name'];
+        }
+        if($data['username']!==$profile->username)
+        {
+            $profile->username = $data['username'];
+        }
+        if($data['email']!==$user->email)
+        {
+            $user->email = $data['email'];
+        }
+
+        if($data['password'] !== null)
+        {
+            if($data['password'] === $data['rpassword'])
+            {
+                $user->update(['password'=> Hash::make($data['password'])]);
+            }
+            else
+            {
+                //dd(Redirect::back()->withErrors('password'));
+                return Redirect::back()->withErrors(['password' => ['Paroles nesakrīt']]);
+
+            }
+        }
+        //dd($profile);
+        $user->save();
+        $profile->save();
+
+        return ProfilesController::index();
     }
 }

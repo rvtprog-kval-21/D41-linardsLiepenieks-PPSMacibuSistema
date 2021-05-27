@@ -258,6 +258,7 @@ return [
             'text' => 'Profils',
             'url'  => 'profile',
             'icon' => 'fas fa-id-card-alt',
+            'can' => 'is-logged-in',
         ],
         /*[
             'text' => 'Teorija',
