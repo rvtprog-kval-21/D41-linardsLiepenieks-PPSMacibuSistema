@@ -49,11 +49,14 @@ class SendSubmissionListener implements ShouldQueue
             );//Add the compiled test result data to submission
 
             $newTest->stdout = base64_decode(rtrim($newTest->stdout));//Remove trailing whitespace
+            $newTest->stdout = trim($newTest->stdout);
+            //dd($newTest->stdout == $event->exercise->tests[$index]->stdout);
 
             //Check if test is completed correctly
             if ($newTest->stdout == $event->exercise->tests[$index]->stdout && $event->exercise->time >= $newTest->time && $event->exercise->memory >= $newTest->memory) {
                 $newTest->correct = true;
             } else {
+                //dd($newTest->stdout == $event->exercise->tests[$index]->stdout);
                 $correct = false;
             }
 
@@ -135,6 +138,7 @@ class SendSubmissionListener implements ShouldQueue
         $submissionKeys = json_decode($response);
         $key = '';
         foreach ($submissionKeys as $token) {
+            //dd($token);
             $key .= $token->token . ',';
 
         }

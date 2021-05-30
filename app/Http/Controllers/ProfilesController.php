@@ -25,6 +25,8 @@ class ProfilesController extends Controller
         //SELECT * FROM submission
         // WHERE exercise_id =
         // (SELECT id FROM exercise WHERE DOES NOT HAVE solution)
+        //dd($user->solution()->get());
+
         $solutions = $user->solution()->get();
         $submissions = $user->submission()
             ->join('exercises', 'submissions.exercise_id', '=', 'exercises.id')
@@ -37,15 +39,39 @@ class ProfilesController extends Controller
                 $submissions->forget($key);
             }
         }
-        $unsolved = $submissions->pluck('exercise');
+        $unsolved = $submissions->pluck('exercise')->unique();
         $solved = $user->solution()
             ->join('exercises', 'solutions.exercise_id', 'exercises.id')
-            ->get()->pluck('exercise');
+            ->get()->pluck('exercise')->unique();
         //dd($unsolved);
+
+        //dd($user->submission()->orderBy('created_at')->get());
 
         return view('profile/profile_home', compact('unsolved', 'solved'))->with('user', $user);
     }
 
+    public function show(User $user)
+    {
+        $this->middleware('auth');
+        $solutions = $user->solution()->get();
+        $submissions = $user->submission()
+            ->join('exercises', 'submissions.exercise_id', '=', 'exercises.id')
+            ->get();
+
+
+        foreach ($solutions as $solution) {
+
+            foreach ($submissions->where('exercise_id', $solution->exercise_id) as $key => $item) {
+                $submissions->forget($key);
+            }
+        }
+        $unsolved = $submissions->pluck('exercise')->unique();
+        $solved = $user->solution()
+            ->join('exercises', 'solutions.exercise_id', 'exercises.id')
+            ->get()->pluck('exercise')->unique();
+
+        return view('profile/profile_home', compact('unsolved', 'solved'))->with('user', $user);
+    }
     public function edit()
     {
         $this->middleware('auth');

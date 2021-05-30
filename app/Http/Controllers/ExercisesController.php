@@ -24,6 +24,7 @@ class ExercisesController extends Controller
     public function index()
     {
         $exercises = Exercise::all();
+
         return view('/exercises', compact('exercises'));
     }
 

@@ -13,8 +13,11 @@
 @section('content')
 
     <div>
+        @if(\Illuminate\Support\Facades\Auth::user()->id === $user->id)
         <button class="ml-2 mb-0 PPS-edit-button"
-                onclick="location.href='/profile/edit'">Labot profilu</button>
+                onclick="location.href='/profile/edit'">Labot profilu
+        </button>
+        @endif
         <div class="row m-2">
             <div class="col  PPS-content-wrapper p-0 m-1">
                 <div class="PPS-content-heading p-3">
@@ -23,47 +26,87 @@
                         <div>Punkti: {{$user->profile()->first()->score}}</div>
                     </div>
                 </div>
-                    <div class="row p-3">
-                        <div class="col">Uzdevumu reitings:</div>
-                        <div class="col row align-items-center d-flex justify-content-end">
-                            <div class="col">
-                                <div class="progress" style="border: 1px solid black">
-                                    <div class="progress-bar"
-                                         role="progressbar"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style="width:
-                                         {{$solved->count()>0&&$unsolved->count()>0?round($solved->count()/($unsolved->count()+$solved->count())*100):0}}%;">
-                                    </div>
+                <div class="row p-3">
+                    <div class="col">Uzdevumu reitings:</div>
+                    <div class="col row align-items-center d-flex justify-content-end">
+                        <div class="col">
+                            <div class="progress" style="border: 1px solid black">
+                                <div class="progress-bar"
+                                     role="progressbar"
+                                     aria-valuemin="0"
+                                     aria-valuemax="100"
+                                     style="width:
+                                     {{$solved->count()>0||$unsolved->count()>0?round($solved->count()/($unsolved->count()+$solved->count())*100):0}}%;">
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="">
-                                {{$solved->count()>0&&$unsolved->count()>0?(round($solved->count()/($unsolved->count()+$solved->count())*100)) : 0}}
-                                %
-                            </div>
+                        <div class="">
+                            {{$solved->count()>0||$unsolved->count()>0?(round($solved->count()/($unsolved->count()+$solved->count())*100)) : 0}}
+                            %
                         </div>
+                    </div>
                 </div>
                 <div class="row p-3">
-                        <div class="col">Veiksmīgi atrisināti uzdevumi</div>
-                        <div class="col row align-items-center d-flex justify-content-end pr-4">
-                            {{$solved->count()}}
-                        </div>
+                    <div class="col">Veiksmīgi atrisināti uzdevumi</div>
+                    <div class="col row align-items-center d-flex justify-content-end pr-4">
+                        {{$solved->count()}}
+                    </div>
                 </div>
                 <div class="row p-3">
-                        <div class="col">Neatrisināti uzdevumi</div>
-                        <div class="col row align-items-center d-flex justify-content-end pr-4">
-                            {{$unsolved->count()}}
-                        </div>
+                    <div class="col">Neatrisināti uzdevumi</div>
+                    <div class="col row align-items-center d-flex justify-content-end pr-4">
+                        {{$unsolved->count()}}
+                    </div>
                 </div>
                 <div class="row p-3">
-                        <div class="col">Punkti</div>
-                        <div class="col row align-items-center d-flex justify-content-end pr-4">
-                            {{$user->profile()->first()->score}}
-                        </div>
+                    <div class="col">Punkti</div>
+                    <div class="col row align-items-center d-flex justify-content-end pr-4">
+                        {{$user->profile()->first()->score}}
+                    </div>
                 </div>
             </div>
-            <div class="row col m-1">chart</div>
+            <div class="row col m-1">
+
+                <div id="statisticsChart" class="w-100" style=""></div>
+
+
+                <script>
+                    new Morris.Line({
+                        // ID of the element in which to draw the chart.
+                        element: 'statisticsChart',
+                        // Chart data records -- each entry in this array corresponds to a point on
+                        // the chart.
+
+                        data: [
+
+                                @foreach($user->solution()->orderBy('created_at')->get() as $submission)
+
+                            {
+                                datums: '{{$submission->created_at}}',
+                                a: {{$user->solution()->where('created_at','<=',$submission->created_at)->count()}},
+                            },
+
+                            @endforeach
+
+                            //{ datums: '2009', value: 10 },
+
+
+                        ],
+                        // The name of the data record attribute that contains x-values.
+                        xkey: 'datums',
+
+                        // A list of names of data record attributes that contain y-values.
+                        stacked: true,
+
+                        ykeys: ['a'],
+                        // Labels for the ykeys -- will be displayed when you hover over the
+                        // chart.
+                        labels: ['Atrisinājumi:'],
+                    });
+
+                </script>
+            </div>
 
         </div>
 

@@ -24,6 +24,7 @@
 
 @section('content')
     @foreach($rating as $rating)
+        <a href="/profile/show/{{$rating->user->id}}">
         <div class="m-0 mb-2 p-2 row PPS-content-wrapper text-center align-items-center rounded"
              style="font-size: 1.5rem;
                             color: black;">
@@ -37,6 +38,7 @@
             </div>
             <div class="col ">{{$rating->score}}</div>
         </div>
+        </a>
     @endforeach
 
 
