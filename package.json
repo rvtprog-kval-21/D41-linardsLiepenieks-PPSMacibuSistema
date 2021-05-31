@@ -27,6 +27,7 @@
         "@jkryszto/mdb-for-laravel": "^1.0.0",
         "chart.js": "^3.3.0",
         "jszip": "^3.6.0",
+        "tinymce": "^5.8.1",
         "unirest": "^0.6.0",
         "vue-chartjs": "^3.5.1",
         "vue-codemirror": "^4.0.6",

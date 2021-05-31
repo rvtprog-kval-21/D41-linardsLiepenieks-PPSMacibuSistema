@@ -64,7 +64,7 @@
                     <div class="p-1 PPS-content-header">
                         <div><b>Datums:</b> {{$news->created_at}}</div>
                     </div>
-                    <p class="p-2 overflow-hidden" style="white-space: pre-line">{{$news->apraksts}}</p>
+                    <div class="p-2 overflow-hidden" style="white-space: pre-line">{!!   $news->apraksts  !!}</div>
                 </div>
 
                 <!-- Button trigger modal -->
@@ -84,7 +84,7 @@
                                 </button>
                             </div>
                             <div class="p-3" style="white-space: pre-line;   word-break: break-word;">
-                                {{$news->apraksts}}
+                                {!! $news->apraksts!!}
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="row justify-content-between PPS-page-title">
         <div>Profils</div>
-        <div>Labdien, {{\Illuminate\Support\Facades\Auth::user()->name}}</div>
+        <div>Labdien, {{$user->name}}</div>
     </div>
 @stop
 
@@ -13,10 +13,12 @@
 @section('content')
 
     <div>
+        @if(\Illuminate\Support\Facades\Auth::user() !== null)
         @if(\Illuminate\Support\Facades\Auth::user()->id === $user->id)
         <button class="ml-2 mb-0 PPS-edit-button"
                 onclick="location.href='/profile/edit'">Labot profilu
         </button>
+        @endif
         @endif
         <div class="row m-2">
             <div class="col  PPS-content-wrapper p-0 m-1">

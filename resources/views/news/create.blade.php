@@ -35,15 +35,21 @@
                             <!-- Ievadlauks start -->
                             <div class="form-group PPS-page-title">
                                 <label style="font-size: 20px">Ieraksta apraksts</label>
+
+                                <div id="app">
+                                    <editor></editor>
+                                </div>
                                 <textarea class="form-control" type="text"
                                           id="apraksts"
                                           name="apraksts"
-                                >{{old('apraksts')}}</textarea>
+                                >
+
+                                    {{old('apraksts')}}</textarea>
+
                                 @if ($errors->has('apraksts'))
                                     <strong style="font-size: 15px;">Apraksta lauks ir nepieciešams</strong>
                                 @endif
                             </div>
-
 
 
 
@@ -68,6 +74,4 @@
 @stop
 
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+

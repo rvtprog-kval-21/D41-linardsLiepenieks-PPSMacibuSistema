@@ -46,6 +46,7 @@ Vue.component('banner-edit', require('../../js/components/BannerEdit.vue').defau
 Vue.component('add-tag', require('../../js/components/AddTag.vue').default);
 Vue.component('user-edit', require('../../js/components/UserEdit.vue').default);
 Vue.component('add-polygon', require('../../js/components/AddPolygon.vue').default);
+Vue.component('editor', require('../../js/components/TinyMCE.vue').default);
 
 
 

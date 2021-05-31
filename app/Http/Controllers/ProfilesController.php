@@ -39,10 +39,10 @@ class ProfilesController extends Controller
                 $submissions->forget($key);
             }
         }
-        $unsolved = $submissions->pluck('exercise')->unique();
+        $unsolved = $submissions->pluck('exercise');
         $solved = $user->solution()
             ->join('exercises', 'solutions.exercise_id', 'exercises.id')
-            ->get()->pluck('exercise')->unique();
+            ->get()->pluck('exercise');
         //dd($unsolved);
 
         //dd($user->submission()->orderBy('created_at')->get());
@@ -65,10 +65,10 @@ class ProfilesController extends Controller
                 $submissions->forget($key);
             }
         }
-        $unsolved = $submissions->pluck('exercise')->unique();
+        $unsolved = $submissions->pluck('exercise');
         $solved = $user->solution()
             ->join('exercises', 'solutions.exercise_id', 'exercises.id')
-            ->get()->pluck('exercise')->unique();
+            ->get()->pluck('exercise');
 
         return view('profile/profile_home', compact('unsolved', 'solved'))->with('user', $user);
     }
