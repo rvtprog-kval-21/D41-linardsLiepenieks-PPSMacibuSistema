@@ -53,10 +53,10 @@ class SendSubmissionListener implements ShouldQueue
             //dd($newTest->stdout == $event->exercise->tests[$index]->stdout);
 
             //Check if test is completed correctly
-            if ($newTest->stdout == $event->exercise->tests[$index]->stdout && $event->exercise->time >= $newTest->time && $event->exercise->memory >= $newTest->memory) {
+            if (preg_replace('/[^A-Za-z0-9\-]/', '', $event->exercise->tests[$index]->stdout) === preg_replace('/[^A-Za-z0-9\-]/', '', $newTest->stdout)
+                && $event->exercise->time >= $newTest->time && $event->exercise->memory >= $newTest->memory) {
                 $newTest->correct = true;
             } else {
-                //dd($newTest->stdout == $event->exercise->tests[$index]->stdout);
                 $correct = false;
             }
 

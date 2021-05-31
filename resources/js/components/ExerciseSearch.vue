@@ -103,8 +103,12 @@ export default {
     props: ['exercises', 'solutions', 'submissions', 'exercise_tags', 'tags'],
 
     mounted() {
-        this.searchExercises = this.exercises;
-        //console.log(this.exercises);
+        this.searchExercises = Array.prototype.slice.call( this.exercises, 0 );
+
+
+
+
+
         this.searchExercises.forEach(
             element => element['reitings'] =
                 (this.findInArr(this.solutions, element.id) / this.findInArr(this.submissions, element.id))
@@ -204,7 +208,7 @@ export default {
             }
 
 
-        }
+        },
 
     },
 }

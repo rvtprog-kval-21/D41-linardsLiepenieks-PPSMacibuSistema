@@ -39,11 +39,14 @@ class ProfilesController extends Controller
                 $submissions->forget($key);
             }
         }
-        $unsolved = $submissions->pluck('exercise');
+        $unsolved = $submissions->unique()->pluck('exercise');
         $solved = $user->solution()
             ->join('exercises', 'solutions.exercise_id', 'exercises.id')
-            ->get()->pluck('exercise');
-        //dd($unsolved);
+            ->get()->unique()->pluck('exercise');
+
+
+        //dd($solved);
+        //dd($solved);
 
         //dd($user->submission()->orderBy('created_at')->get());
 
@@ -53,10 +56,12 @@ class ProfilesController extends Controller
     public function show(User $user)
     {
         $this->middleware('auth');
-        $solutions = $user->solution()->get();
+
+        $solutions = $user->solution()->get()->unique();
+        //dd($solutions);
         $submissions = $user->submission()
             ->join('exercises', 'submissions.exercise_id', '=', 'exercises.id')
-            ->get();
+            ->get()->unique();
 
 
         foreach ($solutions as $solution) {
