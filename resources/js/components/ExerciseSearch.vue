@@ -169,6 +169,8 @@ export default {
         },
 
         searchBarChange(input) {
+            input = input.toLowerCase();
+
             if (input == '') {
                 this.searchExercises = this.exercises;
                 return

@@ -2806,6 +2806,8 @@ __webpack_require__.r(__webpack_exports__);
       return outTags;
     },
     searchBarChange: function searchBarChange(input) {
+      input = input.toLowerCase();
+
       if (input == '') {
         this.searchExercises = this.exercises;
         return;
