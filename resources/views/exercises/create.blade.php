@@ -24,6 +24,7 @@
                                 <input class="form-control" type="text"
                                        id="kods"
                                        name="kods"
+                                       maxlength="64"
                                        value="{{old('kods')}}"
                                 >
                                 @if ($errors->has('kods'))
@@ -36,6 +37,7 @@
                                 <input class="form-control" type="text"
                                        id="nosaukums"
                                        name="nosaukums"
+                                       maxlength="128"
                                        value="{{old('nosaukums')}}"
 
                                 >

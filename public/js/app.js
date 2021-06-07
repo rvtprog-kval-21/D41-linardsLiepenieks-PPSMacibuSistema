@@ -1986,6 +1986,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
@@ -2103,6 +2104,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -34122,6 +34124,7 @@ var render = function() {
                       height: "100%",
                       "box-sizing": "border-box"
                     },
+                    attrs: { maxlength: "64" },
                     domProps: { value: input.name },
                     on: {
                       input: function($event) {
@@ -34882,7 +34885,7 @@ var render = function() {
               {
                 staticClass:
                   "m-0 mb-2 p-2 row PPS-content-wrapper PPS-exercise text-center align-items-center rounded",
-                staticStyle: { "font-size": "1.5rem", color: "black" }
+                staticStyle: { color: "black" }
               },
               [
                 _c("div", { staticClass: "col" }, [
@@ -35089,7 +35092,7 @@ var render = function() {
           {
             staticClass:
               "row justify-content-around align-items-center text-center PPS-content-wrapper p-2 rounded mb-2",
-            staticStyle: { "font-size": "25px", "align-items": "center" }
+            staticStyle: { "font-size": "1vw" }
           },
           [
             _c("div", { staticClass: "col text-truncate" }, [

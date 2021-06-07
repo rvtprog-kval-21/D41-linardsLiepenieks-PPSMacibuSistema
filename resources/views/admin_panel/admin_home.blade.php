@@ -13,13 +13,13 @@
 @section('content')
     <div class="row justify-content-around ">
         <div class="col-5 PPS-content-wrapper">
-            <div  class="p-2" style="font-size: 35px">
-                <b>Palikuši testi:</b>
-                {{$tests}}
+            <div  class="p-2">
+                <h2><b>Palikuši testi:</b>
+                {{$tests}}</h2>
             </div>
-            <div class="p-2" style="font-size: 35px">
-                <b>Palikuši Uzdevumi:</b>
-                {{$batch}}
+            <div class="p-2" >
+                <h2><b>Palikuši Uzdevumi:</b>
+                {{$batch}}</h2>
             </div>
         </div>
         <div class="col-5">

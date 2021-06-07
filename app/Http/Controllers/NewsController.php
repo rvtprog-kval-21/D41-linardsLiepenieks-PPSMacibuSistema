@@ -27,9 +27,8 @@ class NewsController extends Controller
     {
 
         $data = request()->validate([
-            'nosaukums' => 'required',
+            'nosaukums' => ['required', 'unique:news'],
             'apraksts' => 'required',
-
         ]);
 
         auth()->user()->news()->create([

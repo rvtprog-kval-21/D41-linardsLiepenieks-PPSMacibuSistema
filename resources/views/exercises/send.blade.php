@@ -14,6 +14,9 @@
                         <div class="w-75" >
                             <div style="width: 100%;">
                                 <codemirror></codemirror>
+                                @if ($errors->has('code'))
+                                    <strong style="font-size: 15px;">{{$errors->first('code')}}</strong>
+                                @endif
                             </div>
                             <button type="submit" class="btn PPS-info-button mt-2" style="margin: 0; width: 100px;">Sūtīt</button>
                         </div>

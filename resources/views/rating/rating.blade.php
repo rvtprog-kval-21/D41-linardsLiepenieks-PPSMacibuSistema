@@ -26,10 +26,10 @@
     @foreach($rating as $rating)
         <a href="/profile/show/{{$rating->user->id}}">
         <div class="m-0 mb-2 p-2 row PPS-content-wrapper text-center align-items-center rounded"
-             style="font-size: 1.5rem;
+             style="font-size: 1.5vw;
                             color: black;">
             <div class="col">{{$loop->index+1}}.</div>
-            <div class="col">{{$rating->user->name}}</div>
+            <div class="col">{{$rating->user->profile()->first()->username}}</div>
             <div class="col">{{$rating->user->submission->unique('exercise_id')->count()}}</div>
             <div class="col">{{$rating->user->solution->unique('exercise_id')->count()}}</div>
             <div class="col ">{{$rating->user->submission->count()>0 && $rating->user->solution->count()>0 ?

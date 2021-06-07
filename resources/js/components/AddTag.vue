@@ -44,6 +44,7 @@
                     <th >
                         <textarea class=" PPS-content-footer w-100 form-control "
                                   v-model="input.name"
+                                  maxlength="64"
                                   style="width: 100%; height: 100%; box-sizing: border-box;
                     ">
                         </textarea>

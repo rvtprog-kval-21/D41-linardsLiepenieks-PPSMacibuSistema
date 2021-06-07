@@ -2,7 +2,7 @@
     <div class="p-3">
         <div v-for="(user, index) in Lusers"
              class="row justify-content-around align-items-center text-center PPS-content-wrapper p-2 rounded mb-2"
-             style="font-size: 25px; align-items: center;">
+             style="font-size: 1vw;">
 
             <div class="col text-truncate">{{ user.name }}</div>
             <div class="col-3 text-truncate">{{ user.email }}</div>

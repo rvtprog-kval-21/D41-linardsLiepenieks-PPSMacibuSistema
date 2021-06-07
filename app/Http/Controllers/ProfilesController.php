@@ -89,10 +89,12 @@ class ProfilesController extends Controller
         $this->middleware('auth');
         $profile = $user->profile()->first();
 
+
+
         $data = request()->validate([
             'name'=>'required',
-            'username'=>'required',
-            'email'=>'required',
+            'username'=>['required', 'unique:profiles,username,'.$user->profile()->first()->id],
+            'email'=>['required', 'unique:users,email_address,'.$user->id],
             'password'=>'',
             'rpassword'=>'',
 

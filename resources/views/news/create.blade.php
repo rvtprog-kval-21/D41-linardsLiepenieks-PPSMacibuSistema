@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Dashboard')
+@section('title', 'Izveidot jaunumu ierakstu')
 
 @section('content_header')
     <div class="row justify-content-between PPS-page-title">
@@ -25,10 +25,11 @@
                                 <input class="form-control" type="text"
                                        id="nosaukums"
                                        name="nosaukums"
+                                       maxlength="128"
                                        value="{{old('nosaukums')}}"
                                 >
                                 @if ($errors->has('nosaukums'))
-                                    <strong style="font-size: 15px;">Nosaukuma lauks ir nepieciešams</strong>
+                                    <strong style="font-size: 15px;">{{$errors->first('nosaukums')}}</strong>
                                 @endif
                             </div>
 
@@ -47,7 +48,7 @@
                                     {{old('apraksts')}}</textarea>
 
                                 @if ($errors->has('apraksts'))
-                                    <strong style="font-size: 15px;">Apraksta lauks ir nepieciešams</strong>
+                                    <strong style="font-size: 15px;">{{$errors->first('apraksts')}}</strong>
                                 @endif
                             </div>
 

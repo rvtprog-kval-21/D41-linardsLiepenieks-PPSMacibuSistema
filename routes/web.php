@@ -42,10 +42,11 @@ Route::get('/news/del/{news}', [App\Http\Controllers\NewsController::class, 'del
 
 
 Route::get('/rating', [App\Http\Controllers\RatingsController::class, 'index'])->name('rating');
-Route::get('/profile', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile');
-Route::get('/profile/show/{user}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');
-Route::get('/profile/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile');
-Route::patch('/profile/{user}/edit', [App\Http\Controllers\ProfilesController::class, 'update'])->middleware('auth');
+
+Route::get('/profile', [App\Http\Controllers\ProfilesController::class, 'index'])->name('profile')->middleware('auth');
+Route::get('/profile/show/{user}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile')->middleware('auth');
+Route::get('/profile/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile')->middleware('auth');
+Route::patch('/profile/{user}/edit', [App\Http\Controllers\ProfilesController::class, 'update'])->middleware('auth')->middleware('auth');
 
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');

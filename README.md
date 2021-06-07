@@ -37,6 +37,7 @@ Plānotā funkcionalitāte:
 
 ### Uzstādīšana caur windows cmd
 **Sekojot šīm instrukcijām jāatrodas mapē, kurā esat klonējuši github projektu!**
+(Šis paredzēts, lai uzstādītu sistēmu uz lokālās mašīnas testa servera)
 1. Instalēt failus no composer
 
 `composer install`
@@ -48,20 +49,12 @@ Plānotā funkcionalitāte:
 3. izveidot env faila kopiju no env.example
 
 `cp .env.example .env`
-   
-4. Instalēt Laravel ar composer
 
-`composer global require laravel/installer`
-
-5. Instalēt Laravel UI
-
-`composer require laravel/ui:^2.4`
-
-6. Izveidot datubāzi
+4. Izveidot datubāzi
 
 `database` mapē izveidojiet failu ar nosaukumus `database.sqlite`
 
-7. Uzstādīt datubāzi .env failā
+5. Uzstādīt datubāzi .env failā
 
 `.env` failā izdzēst:
 
@@ -76,7 +69,7 @@ Tā vietā ierakstīt:
 
 `DB_CONNECTION=sqlite`
 
-8. Mainīt queue draiveri .env failā
+6. Mainīt queue draiveri .env failā
 
 Nomainīt:
 
@@ -86,11 +79,11 @@ Uz:
 
 `QUEUE_CONNECTION=database`
 
-9. Ģenerēt aplikācijas šifrēšanas atslēgu
+7. Ģenerēt aplikācijas šifrēšanas atslēgu
 
 `php artisan key:generate`
 
-10. Migrēt datubāzi
+8. Migrēt datubāzi
 
 `php artisan migrate`
 
@@ -115,7 +108,7 @@ Uz:
 Tīmekļa pārlūkā dodaties uz ip adresi kas tika parādīta palaižot vebserveri
 
 ### Uzstādīt admin profilu
-0.
+
 
 Caur mājaslapu izveidot profilu spiežot uz pogas "Register"
 
@@ -135,7 +128,7 @@ Caur mājaslapu izveidot profilu spiežot uz pogas "Register"
 
 4. Saglabāt izmaiņas datubāzē
 
-`$user->save;`
+`$user->save();`
 
 
 

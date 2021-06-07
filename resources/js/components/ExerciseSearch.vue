@@ -47,7 +47,7 @@
             <a :href="'/exercises/show/'+exercise.id">
 
                 <div class="m-0 mb-2 p-2 row PPS-content-wrapper PPS-exercise text-center align-items-center rounded"
-                     style="font-size: 1.5rem;
+                     style="
                             color: black;">
 
                     <div class="col">{{ exercise.kods }}</div>

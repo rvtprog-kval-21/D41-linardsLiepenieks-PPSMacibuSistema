@@ -31,7 +31,7 @@ class ExercisesController extends Controller
     public function search(Request $request)
     {
 
-       $request->validate(['q'=>'required']);
+        $request->validate(['q' => 'required']);
         $exercises = Exercise::Where('nosaukums', 'like', '%' . $request->input('q') . '%')->get();
 
 
@@ -108,7 +108,7 @@ class ExercisesController extends Controller
 
 
         $data = request()->validate([
-            'kods' => 'required',
+            'kods' => ['required', 'unique:exercises'],
             'nosaukums' => 'required',
             'ievaddati' => 'required',
             'izvaddati' => 'required',
@@ -150,17 +150,20 @@ class ExercisesController extends Controller
             }
         }
         for ($i = 0; $i < count($request->input('tests.stdin')); $i++) {
-            $show = false;
 
-            if ($request->input('tests.show.' . $i) == "on") {
-                $show = true;
+            if ($request->input('tests.stdin.' . $i) !== null && $request->input('tests.stdout.' . $i) !== null) {
+                $show = false;
+
+                if ($request->input('tests.show.' . $i) == "on") {
+                    $show = true;
+                }
+                $exercise->tests()->create([
+                    //nocrashos ja stdin/stdout bus tukss
+                    'stdin' => $request->input('tests.stdin.' . $i),
+                    'stdout' => $request->input('tests.stdout.' . $i),
+                    'show' => $show
+                ]);
             }
-            $exercise->tests()->create([
-                //nocrashos ja stdin/stdout bus tukss
-                'stdin' => $request->input('tests.stdin.' . $i),
-                'stdout' => $request->input('tests.stdout.' . $i),
-                'show' => $show
-            ]);
         }
         return redirect('/exercises');
     }
@@ -171,7 +174,7 @@ class ExercisesController extends Controller
 
 
         $data = request()->validate([
-            'kods' => 'required',
+            'kods' => ['required', 'unique:exercises,'.$exercise->id],
             'nosaukums' => 'required',
             'ievaddati' => 'required',
             'izvaddati' => 'required',

@@ -41,7 +41,8 @@ class AdminController extends Controller
         return view('admin_panel/admin_home', compact('tests'), compact('batch'));
     }
 
-    public function userEdit(){
+    public function userEdit()
+    {
         $this->authorize('create', Exercise::class);
 
         $users = User::all();
@@ -108,31 +109,33 @@ class AdminController extends Controller
         ]);
 
 
-        foreach ($newTags['newTags'] as $newTag)
-        {
-            if (Tag::Where('name', $newTag['name'])->first() == null) {
-                $t = new Tag;
-                $t->color = $newTag['color'];
-                $t->name = $newTag['name'];
-                $t->desc = $newTag['desc'];
-                $t->save();
+        foreach ($newTags['newTags'] as $newTag) {
+            if ($newTag['name'] !== null) {
+
+                if (Tag::Where('name', $newTag['name'])->first() == null) {
+                    $t = new Tag;
+                    $t->color = $newTag['color'];
+                    $t->name = $newTag['name'];
+                    $t->desc = $newTag['desc'];
+                    $t->save();
+                }
             }
         }
 
-        foreach ($newTags['delete'] as $delTag)
-        {
+        foreach ($newTags['delete'] as $delTag) {
             $target = Tag::Where('name', $delTag['name'])->first();
             $target->exercise()->detach();
             $target->delete();
 
         }
-        foreach ($newTags['update'] as $upTag)
-        {
-            $t = Tag::Where('name', $upTag['name'])->first();
-            $t->color = $upTag['color'];
-            $t->name = $upTag['name'];
-            $t->desc = $upTag['desc'];
-            $t->save();
+        foreach ($newTags['update'] as $upTag) {
+            if ($upTag['name'] !== null) {
+                $t = Tag::Where('name', $upTag['name'])->first();
+                $t->color = $upTag['color'];
+                $t->name = $upTag['name'];
+                $t->desc = $upTag['desc'];
+                $t->save();
+            }
 
         }
 
@@ -143,12 +146,11 @@ class AdminController extends Controller
         $this->authorize('create', Exercise::class);
 
         $users = $request->validate([
-            'update' =>'',
-            'delete' =>'',
+            'update' => '',
+            'delete' => '',
         ]);
 
-        foreach ($users['delete'] as $delUser)
-        {
+        foreach ($users['delete'] as $delUser) {
             $target = User::Where('id', $delUser['id'])->first();
             $target->submission()->delete();
             $target->solution()->delete();
@@ -157,8 +159,7 @@ class AdminController extends Controller
 
         }
 
-        foreach ($users['update'] as $upUser)
-        {
+        foreach ($users['update'] as $upUser) {
             $t = User::Where('id', $upUser['id'])->first();
             $t->teacher = $upUser['teacher'];
             $t->admin = $upUser['admin'];

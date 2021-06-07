@@ -13,7 +13,7 @@
 @section('content')
     <div id="app">
         <div class="row justify-content-around align-items-center text-center PPS-content-header p-2 m-2 rounded">
-            <div class="col">Lietotājvārds</div>
+            <div class="col">Vārds</div>
             <div class="col-3">Epasts</div>
             <div class="col">Admins</div>
             <div class="col">Skolotājs</div>
