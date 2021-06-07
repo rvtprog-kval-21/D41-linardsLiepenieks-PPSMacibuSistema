@@ -12,7 +12,6 @@ Plānotā funkcionalitāte:
 - Jaunumu sistēma
   - Pievienot ziņojumu
   - Dzēst ziņojumu
-  - Labot ziņojumu
 - Uzdevumu sistēma
     - Izveidot uzdevumu
     - Dzēst uzdevumu
