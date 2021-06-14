@@ -51,15 +51,6 @@
                                     <strong style="font-size: 15px;">{{$errors->first('apraksts')}}</strong>
                                 @endif
                             </div>
-
-
-
-
-
-
-
-
-
                             <div class="box-footer">
                                 <button type="submit" class="btn PPS-info-button">Saglabāt</button>
                             </div>

@@ -1,22 +1,11 @@
 
 
-# "Pirmā programmēšanas skola" mācību sistēma
+# SIA “Pirmā programmēšanas skola” Mācību sistēmas izveide ar automatizētu uzdevumu risināšanu
 
-##Projekta apraksts
+## Projekta apraksts
 PIKC "Rīgas Valsts tehnikums" kvalifikācijas darbs.
 Mērķis - izveidot mācību sistēmu uzņēmumam "Pirmā programmēšanas skola" (Turpmāk "PPS")
-Plānotā funkcionalitāte:
-- Lietotāju sistēma
-    - Reģistrēties
-    - Ielogoties
-- Jaunumu sistēma
-  - Pievienot ziņojumu
-  - Dzēst ziņojumu
-- Uzdevumu sistēma
-    - Izveidot uzdevumu
-    - Dzēst uzdevumu
-    - Iesūtīt uzdevumu (Sakompilēt iesūtījuma kodu un salīdzināt ar testa piemēriem)
-    - Labot uzdevumu
+
     
 ## Izmantotās tehnoloģijas
 - Laravel
@@ -24,7 +13,27 @@ Plānotā funkcionalitāte:
 - SQLite
 - Judge0 API
 - NodeJS
+- MySQL
 - Composer
+- HTML
+- CSS
+- Bootstrap
+- JS
+- AJAX
+- Blade
+
+## Izmantotie avoti
+- Laravel ietvara apguvei izgāju kursu: https://www.youtube.com/watch?v=ImtZ5yENzgE
+- Laravel ietvara dokumentācija - https://laravel.com/docs/8.x
+-	VUE.js dokumentācija - https://vuejs.org/v2/guide/
+-	CodeMirror koda redaktors - https://codemirror.net/
+-	TinyMCE teksta redaktors - https://www.tiny.cloud/
+-	Composer dependeny manager - https://getcomposer.org/
+-	NodeJS - https://nodejs.org/en/docs/
+-	MorrisJS - https://morrisjs.github.io/morris.js/
+-	Judge0 - https://judge0.com/
+-	Bootstrap ietvars - https://getbootstrap.com/
+-	AdminLTE veidne - https://adminlte.io/
 
 
 

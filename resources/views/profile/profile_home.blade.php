@@ -15,7 +15,7 @@
     <div>
         @if(\Illuminate\Support\Facades\Auth::user() !== null)
         @if(\Illuminate\Support\Facades\Auth::user()->id === $user->id)
-        <button class="ml-2 mb-0 PPS-edit-button"
+        <button class="ml-2 mb-0 PPS-info-button"
                 onclick="location.href='/profile/edit'">Labot profilu
         </button>
         @endif

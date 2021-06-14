@@ -108,7 +108,7 @@ class AdminController extends Controller
 
         ]);
 
-
+        Tag::Truncate();
         foreach ($newTags['newTags'] as $newTag) {
             if ($newTag['name'] !== null) {
 
@@ -122,20 +122,19 @@ class AdminController extends Controller
             }
         }
 
-        foreach ($newTags['delete'] as $delTag) {
+        /*foreach ($newTags['delete'] as $delTag) {
             $target = Tag::Where('name', $delTag['name'])->first();
             $target->exercise()->detach();
             $target->delete();
 
-        }
+        }*/
         foreach ($newTags['update'] as $upTag) {
-            if ($upTag['name'] !== null) {
-                $t = Tag::Where('name', $upTag['name'])->first();
+                $t = new Tag;
                 $t->color = $upTag['color'];
                 $t->name = $upTag['name'];
                 $t->desc = $upTag['desc'];
                 $t->save();
-            }
+
 
         }
 

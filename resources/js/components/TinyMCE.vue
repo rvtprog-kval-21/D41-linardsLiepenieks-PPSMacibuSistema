@@ -1,6 +1,6 @@
 <template>
     <!DOCTYPE html>
-    <div >
+    <div>
 
 
     </div>

@@ -62,7 +62,8 @@
                                      aria-valuemax="100"
                                      :style="'width: '+
 
-                            Math.round(parseInt(findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0 ? findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0))
+                            Math.round(parseInt(findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0 ?
+                            findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0))
 
                                 +'%;'"
                                 >
@@ -72,9 +73,9 @@
 
                         <div class="col p-1">
                             {{
-                            Math.round(findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0
-                            ?
-                            findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0)
+                                Math.round(findInArr(submissions, exercise.id) > 0 && findInArr(solutions, exercise.id) > 0
+                                    ?
+                                    findInArr(solutions, exercise.id) / findInArr(submissions, exercise.id) * 100 : 0)
                             }}%
                         </div>
                     </div>
@@ -103,10 +104,7 @@ export default {
     props: ['exercises', 'solutions', 'submissions', 'exercise_tags', 'tags'],
 
     mounted() {
-        this.searchExercises = Array.prototype.slice.call( this.exercises, 0 );
-
-
-
+        this.searchExercises = Array.prototype.slice.call(this.exercises, 0);
 
 
         this.searchExercises.forEach(

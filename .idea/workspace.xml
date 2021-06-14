@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3e7c1963-f02d-40fb-bd8e-f4824eb88a0b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/AddTest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddTest.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ExerciseSearch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExerciseSearch.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/TinyMCE.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/TinyMCE.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/exercises.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/news/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile/profile_home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile/profile_home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +223,9 @@
       <workItem from="1622430798524" duration="17418000" />
       <workItem from="1622894178257" duration="9346000" />
       <workItem from="1622919984825" duration="1723000" />
-      <workItem from="1622975101636" duration="5554000" />
+      <workItem from="1622975101636" duration="6172000" />
+      <workItem from="1623074245407" duration="2619000" />
+      <workItem from="1623083579421" duration="3924000" />
     </task>
     <servers />
   </component>
