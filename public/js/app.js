@@ -2355,7 +2355,8 @@ __webpack_require__.r(__webpack_exports__);
           show: element.show
         });
       });
-    }
+    } //this.inputs = this.inputs.splice(20);
+
   },
   data: function data() {
     return {
@@ -2664,6 +2665,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -34649,8 +34651,6 @@ var render = function() {
         _c("option", [_vm._v("C++")]),
         _vm._v(" "),
         _c("option", [_vm._v("Python")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Javascript")]),
         _vm._v(" "),
         _c("option", [_vm._v("JAVA")])
       ]

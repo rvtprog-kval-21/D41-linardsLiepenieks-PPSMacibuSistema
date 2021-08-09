@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Exercise;
 use App\Models\Submission;
 use GuzzleHttp\Psr7\Response;
@@ -51,6 +52,16 @@ class ProfilesController extends Controller
         //dd($user->submission()->orderBy('created_at')->get());
 
         return view('profile/profile_home', compact('unsolved', 'solved'))->with('user', $user);
+    }
+
+    public function myCourses()
+    {
+
+        $createdCourses = Course::Where('user_id', '=', Auth::user()->id)->get();
+
+
+
+        return view('profile/my_courses', compact('createdCourses'));
     }
 
     public function show(User $user)

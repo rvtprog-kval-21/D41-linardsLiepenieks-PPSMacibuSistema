@@ -101,7 +101,7 @@ export default {
                 }))
         }
 
-        this.inputs = this.inputs.splice(20);
+        //this.inputs = this.inputs.splice(20);
 
 
     },

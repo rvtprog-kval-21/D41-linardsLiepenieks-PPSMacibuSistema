@@ -4,7 +4,7 @@
         <select class="mb-3 ml-0 PPS-info-button" id="mode" name="mode" @change="onChange()">
             <option>C++</option>
             <option>Python</option>
-            <option>Javascript</option>
+            <!--<option>Javascript</option>-->
             <option>JAVA</option>
         </select>
         <div style="border: 1px solid black; width:100%;">

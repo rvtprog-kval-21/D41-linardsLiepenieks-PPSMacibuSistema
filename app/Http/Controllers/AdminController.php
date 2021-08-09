@@ -41,6 +41,8 @@ class AdminController extends Controller
         return view('admin_panel/admin_home', compact('tests'), compact('batch'));
     }
 
+
+
     public function userEdit()
     {
         $this->authorize('create', Exercise::class);

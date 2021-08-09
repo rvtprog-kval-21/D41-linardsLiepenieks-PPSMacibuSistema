@@ -260,6 +260,12 @@ return [
             'icon' => 'fas fa-id-card-alt',
             'can' => 'is-logged-in',
         ],
+        [
+            'text' => 'Kursi',
+            'url'  => 'profile/courses',
+            'icon' => 'fas fa-atlas',
+            'can' => 'is-logged-in',
+        ],
         /*[
             'text' => 'Teorija',
             'url'  => 'theory',

@@ -47,6 +47,7 @@ Route::get('/profile', [App\Http\Controllers\ProfilesController::class, 'index']
 Route::get('/profile/show/{user}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile')->middleware('auth');
 Route::get('/profile/edit', [App\Http\Controllers\ProfilesController::class, 'edit'])->name('profile')->middleware('auth');
 Route::patch('/profile/{user}/edit', [App\Http\Controllers\ProfilesController::class, 'update'])->middleware('auth')->middleware('auth');
+Route::get('/profile/courses', [App\Http\Controllers\ProfilesController::class, 'myCourses'])->middleware('auth');
 
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->middleware('auth');
@@ -56,6 +57,13 @@ Route::get('/admin/users', [App\Http\Controllers\AdminController::class, 'userEd
 Route::post('/admin/users', [App\Http\Controllers\AdminController::class, 'saveUsers'])->middleware('auth');
 Route::post('/admin/banner', [App\Http\Controllers\AdminController::class, 'bannerEdit'])->middleware('auth');
 Route::post('/admin/tags', [App\Http\Controllers\AdminController::class, 'tagEdit'])->middleware('auth');
+
+Route::get('/courses/create', [App\Http\Controllers\CoursesController::class, 'create'])->middleware('auth');
+Route::post('/courses/post', [App\Http\Controllers\CoursesController::class, 'store'])->middleware('auth');
+Route::get('/courses/del/{course}', [App\Http\Controllers\CoursesController::class, 'delete'])->middleware('auth');
+Route::get('/courses/edit/{course}', [App\Http\Controllers\CoursesController::class, 'edit'])->middleware('auth');
+Route::patch('/courses/{course}', [App\Http\Controllers\CoursesController::class, 'update'])->middleware('auth');
+
 
 
 
