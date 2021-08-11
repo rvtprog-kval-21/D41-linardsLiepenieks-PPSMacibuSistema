@@ -67,6 +67,7 @@ Route::get('/courses/show/{course}', [App\Http\Controllers\CoursesController::cl
 
 Route::get('/courses/{course}/lessons/create', [App\Http\Controllers\LessonController::class, 'create'])->middleware('auth');
 Route::post('/courses/{course}/lessons/post', [App\Http\Controllers\LessonController::class, 'store'])->middleware('auth');
+Route::get('/courses/{course}/lessons/del/{lesson}', [App\Http\Controllers\LessonController::class, 'delete'])->middleware('auth');
 
 
 

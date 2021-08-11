@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Exercise;
+use App\Models\Lesson;
 use Illuminate\Support\Facades\Request;
 
 
@@ -42,6 +43,13 @@ class LessonController extends Controller
         //return redirect('/courses/show/'.$course->id);
 
 
+
+    }
+    public function  delete(Course $course,Lesson $lesson)
+    {
+        $lesson->exercises()->detach();
+        $lesson->delete();
+        return view('courses/show', compact('course'));
 
     }
 }
