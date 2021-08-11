@@ -63,7 +63,10 @@ Route::post('/courses/post', [App\Http\Controllers\CoursesController::class, 'st
 Route::get('/courses/del/{course}', [App\Http\Controllers\CoursesController::class, 'delete'])->middleware('auth');
 Route::get('/courses/edit/{course}', [App\Http\Controllers\CoursesController::class, 'edit'])->middleware('auth');
 Route::patch('/courses/{course}', [App\Http\Controllers\CoursesController::class, 'update'])->middleware('auth');
+Route::get('/courses/show/{course}', [App\Http\Controllers\CoursesController::class, 'show']);
 
+Route::get('/courses/{course}/lessons/create', [App\Http\Controllers\LessonController::class, 'create'])->middleware('auth');
+Route::post('/courses/{course}/lessons/post', [App\Http\Controllers\LessonController::class, 'store'])->middleware('auth');
 
 
 

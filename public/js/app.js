@@ -1958,6 +1958,226 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddExerciseToLesson.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddExerciseToLesson.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _public_vendor_tinymce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../public/vendor/tinymce */ "./public/vendor/tinymce/tinymce.js");
+/* harmony import */ var _public_vendor_tinymce__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_public_vendor_tinymce__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['exercises', 'course'],
+  mounted: function mounted() {
+    this.avaliableExercises = Array.prototype.slice.call(this.exercises, 0);
+    this.avaliableExercisesShow = this.avaliableExercises;
+    _public_vendor_tinymce__WEBPACK_IMPORTED_MODULE_0___default.a.init({
+      selector: "textarea",
+      elements: "editor",
+      theme: "silver"
+    });
+  },
+  data: function data() {
+    return {
+      avaliableExercises: [],
+      avaliableExercisesShow: [],
+      addedExercises: [],
+      addedExercisesShow: [],
+      message: '',
+      messageRemove: '',
+      fields: {},
+      errors: {}
+    };
+  },
+  methods: {
+    addExercise: function addExercise(exercise) {
+      this.avaliableExercises.splice(this.avaliableExercises.indexOf(exercise), 1);
+      this.addedExercises.push(exercise);
+      this.addedExercisesShow = this.addedExercises;
+      this.messageRemove = '';
+      this.searchBarChangeAdd('');
+    },
+    removeExercise: function removeExercise(exercise) {
+      this.addedExercises.splice(this.addedExercises.indexOf(exercise), 1);
+      this.avaliableExercises.push(exercise);
+      this.messageRemove = '';
+      this.searchBarChangeRemove('');
+    },
+    searchBarChangeAdd: function searchBarChangeAdd(input) {
+      input = input.toLowerCase();
+
+      if (input === '') {
+        this.avaliableExercisesShow = this.avaliableExercises;
+        return;
+      }
+
+      this.avaliableExercisesShow = this.avaliableExercises.filter(function (item) {
+        return item.nosaukums.toLowerCase().indexOf(input) > -1;
+      });
+    },
+    searchBarChangeRemove: function searchBarChangeRemove(input) {
+      input = input.toLowerCase();
+
+      if (input === '') {
+        this.addedExercisesShow = this.addedExercises;
+        return;
+      }
+
+      this.addedExercisesShow = this.addedExercises.filter(function (item) {
+        return item.nosaukums.toLowerCase().indexOf(input) > -1;
+      });
+    },
+    submit: function submit() {
+      var _this = this;
+
+      this.errors = {};
+      this.fields.exercises = this.addedExercises;
+      this.fields.apraksts = tinyMCE.activeEditor.getContent();
+      ;
+      axios.post('/courses/' + this.course.id + '/lessons/post', this.fields).then(function (response) {
+        //console.log(response);
+        window.location.href = "/courses/show/" + _this.course.id;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors || {};
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddPolygon.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddPolygon.vue?vue&type=script&lang=js& ***!
@@ -33997,6 +34217,396 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddExerciseToLesson.vue?vue&type=template&id=2d0f6031&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddExerciseToLesson.vue?vue&type=template&id=2d0f6031& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submit($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "row d-flex justify-content-center" }, [
+          _c("div", { staticClass: "col-10" }, [
+            _c(
+              "div",
+              { staticClass: "box-body", staticStyle: { "font-size": "20px" } },
+              [
+                _c("div", { staticClass: "form-group PPS-page-title" }, [
+                  _c(
+                    "label",
+                    {
+                      staticStyle: { "font-size": "20px" },
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Nodarbības nosaukums")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.fields.name,
+                        expression: "fields.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "name",
+                      name: "name",
+                      maxlength: "256"
+                    },
+                    domProps: { value: _vm.fields.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.fields, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors && _vm.errors.name
+                    ? _c("div", { staticStyle: { "font-size": "20px" } }, [
+                        _vm._v(_vm._s(_vm.errors.name[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group PPS-page-title row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticStyle: { "font-size": "20px" },
+                      attrs: { for: "nr" }
+                    },
+                    [_vm._v("Nodarbības kārtas numurs")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.fields.nr,
+                        expression: "fields.nr"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", id: "nr", name: "nr" },
+                    domProps: { value: _vm.fields.nr },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.fields, "nr", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors && _vm.errors.nr
+                    ? _c("div", { staticStyle: { "font-size": "20px" } }, [
+                        _vm._v(_vm._s(_vm.errors.nr[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group PPS-page-title" }, [
+                  _c(
+                    "label",
+                    {
+                      staticStyle: { "font-size": "20px" },
+                      attrs: { for: "apraksts" }
+                    },
+                    [_vm._v("Nodarbības apraksts")]
+                  ),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    staticClass: "form-control",
+                    attrs: { type: "text", id: "apraksts", name: "apraksts" }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors && _vm.errors.apraksts
+                    ? _c("div", { staticStyle: { "font-size": "20px" } }, [
+                        _vm._v(
+                          _vm._s(_vm.errors.apraksts[0]) +
+                            "\n                        "
+                        )
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group PPS-page-title p-3" }, [
+                  _c("label", { staticStyle: { "font-size": "20px" } }, [
+                    _vm._v("Pievienot video")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "file",
+                      id: "video",
+                      name: "video",
+                      accept: "video/*,image/*"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors && _vm.errors.video
+                    ? _c("p", { staticStyle: { "font-size": "20px" } }, [
+                        _vm._v(_vm._s(_vm.errors.video[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("h2", { staticStyle: { color: "black" } }, [
+                  _vm._v("Pievienot nodarbībai uzdevumus")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "row d-flex justify-content-center overflow-auto",
+                    staticStyle: { color: "black", height: "17rem" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "col-6 PPS-content-wrapper" },
+                      [
+                        _c("div", { staticClass: "row mb-2" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.message,
+                                expression: "message"
+                              }
+                            ],
+                            staticClass: "form-control rounded col",
+                            attrs: {
+                              type: "search",
+                              placeholder: "Meklēt",
+                              "aria-label": "Search",
+                              id: "searchBar",
+                              "aria-describedby": "search-addon"
+                            },
+                            domProps: { value: _vm.message },
+                            on: {
+                              input: [
+                                function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.message = $event.target.value
+                                },
+                                function($event) {
+                                  return _vm.searchBarChangeAdd(_vm.message)
+                                }
+                              ]
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.avaliableExercisesShow, function(exercise) {
+                          return _c("div", [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "row m-0 mb-1 p-1 PPS-content-wrapper PPS-exercise text-center align-items-center rounded",
+                                staticStyle: { "background-color": "white" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addExercise(exercise)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._m(1, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col text-center" }, [
+                                  _vm._v(_vm._s(exercise.nosaukums))
+                                ])
+                              ]
+                            )
+                          ])
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-6 PPS-content-wrapper" },
+                      [
+                        _c("div", { staticClass: "row mb-2" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.messageRemove,
+                                expression: "messageRemove"
+                              }
+                            ],
+                            staticClass: "form-control rounded col",
+                            attrs: {
+                              type: "search",
+                              placeholder: "Meklēt",
+                              "aria-label": "Search",
+                              id: "searchBarRemove",
+                              "aria-describedby": "search-addon"
+                            },
+                            domProps: { value: _vm.messageRemove },
+                            on: {
+                              input: [
+                                function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.messageRemove = $event.target.value
+                                },
+                                function($event) {
+                                  return _vm.searchBarChangeRemove(
+                                    _vm.messageRemove
+                                  )
+                                }
+                              ]
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(2)
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.addedExercisesShow, function(exercise) {
+                          return _c("div", [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "row m-0 mb-1 p-1 PPS-content-wrapper PPS-exercise text-center align-items-center rounded",
+                                staticStyle: { "background-color": "white" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.removeExercise(exercise)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._m(3, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col text-center" }, [
+                                  _vm._v(_vm._s(exercise.nosaukums))
+                                ])
+                              ]
+                            )
+                          ])
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "box-footer" })
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "input-group-text border-0 col-2 ",
+        attrs: { id: "search-addon" }
+      },
+      [_c("i", { staticClass: "fas fa-search" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c("i", { staticClass: "fas fa-plus-square PPS-add-button p-0" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "input-group-text border-0 col-2 ",
+        attrs: { id: "search-addon-remove" }
+      },
+      [_c("i", { staticClass: "fas fa-search" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c("i", { staticClass: "fas fa-minus-square PPS-delete-button p-0" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "button",
+        { staticClass: "btn PPS-info-button", attrs: { type: "submit" } },
+        [_vm._v("Saglabāt")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddPolygon.vue?vue&type=template&id=731d0584&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddPolygon.vue?vue&type=template&id=731d0584& ***!
@@ -62239,6 +62849,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('add-tag', __webpack_requir
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('user-edit', __webpack_require__(/*! ../../js/components/UserEdit.vue */ "./resources/js/components/UserEdit.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('add-polygon', __webpack_require__(/*! ../../js/components/AddPolygon.vue */ "./resources/js/components/AddPolygon.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('editor', __webpack_require__(/*! ../../js/components/TinyMCE.vue */ "./resources/js/components/TinyMCE.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('add-exercise-to-lesson', __webpack_require__(/*! ../../js/components/AddExerciseToLesson.vue */ "./resources/js/components/AddExerciseToLesson.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -62247,7 +62858,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('editor', __webpack_require
 //import '../../public/js/codemirror.js';
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#app'
+  el: '#app',
+  data: function data() {
+    return {
+      bladeValue: ''
+    };
+  }
 });
 
 /***/ }),
@@ -62309,6 +62925,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';*/
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/AddExerciseToLesson.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/AddExerciseToLesson.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddExerciseToLesson_vue_vue_type_template_id_2d0f6031___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddExerciseToLesson.vue?vue&type=template&id=2d0f6031& */ "./resources/js/components/AddExerciseToLesson.vue?vue&type=template&id=2d0f6031&");
+/* harmony import */ var _AddExerciseToLesson_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddExerciseToLesson.vue?vue&type=script&lang=js& */ "./resources/js/components/AddExerciseToLesson.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddExerciseToLesson_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddExerciseToLesson_vue_vue_type_template_id_2d0f6031___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddExerciseToLesson_vue_vue_type_template_id_2d0f6031___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AddExerciseToLesson.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AddExerciseToLesson.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/AddExerciseToLesson.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddExerciseToLesson_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AddExerciseToLesson.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddExerciseToLesson.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddExerciseToLesson_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AddExerciseToLesson.vue?vue&type=template&id=2d0f6031&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/AddExerciseToLesson.vue?vue&type=template&id=2d0f6031& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddExerciseToLesson_vue_vue_type_template_id_2d0f6031___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AddExerciseToLesson.vue?vue&type=template&id=2d0f6031& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddExerciseToLesson.vue?vue&type=template&id=2d0f6031&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddExerciseToLesson_vue_vue_type_template_id_2d0f6031___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddExerciseToLesson_vue_vue_type_template_id_2d0f6031___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

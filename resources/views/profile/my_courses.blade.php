@@ -31,10 +31,15 @@
             <div class="d-flex justify-content-center flex-wrap">
 
                 @foreach($createdCourses as $course)
-                    <div class="PPS-content-wrapper PPS-exercise overflow-hidden col-5" style="border-radius: 10px 10px 5px 5px;
+                    <div
+                        class="PPS-content-wrapper PPS-exercise overflow-hidden col-5" style="border-radius: 10px 10px 5px 5px;
                         width: 50%;
                         padding: 0px;
-                        margin: 10px;">
+                        margin: 10px;
+                        color: black;
+                        height: 20rem;
+text-overflow: ellipsis;
+                                overflow: hidden;">
                         <div class="row justify-content-between PPS-content-heading text-center">
                             <div class="col-5"
                                  style="text-overflow: ellipsis;
@@ -54,17 +59,22 @@
                             <div class="row">
                                 <button type="button" class="col-6 m-0 btn-block btn PPS-delete-button btn-xs"
                                         onclick="location.href='/courses/del/{{$course->id}}'">
-                                    Dzēst Ierakstu
+                                    Dzēst kursu
                                 </button>
                                 <button type="button" class="col-6 m-0 btn-block btn PPS-edit-button btn-xs"
                                         onclick="location.href='/courses/edit/{{$course->id}}'">
-                                    Labot Ierakstu
+                                    Labot kursu
                                 </button>
                             </div>
-                            <div class="p-3">{!! $course->desc !!}</div>
+                            <div class="p-3"><a style="color: black;"
+                                                href="/courses/show/{{$course->id}}">{!! $course->desc !!}</a></div>
+                            <button type="button" class="col m-0 btn-block btn PPS-info-button btn-xs position-absolute"
+                                    style="bottom: 0;"
+                                    onclick="location.href='/courses/show/{{$course->id}}'">
+                                Apskatīt kursu
+                            </button>
                         </div>
                     </div>
-
 
                 @endforeach
             </div>

@@ -105,4 +105,9 @@ class CoursesController extends Controller
             abort(403);
         }
     }
+
+    public function show(Course $course)
+    {
+        return view('courses/show', compact('course'));
+    }
 }

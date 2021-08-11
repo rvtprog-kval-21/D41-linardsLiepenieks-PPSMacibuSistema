@@ -93,7 +93,7 @@
                 </div>
 
                 @can('create', \App\Models\exercise::class)
-                    <button type="button" class="btn-block btn PPS-delete-button btn-xs"
+                    <button type="button" class="btn-block btn PPS-delete-button btn-xs m-0"
                             onclick="location.href='news/del/{{$news->id}}'">
                         Dzēst Ierakstu
                     </button>

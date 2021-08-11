@@ -47,6 +47,7 @@ Vue.component('add-tag', require('../../js/components/AddTag.vue').default);
 Vue.component('user-edit', require('../../js/components/UserEdit.vue').default);
 Vue.component('add-polygon', require('../../js/components/AddPolygon.vue').default);
 Vue.component('editor', require('../../js/components/TinyMCE.vue').default);
+Vue.component('add-exercise-to-lesson', require('../../js/components/AddExerciseToLesson.vue').default);
 
 
 
@@ -60,6 +61,12 @@ Vue.component('editor', require('../../js/components/TinyMCE.vue').default);
 
 const app = new Vue({
     el: '#app',
+    data() {
+        return {
+            bladeValue: ''
+        }
+    }
+
 
 
 });

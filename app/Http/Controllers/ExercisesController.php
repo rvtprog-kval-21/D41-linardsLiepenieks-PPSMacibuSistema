@@ -241,4 +241,6 @@ class ExercisesController extends Controller
     }
 
 
+
+
 }
