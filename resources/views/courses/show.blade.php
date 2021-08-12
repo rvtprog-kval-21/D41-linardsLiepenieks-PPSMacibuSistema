@@ -43,7 +43,7 @@
                                     Dzēst nodarbību
                                 </button>
                                 <button type="button" class="col btn-block btn PPS-edit-button btn-xs m-0"
-                                        onclick="">
+                                        onclick="location.href='/courses/{{$course->id}}/lessons/edit/{{$lesson->id}}'">
                                     Labot nodarbību
                                 </button>
                             @endif

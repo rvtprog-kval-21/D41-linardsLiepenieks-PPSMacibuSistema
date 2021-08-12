@@ -15,6 +15,11 @@ class LessonController extends Controller
         $exercises = Exercise::All();
         return view('lessons/create', compact('course', 'exercises'));
     }
+    public function edit(Course $course, Lesson $lesson)
+    {
+        $exercises = Exercise::All();
+        return view('lessons/edit', compact('course', 'exercises', 'lesson'));
+    }
 
     public function store(Course $course)
     {
@@ -44,6 +49,32 @@ class LessonController extends Controller
 
 
 
+    }
+    public function update(Course $course, Lesson $lesson)
+    {
+        $data = request()->validate([
+            'name' => 'required',
+            'nr' => 'required',
+            'apraksts' => 'required',
+            'video' => '',
+            'exercises' => 'array',
+        ]);
+
+        $lesson->exercises()->detach();
+        if ($data['exercises'] ?? null) {
+            $exercises = $data['exercises'];
+            foreach ($exercises as $exercise) {
+
+                $lesson->exercises()->attach(Exercise::find($exercise['id'])->first());
+            }
+        }
+        $lesson->update([
+            'name' => $data['name'],
+            'nr' => $data['nr'],
+            'desc' => $data['apraksts'],
+
+        ]);
+        return $data;
     }
     public function  delete(Course $course,Lesson $lesson)
     {
