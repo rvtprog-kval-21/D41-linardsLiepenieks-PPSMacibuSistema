@@ -146,19 +146,20 @@ export default {
     },
 
     mounted() {
-        this.avaliableExercises = Array.prototype.slice.call(this.exercises, 0);
-        this.avaliableExercisesShow = this.avaliableExercises;
+
         this.fields.name = this.lesson.name;
         this.fields.nr = this.lesson.nr;
 
-        console.log(this.addedExercises);
-
+        this.avaliableExercises = this.exercises;
         this.lessonExercises.forEach(function (exercise) {
             this.addedExercises.push(exercise);
             this.addedExercisesShow.push(exercise);
-            this.avaliableExercises.splice(this.avaliableExercises.indexOf(exercise), 1);
+            this.avaliableExercises.splice(this.avaliableExercises.findIndex((element)=>element.id == exercise.id), 1);
 
-        }.bind(this))
+
+        }.bind(this));
+        this.avaliableExercisesShow = this.avaliableExercises;
+
 
 
         tinymce.init({

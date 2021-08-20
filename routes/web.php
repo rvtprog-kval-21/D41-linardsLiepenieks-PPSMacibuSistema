@@ -70,6 +70,9 @@ Route::post('/courses/{course}/lessons/post', [App\Http\Controllers\LessonContro
 Route::get('/courses/{course}/lessons/del/{lesson}', [App\Http\Controllers\LessonController::class, 'delete'])->middleware('auth');
 Route::get('/courses/{course}/lessons/edit/{lesson}', [App\Http\Controllers\LessonController::class, 'edit'])->middleware('auth');
 Route::patch('/courses/{course}/lessons/edit/{lesson}/update', [App\Http\Controllers\LessonController::class, 'update'])->middleware('auth');
+Route::get('/courses/{course}/users', [App\Http\Controllers\CoursesController::class, 'users'])->middleware('auth');
+Route::get('/courses/{course}/users/exercises', [App\Http\Controllers\CoursesController::class, 'userExercises'])->middleware('auth');
+Route::post('/courses/{course}/users', [App\Http\Controllers\CoursesController::class, 'userEdit'])->middleware('auth');
 
 
 

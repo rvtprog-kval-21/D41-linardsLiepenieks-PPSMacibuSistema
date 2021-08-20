@@ -104,8 +104,22 @@ export default {
     props: ['exercises', 'solutions', 'submissions', 'exercise_tags', 'tags'],
 
     mounted() {
-        this.searchExercises = Array.prototype.slice.call(this.exercises, 0);
+        //console.log(this.exercises);
 
+        this.showableExercises = this.exercises;
+
+
+        this.showableExercises.forEach(
+            element=>element['scheduledExerciseTime'] = Date.parse(element['scheduledExerciseTime'])
+        )
+        this.showableExercises.forEach(
+            element=>element['scheduledExerciseTime']>=Date.now() ? this.showableExercises.splice(this.showableExercises.indexOf(element), 1) : null
+        )
+
+        //console.log(this.exercises);
+
+
+        this.searchExercises = this.exercises;
 
         this.searchExercises.forEach(
             element => element['reitings'] =
@@ -127,6 +141,7 @@ export default {
             key: "",
             filter: 0,
             way: 1,
+            showableExercises:[],
         };
     },
 

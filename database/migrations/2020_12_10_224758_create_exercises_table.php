@@ -24,6 +24,8 @@ class CreateExercisesTable extends Migration
             $table->integer('difficulty')->default('0');
             $table->float('time');
             $table->float('memory');
+            $table->boolean('scheduledExercise')->default(false);
+            $table->date('scheduledExerciseTime')->nullable();
             $table->timestamps();
 
             //$table->index('uzd_id');

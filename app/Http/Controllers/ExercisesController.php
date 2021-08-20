@@ -106,7 +106,6 @@ class ExercisesController extends Controller
     {
         $this->authorize('create', Exercise::class);
 
-
         $data = request()->validate([
             'kods' => ['required', 'unique:exercises'],
             'nosaukums' => 'required',
@@ -117,9 +116,22 @@ class ExercisesController extends Controller
             'time' => 'required',
             'score' => 'required',
             'difficulty' => 'required',
+            'showExercise' => '',
+            'showTime' => '',
             'tags' => ''
 
         ]);
+
+        if(!array_key_exists('showExercise', $data))
+        {
+            $data['showTime'] = null;
+        }
+        else
+        {
+            $data['showExercise'] = true;
+        }
+        //dd($data);
+
 
         $tests = request()->validate([
 
@@ -142,6 +154,8 @@ class ExercisesController extends Controller
             'time' => $data['time'],
             'score' => $data['score'],
             'difficulty' => $data['difficulty'],
+            'scheduledExercise' => $data['showExercise'],
+            'scheduledExerciseTime' => $data['showTime'],
         ]);
         if ($data['tags'] ?? null) {
 
@@ -174,7 +188,7 @@ class ExercisesController extends Controller
 
 
         $data = request()->validate([
-            'kods' => ['required', 'unique:exercises,'.$exercise->id],
+            'kods' => ['required'],
             'nosaukums' => 'required',
             'ievaddati' => 'required',
             'izvaddati' => 'required',

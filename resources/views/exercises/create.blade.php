@@ -3,7 +3,7 @@
 
 @section('content_header')
     <div class="row justify-content-between PPS-page-title">
-    <div>Izveidot jaunu Uzdevumu</div>
+        <div>Izveidot jaunu Uzdevumu</div>
     </div>
 @stop
 @section('content')
@@ -144,9 +144,22 @@
                                 </div>
 
                             </div>
+                            <div class="form-group PPS-page-title p-0 m-3 d-flex">
+                                    <label for="showExercise" style="font-size: 20px;">Iestatīt uzdevuma parādīšanās laiku</label>
+                                    <input class="form-control col-1" type="checkbox"
+                                           id="showExercise"
+                                           name="showExercise"
+                                    >
+                                <input style="font-size: 15px;" type="datetime-local" id="showTime" name="showTime">
+
+                            @if ($errors->has('difficulty'))
+                                    <strong style="font-size: 15px;">{{ $errors->first('difficulty') }}</strong>
+                                @endif
+                            </div>
                             <div class="w-100 text-center">
                                 Tagi
-                                <select id="tags" name="tags[]" multiple class="PPS-info-button w-100 text-center" style="font-size: 20px;">
+                                <select id="tags" name="tags[]" multiple class="PPS-info-button w-100 text-center"
+                                        style="font-size: 20px;">
                                     @foreach($tags as $tag)
                                         <option value="{{$tag->id}}">{{$tag->name}}</option>
                                     @endforeach
@@ -163,7 +176,6 @@
                         @if ($errors->has('tests'))
                             <strong>{{ $errors->first('tests') }}</strong>
                         @endif
-
 
 
                         <div>

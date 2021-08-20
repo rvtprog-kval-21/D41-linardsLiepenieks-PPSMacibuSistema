@@ -13,6 +13,8 @@ class CreateExerciseLessonTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('exercise_lesson');
+
         Schema::create('exercise_lesson', function(Blueprint $table)
         {
             $table->id();
@@ -30,7 +32,8 @@ class CreateExerciseLessonTable extends Migration
     public function down()
     {
         Schema::table('exercise_lesson', function (Blueprint $table) {
-            //
+            Schema::dropIfExists('exercise_lesson');
+
         });
     }
 }

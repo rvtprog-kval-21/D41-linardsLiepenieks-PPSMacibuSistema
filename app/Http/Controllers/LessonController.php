@@ -38,11 +38,14 @@ class LessonController extends Controller
 
         ]);
 
+
+
         if ($data['exercises'] ?? null) {
             $exercises = $data['exercises'];
             foreach ($exercises as $exercise) {
 
-                $lesson->exercises()->attach(Exercise::find($exercise['id'])->first());
+
+                $lesson->exercises()->attach(Exercise::find($exercise['id']));
             }
         }
         //return redirect('/courses/show/'.$course->id);
@@ -65,7 +68,7 @@ class LessonController extends Controller
             $exercises = $data['exercises'];
             foreach ($exercises as $exercise) {
 
-                $lesson->exercises()->attach(Exercise::find($exercise['id'])->first());
+                $lesson->exercises()->attach(Exercise::find($exercise['id']));
             }
         }
         $lesson->update([

@@ -12,19 +12,30 @@
 
 @section('content')
     <div id="app">
+        @if($course->user_id != null)
+            @if($course->user_id == \Illuminate\Support\Facades\Auth::user()->id && \Illuminate\Support\Facades\Auth::user()->teacher == 1)
+                <div class="row">
+                    <button type="button" class=" col-2 btn-block btn PPS-add-button btn-xs m-0"
+                            onclick="location.href='/courses/{{$course->id}}/lessons/create'">
+                        Pievienot nodarbību
+                    </button>
+                    <button type="button" class=" col-2 btn-block btn PPS-add-button btn-xs m-0"
+                            onclick="location.href='/courses/{{$course->id}}/users'">
+                        Pievienot dalībniekus
+                    </button>
+                    <button type="button" class=" col-2 btn-block btn PPS-info-button btn-xs m-0"
+                            onclick="location.href='/courses/{{$course->id}}/users/exercises'">
+                        Apskatīt dalībnieku izpildītos uzdevumus
+                    </button>
+                </div>
+            @endif
+        @endif
         <div class="PPS-content-wrapper d-flex justify-content-center" style="color: black;">
             <div class="col-8 p-4">
                 {!! $course->desc !!}
             </div>
         </div>
-        @if($course->user_id != null)
-        @if($course->user_id == \Illuminate\Support\Facades\Auth::user()->id)
-            <button type="button" class=" col-2 btn-block btn PPS-add-button btn-xs m-0"
-                    onclick="location.href='/courses/{{$course->id}}/lessons/create'">
-                Pievienot nodarbību
-            </button>
-        @endif
-        @endif
+
         <div class="d-flex justify-content-center flex-wrap">
 
 
@@ -37,7 +48,7 @@
                     </div>
                     <div class="row">
                         @if($course->user_id != null)
-                            @if($course->user_id == \Illuminate\Support\Facades\Auth::user()->id)
+                            @if($course->user_id == \Illuminate\Support\Facades\Auth::user()->id && \Illuminate\Support\Facades\Auth::user()->teacher == 1)
                                 <button type="button" class="col btn-block btn PPS-delete-button btn-xs m-0"
                                         onclick="location.href='/courses/{{$course->id}}/lessons/del/{{$lesson->id}}'">
                                     Dzēst nodarbību
@@ -73,11 +84,12 @@
                             <div id="collapse{{$lesson->id}}" class="collapse" aria-labelledby="heading{{$lesson->id}}"
                                  data-parent="#accordion{{$lesson->id}}">
                                 <div class="card-body">
-                                    <exercise-search :exercises="{{$lesson->exercises()->orderBy('difficulty', 'asc')->get()}}"
-                                                     :solutions="{{\App\Models\Solution::All()}}"
-                                                     :submissions="{{\App\Models\Submission::All()}}"
-                                                     :exercise_tags="{{DB::table('exercise_tag')->get()}}"
-                                                     :tags="{{\App\Models\Tag::All()}}"></exercise-search>
+                                    <exercise-search
+                                        :exercises="{{$lesson->exercises()->orderBy('difficulty', 'asc')->get()}}"
+                                        :solutions="{{\App\Models\Solution::All()}}"
+                                        :submissions="{{\App\Models\Submission::All()}}"
+                                        :exercise_tags="{{DB::table('exercise_tag')->get()}}"
+                                        :tags="{{\App\Models\Tag::All()}}"></exercise-search>
 
                                 </div>
                             </div>

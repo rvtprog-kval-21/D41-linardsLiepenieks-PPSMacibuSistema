@@ -2610,6 +2610,170 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddUserToCourse.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddUserToCourse.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['users', 'course', 'courseUsers'],
+  data: function data() {
+    return {
+      avaliableUsers: [],
+      avaliableUsersShow: [],
+      addedUsers: [],
+      addedUsersShow: [],
+      message: '',
+      messageRemove: '',
+      fields: {},
+      errors: {}
+    };
+  },
+  mounted: function mounted() {
+    console.log(this.users);
+    this.avaliableUsers = this.users;
+    this.courseUsers.forEach(function (user) {
+      this.addedUsers.push(user);
+      this.addedUsersShow.push(user);
+      this.avaliableUsers.splice(this.avaliableUsers.findIndex(function (element) {
+        return element.id == user.id;
+      }), 1);
+    }.bind(this));
+    this.avaliableUsersShow = this.avaliableUsers;
+  },
+  methods: {
+    addExercise: function addExercise(user) {
+      this.avaliableUsers.splice(this.avaliableUsers.indexOf(user), 1);
+      this.addedUsers.push(user);
+      this.addedUsersShow = this.addedUsers;
+      this.messageRemove = '';
+      this.searchBarChangeAdd('');
+    },
+    removeExercise: function removeExercise(user) {
+      this.addedUsers.splice(this.addedUsers.indexOf(user), 1);
+      this.avaliableUsers.push(user);
+      this.messageRemove = '';
+      this.searchBarChangeRemove('');
+    },
+    searchBarChangeAdd: function searchBarChangeAdd(input) {
+      input = input.toLowerCase();
+
+      if (input === '') {
+        this.avaliableUsersShow = this.avaliableUsers;
+        return;
+      }
+
+      this.avaliableUsersShow = this.avaliableUsers.filter(function (item) {
+        return item.name.toLowerCase().indexOf(input) > -1;
+      });
+    },
+    searchBarChangeRemove: function searchBarChangeRemove(input) {
+      input = input.toLowerCase();
+
+      if (input === '') {
+        this.addedUsersShow = this.addedUsers;
+        return;
+      }
+
+      this.addedUsersShow = this.addedUsers.filter(function (item) {
+        return item.name.toLowerCase().indexOf(input) > -1;
+      });
+    },
+    submit: function submit() {
+      var _this = this;
+
+      this.errors = {};
+      this.fields.users = this.addedUsers;
+      axios.post('/courses/' + this.course.id + '/users', this.fields).then(function (response) {
+        console.log(response);
+        window.location.href = "/courses/show/" + _this.course.id;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors || {};
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BannerEdit.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BannerEdit.vue?vue&type=script&lang=js& ***!
@@ -2998,16 +3162,17 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.avaliableExercises = Array.prototype.slice.call(this.exercises, 0);
-    this.avaliableExercisesShow = this.avaliableExercises;
     this.fields.name = this.lesson.name;
     this.fields.nr = this.lesson.nr;
-    console.log(this.addedExercises);
+    this.avaliableExercises = this.exercises;
     this.lessonExercises.forEach(function (exercise) {
       this.addedExercises.push(exercise);
       this.addedExercisesShow.push(exercise);
-      this.avaliableExercises.splice(this.avaliableExercises.indexOf(exercise), 1);
+      this.avaliableExercises.splice(this.avaliableExercises.findIndex(function (element) {
+        return element.id == exercise.id;
+      }), 1);
     }.bind(this));
+    this.avaliableExercisesShow = this.avaliableExercises;
     _public_vendor_tinymce__WEBPACK_IMPORTED_MODULE_0___default.a.init({
       selector: "textarea",
       elements: "editor",
@@ -3221,7 +3386,16 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.searchExercises = Array.prototype.slice.call(this.exercises, 0);
+    //console.log(this.exercises);
+    this.showableExercises = this.exercises;
+    this.showableExercises.forEach(function (element) {
+      return element['scheduledExerciseTime'] = Date.parse(element['scheduledExerciseTime']);
+    });
+    this.showableExercises.forEach(function (element) {
+      return element['scheduledExerciseTime'] >= Date.now() ? _this.showableExercises.splice(_this.showableExercises.indexOf(element), 1) : null;
+    }); //console.log(this.exercises);
+
+    this.searchExercises = this.exercises;
     this.searchExercises.forEach(function (element) {
       return element['reitings'] = _this.findInArr(_this.solutions, element.id) / _this.findInArr(_this.submissions, element.id) ? _this.findInArr(_this.solutions, element.id) / _this.findInArr(_this.submissions, element.id) : 0;
     }); //console.log(this.searchExercises);
@@ -3232,7 +3406,8 @@ __webpack_require__.r(__webpack_exports__);
       message: '',
       key: "",
       filter: 0,
-      way: 1
+      way: 1,
+      showableExercises: []
     };
   },
   methods: {
@@ -35341,6 +35516,262 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddUserToCourse.vue?vue&type=template&id=c22013f2&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddUserToCourse.vue?vue&type=template&id=c22013f2& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submit($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "row d-flex justify-content-center" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c(
+              "div",
+              { staticClass: "box-body", staticStyle: { "font-size": "20px" } },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "row d-flex justify-content-center overflow-auto",
+                    staticStyle: { color: "black", height: "30rem" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "col-6 PPS-content-wrapper" },
+                      [
+                        _c("div", { staticClass: "row mb-2" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.message,
+                                expression: "message"
+                              }
+                            ],
+                            staticClass: "form-control rounded col",
+                            attrs: {
+                              type: "search",
+                              placeholder: "Meklēt",
+                              "aria-label": "Search",
+                              id: "searchBar",
+                              "aria-describedby": "search-addon"
+                            },
+                            domProps: { value: _vm.message },
+                            on: {
+                              input: [
+                                function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.message = $event.target.value
+                                },
+                                function($event) {
+                                  return _vm.searchBarChangeAdd(_vm.message)
+                                }
+                              ]
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.avaliableUsersShow, function(user) {
+                          return _c("div", [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "row m-0 mb-1 p-1 PPS-content-wrapper PPS-user text-center align-items-center rounded",
+                                staticStyle: { "background-color": "white" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addExercise(user)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._m(1, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col text-center" }, [
+                                  _vm._v(_vm._s(user.name))
+                                ])
+                              ]
+                            )
+                          ])
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-6 PPS-content-wrapper" },
+                      [
+                        _c("div", { staticClass: "row mb-2" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.messageRemove,
+                                expression: "messageRemove"
+                              }
+                            ],
+                            staticClass: "form-control rounded col",
+                            attrs: {
+                              type: "search",
+                              placeholder: "Meklēt",
+                              "aria-label": "Search",
+                              id: "searchBarRemove",
+                              "aria-describedby": "search-addon"
+                            },
+                            domProps: { value: _vm.messageRemove },
+                            on: {
+                              input: [
+                                function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.messageRemove = $event.target.value
+                                },
+                                function($event) {
+                                  return _vm.searchBarChangeRemove(
+                                    _vm.messageRemove
+                                  )
+                                }
+                              ]
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(2)
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.addedUsersShow, function(user) {
+                          return _c("div", [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "row m-0 mb-1 p-1 PPS-content-wrapper PPS-user text-center align-items-center rounded",
+                                staticStyle: { "background-color": "white" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.removeExercise(user)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._m(3, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col text-center" }, [
+                                  _vm._v(_vm._s(user.name))
+                                ])
+                              ]
+                            )
+                          ])
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", { staticClass: "box-footer" })
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "input-group-text border-0 col-2 ",
+        attrs: { id: "search-addon" }
+      },
+      [_c("i", { staticClass: "fas fa-search" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c("i", { staticClass: "fas fa-plus-square PPS-add-button p-0" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      {
+        staticClass: "input-group-text border-0 col-2 ",
+        attrs: { id: "search-addon-remove" }
+      },
+      [_c("i", { staticClass: "fas fa-search" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c("i", { staticClass: "fas fa-minus-square PPS-delete-button p-0" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "button",
+        { staticClass: "btn PPS-info-button", attrs: { type: "submit" } },
+        [_vm._v("Saglabāt")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BannerEdit.vue?vue&type=template&id=7592fd01&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BannerEdit.vue?vue&type=template&id=7592fd01& ***!
@@ -63472,6 +63903,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('add-polygon', __webpack_re
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('editor', __webpack_require__(/*! ../../js/components/TinyMCE.vue */ "./resources/js/components/TinyMCE.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('add-exercise-to-lesson', __webpack_require__(/*! ../../js/components/AddExerciseToLesson.vue */ "./resources/js/components/AddExerciseToLesson.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('edit-lesson', __webpack_require__(/*! ../../js/components/EditLesson.vue */ "./resources/js/components/EditLesson.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('add-user-to-course', __webpack_require__(/*! ../../js/components/AddUserToCourse.vue */ "./resources/js/components/AddUserToCourse.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -63821,6 +64253,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTest_vue_vue_type_template_id_591080b8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTest_vue_vue_type_template_id_591080b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/AddUserToCourse.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/AddUserToCourse.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddUserToCourse_vue_vue_type_template_id_c22013f2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddUserToCourse.vue?vue&type=template&id=c22013f2& */ "./resources/js/components/AddUserToCourse.vue?vue&type=template&id=c22013f2&");
+/* harmony import */ var _AddUserToCourse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddUserToCourse.vue?vue&type=script&lang=js& */ "./resources/js/components/AddUserToCourse.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddUserToCourse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddUserToCourse_vue_vue_type_template_id_c22013f2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddUserToCourse_vue_vue_type_template_id_c22013f2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AddUserToCourse.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AddUserToCourse.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/AddUserToCourse.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddUserToCourse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AddUserToCourse.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddUserToCourse.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddUserToCourse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AddUserToCourse.vue?vue&type=template&id=c22013f2&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/AddUserToCourse.vue?vue&type=template&id=c22013f2& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddUserToCourse_vue_vue_type_template_id_c22013f2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AddUserToCourse.vue?vue&type=template&id=c22013f2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddUserToCourse.vue?vue&type=template&id=c22013f2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddUserToCourse_vue_vue_type_template_id_c22013f2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddUserToCourse_vue_vue_type_template_id_c22013f2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

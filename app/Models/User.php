@@ -73,5 +73,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(BannerImage::class);
     }
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
 
 }

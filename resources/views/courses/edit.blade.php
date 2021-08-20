@@ -70,7 +70,7 @@
 
                             <div class="row justify-content-between mb-2">
                                 <div>
-                                    <label style="font-size: 20px;">Publisks</label>
+                                    <label style="font-size: 20px;">Privāts</label>
                                     <input class="form-control" type="checkbox"
                                            id="private"
                                            name="private"

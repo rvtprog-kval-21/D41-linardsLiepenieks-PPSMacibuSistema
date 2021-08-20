@@ -110,4 +110,35 @@ class CoursesController extends Controller
     {
         return view('courses/show', compact('course'));
     }
+
+    public function users(Course $course)
+    {
+        $users = $course->user()->get();
+        return view('courses/users', compact('course', 'users'));
+    }
+
+    public function userEdit(Course $course)
+    {
+        $data = request()->validate([
+            'users'=>'array'
+        ]);
+
+        $course->user()->detach();
+
+        if ($data['users'] ?? null) {
+            $users = $data['users'];
+            foreach ($users as $user) {
+
+                $course->user()->attach(User::find($user['id']));
+            }
+        }
+        //return $data['users'];
+    }
+
+    public function  userExercises(Course $course)
+    {
+        return view('courses/userExercises', compact('course'));
+    }
+
+
 }

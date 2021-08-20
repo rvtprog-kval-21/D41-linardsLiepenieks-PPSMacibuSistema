@@ -17,7 +17,6 @@
 
             @csrf
 
-
             <edit-lesson
                 name="exercises"
                 id="exercises"

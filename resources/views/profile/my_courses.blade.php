@@ -78,7 +78,84 @@ text-overflow: ellipsis;
 
                 @endforeach
             </div>
+
+
         @endif
+    </div>
+    @if(\Illuminate\Support\Facades\Auth::user()->courses()->where('show', '=', 1)->count()>0)
+    <h2 class="mb-4" style="color: black;">Mani kursi</h2>
+    @endif
+
+    <div class="d-flex justify-content-center flex-wrap">
+
+
+        @foreach(\Illuminate\Support\Facades\Auth::user()->courses()->where('show', '=', 1)->get() as $course)
+            <div
+                class="PPS-content-wrapper PPS-exercise overflow-hidden col-5" style="border-radius: 10px 10px 5px 5px;
+                        width: 50%;
+                        padding: 0px;
+                        margin: 10px;
+                        color: black;
+                        height: 20rem;
+text-overflow: ellipsis;
+                                overflow: hidden;">
+                <div class="row justify-content-between PPS-content-heading text-center">
+                    <div class="col-5"
+                         style="text-overflow: ellipsis;
+                                overflow: hidden;">{{$course->name}}</div>
+                    <div class="col-7" style="text-overflow: ellipsis;
+                                overflow: hidden;"><em>{{$course->topic}}</em></div>
+                </div>
+                <div>
+                    <div class="p-3"><a style="color: black;"
+                                        href="/courses/show/{{$course->id}}">{!! $course->desc !!}</a></div>
+                    <button type="button" class="col m-0 btn-block btn PPS-info-button btn-xs position-absolute"
+                            style="bottom: 0;"
+                            onclick="location.href='/courses/show/{{$course->id}}'">
+                        Apskatīt kursu
+                    </button>
+                </div>
+            </div>
+
+        @endforeach
+    </div>
+
+    @if(\App\Models\Course::all()->where('show', '=', 1)->count()>0)
+        <h2 class="mb-4" style="color: black;">Publiskie kursi</h2>
+    @endif
+
+    <div class="d-flex justify-content-center flex-wrap">
+
+        @foreach(\App\Models\Course::all()->where('show', '=', 1)->where('private', '=', 0) as $course)
+            <div
+                class="PPS-content-wrapper PPS-exercise overflow-hidden col-5" style="border-radius: 10px 10px 5px 5px;
+                        width: 50%;
+                        padding: 0px;
+                        margin: 10px;
+                        color: black;
+                        height: 20rem;
+text-overflow: ellipsis;
+                                overflow: hidden;">
+                <div class="row justify-content-between PPS-content-heading text-center">
+                    <div class="col-5"
+                         style="text-overflow: ellipsis;
+                                overflow: hidden;">{{$course->name}}</div>
+                    <div class="col-7" style="text-overflow: ellipsis;
+                                overflow: hidden;"><em>{{$course->topic}}</em></div>
+                </div>
+                <div>
+                    <div class="p-3"><a style="color: black;"
+                                        href="/courses/show/{{$course->id}}">{!! $course->desc !!}</a></div>
+                    <button type="button" class="col m-0 btn-block btn PPS-info-button btn-xs position-absolute"
+                            style="bottom: 0;"
+                            onclick="location.href='/courses/show/{{$course->id}}'">
+                        Apskatīt kursu
+                    </button>
+                </div>
+            </div>
+
+        @endforeach
+    </div>
     </div>
 
 
