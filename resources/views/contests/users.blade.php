@@ -4,8 +4,7 @@
 
 @section('content_header')
     <div class=" justify-content-between PPS-page-title">
-        <div class="mb-3 p-0">{{$course->name}}</div>
-        <div class="p-2"><h3><em>{{$course->topic}}</em></h3></div>
+        <div class="mb-3 p-0">{{$contest->name}}</div>
     </div>
 @stop
 
@@ -16,9 +15,9 @@
 
         <add-user-to-course
         :users="{{\App\Models\User::all()}}"
-        :course="{{$course}}"
+        :course="{{$contest}}"
         :course-users="{{$users}}"
-        :path="/courses/"></add-user-to-course>
+        :path="/contests/"></add-user-to-course>
 
 
     </div>

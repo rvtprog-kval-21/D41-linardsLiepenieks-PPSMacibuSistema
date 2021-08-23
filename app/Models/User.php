@@ -78,4 +78,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class);
     }
 
+    public function contest()
+    {
+        return $this->belongsToMany(Contest::class);
+    }
+
 }

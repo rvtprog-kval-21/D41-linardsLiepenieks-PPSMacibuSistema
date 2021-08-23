@@ -74,6 +74,19 @@ Route::get('/courses/{course}/users', [App\Http\Controllers\CoursesController::c
 Route::get('/courses/{course}/users/exercises', [App\Http\Controllers\CoursesController::class, 'userExercises'])->middleware('auth');
 Route::post('/courses/{course}/users', [App\Http\Controllers\CoursesController::class, 'userEdit'])->middleware('auth');
 
+Route::get('/contests', [App\Http\Controllers\ContestController::class, 'index'])->middleware('auth');
+Route::get('/contests/create', [App\Http\Controllers\ContestController::class, 'create'])->middleware('auth');
+Route::post('/contests/create', [App\Http\Controllers\ContestController::class, 'store'])->middleware('auth');
+Route::get('/contests/del/{contest}', [App\Http\Controllers\ContestController::class, 'delete'])->middleware('auth');
+Route::get('/contests/edit/{contest}', [App\Http\Controllers\ContestController::class, 'edit'])->middleware('auth');
+Route::patch('/contests/edit/{contest}', [App\Http\Controllers\ContestController::class, 'update'])->middleware('auth');
+Route::get('/contests/show/{contest}', [App\Http\Controllers\ContestController::class, 'showContest'])->middleware('auth');
+Route::get('/contests/{contest}/users', [App\Http\Controllers\ContestController::class, 'users'])->middleware('auth');
+Route::post('/contests/{contest}/users', [App\Http\Controllers\ContestController::class, 'userEdit'])->middleware('auth');
+
+
+
+
 
 
 

@@ -74,7 +74,7 @@
 
 export default {
 
-    props: ['users', 'course', 'courseUsers'],
+    props: ['users', 'course', 'courseUsers', 'path'],
     data() {
         return {
             avaliableUsers: [],
@@ -154,9 +154,9 @@ export default {
         submit() {
             this.errors = {};
             this.fields.users = this.addedUsers;
-            axios.post('/courses/' + this.course.id + '/users', this.fields).then(response => {
+            axios.post(this.path + this.course.id + '/users', this.fields).then(response => {
                 console.log(response);
-                window.location.href = "/courses/show/" + this.course.id;
+                window.location.href = this.path+"show/" + this.course.id;
 
             }).catch(error => {
                 if (error.response.status === 422) {

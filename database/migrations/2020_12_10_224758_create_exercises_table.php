@@ -25,7 +25,8 @@ class CreateExercisesTable extends Migration
             $table->float('time');
             $table->float('memory');
             $table->boolean('scheduledExercise')->default(false);
-            $table->date('scheduledExerciseTime')->nullable();
+            $table->date('scheduledExerciseTime')->nullable(); //Contest end
+            $table->date('scheduledContestExerciseTime')->nullable(); //Contest Start
             $table->timestamps();
 
             //$table->index('uzd_id');

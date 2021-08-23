@@ -266,6 +266,12 @@ return [
             'icon' => 'fas fa-atlas',
             'can' => 'is-logged-in',
         ],
+        [
+            'text' => 'Sacensības',
+            'url'  => 'contests',
+            'icon' => 'fas fa-award',
+            'can' => 'is-logged-in',
+        ],
         /*[
             'text' => 'Teorija',
             'url'  => 'theory',

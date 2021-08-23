@@ -151,11 +151,9 @@
                                            name="showExercise"
                                     >
                                 <input style="font-size: 15px;" type="datetime-local" id="showTime" name="showTime">
-
-                            @if ($errors->has('difficulty'))
-                                    <strong style="font-size: 15px;">{{ $errors->first('difficulty') }}</strong>
-                                @endif
                             </div>
+
+
                             <div class="w-100 text-center">
                                 Tagi
                                 <select id="tags" name="tags[]" multiple class="PPS-info-button w-100 text-center"

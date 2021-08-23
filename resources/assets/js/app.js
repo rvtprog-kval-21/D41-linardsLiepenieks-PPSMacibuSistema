@@ -50,6 +50,8 @@ Vue.component('editor', require('../../js/components/TinyMCE.vue').default);
 Vue.component('add-exercise-to-lesson', require('../../js/components/AddExerciseToLesson.vue').default);
 Vue.component('edit-lesson', require('../../js/components/EditLesson.vue').default);
 Vue.component('add-user-to-course', require('../../js/components/AddUserToCourse.vue').default);
+Vue.component('create-contest', require('../../js/components/CreateContest.vue').default);
+Vue.component('edit-contest', require('../../js/components/EditContest.vue').default);
 
 
 

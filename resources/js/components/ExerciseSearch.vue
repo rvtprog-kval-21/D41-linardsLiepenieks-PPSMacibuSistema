@@ -101,20 +101,21 @@
 <script>
 export default {
 
-    props: ['exercises', 'solutions', 'submissions', 'exercise_tags', 'tags'],
+    props: ['exercises', 'solutions', 'submissions', 'exercise_tags', 'tags', 'contest'],
 
     mounted() {
-        //console.log(this.exercises);
+        console.log(this.exercises);
 
-        this.showableExercises = this.exercises;
+        if (!this.contest) {
+            this.exercises.forEach(
+                element => element['scheduledExerciseTime'] = Date.parse(element['scheduledExerciseTime'])
+            )
+            this.exercises.forEach(
+                element=>element['scheduledExerciseTime']>=Date.now() ? this.exercises.splice(element) : null
+            )
+        }
+        console.log(this.exercises)
 
-
-        this.showableExercises.forEach(
-            element=>element['scheduledExerciseTime'] = Date.parse(element['scheduledExerciseTime'])
-        )
-        this.showableExercises.forEach(
-            element=>element['scheduledExerciseTime']>=Date.now() ? this.showableExercises.splice(this.showableExercises.indexOf(element), 1) : null
-        )
 
         //console.log(this.exercises);
 
@@ -141,7 +142,7 @@ export default {
             key: "",
             filter: 0,
             way: 1,
-            showableExercises:[],
+            showableExercises: [],
         };
     },
 

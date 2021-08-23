@@ -125,12 +125,11 @@ class ExercisesController extends Controller
         if(!array_key_exists('showExercise', $data))
         {
             $data['showTime'] = null;
-        }
-        else
-        {
             $data['showExercise'] = true;
+
         }
         //dd($data);
+
 
 
         $tests = request()->validate([
