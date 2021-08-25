@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\Contest;
 use App\Models\Profile;
 use App\Models\Solution;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,6 +27,8 @@ class SendSubmissionListener implements ShouldQueue
 
         $mode_id = $this->pickLanguage($event->submission->mode); //Id of programming language
         $correct = true; // Bool to check if solution is correct
+
+        dd($event->exercise->contest()->get());
 
         $data = $this->sendBatch($mode_id, $event);
         //dd($data);
@@ -86,6 +89,8 @@ class SendSubmissionListener implements ShouldQueue
 
         }
         $event->exercise->save();
+
+
 
         return;
 

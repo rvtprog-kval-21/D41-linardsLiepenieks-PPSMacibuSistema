@@ -83,6 +83,7 @@ Route::patch('/contests/edit/{contest}', [App\Http\Controllers\ContestController
 Route::get('/contests/show/{contest}', [App\Http\Controllers\ContestController::class, 'showContest'])->middleware('auth');
 Route::get('/contests/{contest}/users', [App\Http\Controllers\ContestController::class, 'users'])->middleware('auth');
 Route::post('/contests/{contest}/users', [App\Http\Controllers\ContestController::class, 'userEdit'])->middleware('auth');
+Route::get('/contests/{contest}/users/exercises', [App\Http\Controllers\ContestController::class, 'userExercises'])->middleware('auth');
 
 
 

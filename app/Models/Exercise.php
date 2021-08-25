@@ -32,6 +32,10 @@ class Exercise extends Model
     {
         return $this->belongsToMany(Lesson::class);
     }
+    public function contest()
+    {
+        return $this->belongsToMany(Contest::class);
+    }
 
     protected $guarded = [];
 }

@@ -47,6 +47,9 @@ class ExercisesController extends Controller
 
     public function show(\App\Models\Exercise $exercise)
     {
+       if(!((strtotime(date("Y-m-d h:i:sa"))*1000)>(strtotime($exercise->scheduledContestExerciseTime)*1000))){
+           abort(403);
+       }
 
         return view('exercises/show', compact('exercise'));
     }

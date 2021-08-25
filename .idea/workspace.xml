@@ -5,24 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e7c1963-f02d-40fb-bd8e-f4824eb88a0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/CreateContest.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/EditContest.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contests/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contests/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contests/show.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contests/showContest.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contests/users.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/contests/userExercises.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContestController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExercisesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/adminlte.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/adminlte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_10_224758_create_exercises_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_10_224758_create_exercises_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/AddUserToCourse.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/AddUserToCourse.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ExerciseSearch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExerciseSearch.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/courses/users.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/courses/users.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/exercises/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/exercises/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exercise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contests/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contests/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -246,7 +235,8 @@
       <workItem from="1629282028301" duration="2867000" />
       <workItem from="1629469158662" duration="2614000" />
       <workItem from="1629628523659" duration="8362000" />
-      <workItem from="1629710250300" duration="9429000" />
+      <workItem from="1629710250300" duration="9902000" />
+      <workItem from="1629883878643" duration="5754000" />
     </task>
     <servers />
   </component>

@@ -36,8 +36,8 @@ class ContestController extends Controller
 
         $contest = Contest::create([
             'name' => $data['name'],
-            'contestStart' => $data['startTime'],
-            'contestEnd' => $data['endTime'],
+            'contestStart' => strtotime($data['startTime']),
+            'contestEnd' => strtotime($data['endTime']),
             'desc' => $data['apraksts'],
             'private' => $data['private'],
             'type' => $data['type'],
@@ -109,8 +109,8 @@ class ContestController extends Controller
         }
         $contest->update([
             'name' => $data['name'],
-            'contestStart' => $data['startTime'],
-            'contestEnd' => $data['endTime'],
+            'contestStart' => strtotime($data['startTime']),
+            'contestEnd' => strtotime($data['endTime']),
             'desc' => $data['apraksts'],
             'private' => $data['private'],
             'type' => $data['type'],
@@ -148,5 +148,9 @@ class ContestController extends Controller
             }
         }
         //return $data['users'];
+    }
+    public function  userExercises(Contest $contest)
+    {
+        return view('contests/userExercises', compact('contest'));
     }
 }
