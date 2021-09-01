@@ -80,10 +80,10 @@
                                                     <div class="col">{{$submission->created_at}}</div>
                                                     <div class="col">{{$submission->mode}}</div>
                                                     <div class="col">
-                                                        {{$submission->submissionTest->sortBy('time')->first()->time ? $submission->submissionTest->sortBy('time')->first()->time : '----'}}
+                                                        {{$submission->submissionTest->sortBy('time')->first() ? $submission->submissionTest->sortBy('time')->first()->time : '----'}}
                                                     </div>
                                                     <div class="col">
-                                                        {{$submission->submissionTest->sortBy('memory')->first()->memory ? $submission->submissionTest->sortBy('memory')->first()->memory : '----'}}
+                                                        {{$submission->submissionTest->sortBy('memory')->first() ? $submission->submissionTest->sortBy('memory')->first()->memory : '----'}}
                                                     </div>
                                                     <div class="col">
                                                         {{$submission->submissionTest->sum('correct') == $exercise->tests->count() ? 'Pareizi' : 'Nepareizi'}}

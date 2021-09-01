@@ -18,4 +18,8 @@ class Contest extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    public function submission()
+    {
+        return $this->belongsToMany(Submission::class);
+    }
 }

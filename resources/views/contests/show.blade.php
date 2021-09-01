@@ -120,7 +120,7 @@ text-overflow: ellipsis;
 
 
 
-        @foreach(\App\Models\Contest::all()->where('private','=', '0')->where('contestStart', '<', strtotime(\Carbon\Carbon::now()))->where('contestEnd', '>', strtotime(\Carbon\Carbon::now())) as $contest)
+        @foreach(\App\Models\Contest::all()->where('private','=', '0')->where('contestStart', '<', strtotime(\Carbon\Carbon::now())+10800)->where('contestEnd', '>', strtotime(\Carbon\Carbon::now())) as $contest)
 
                 <div
                     class="PPS-content-wrapper PPS-exercise overflow-hidden col-5" style="border-radius: 10px 10px 5px 5px;

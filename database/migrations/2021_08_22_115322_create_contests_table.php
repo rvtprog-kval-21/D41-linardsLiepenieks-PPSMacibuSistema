@@ -23,7 +23,6 @@ class CreateContestsTable extends Migration
             $table->boolean('private');
             $table->integer('user_id');
             $table->string('type');
-            $table->integer('minScore');
         });
     }
 

@@ -27,8 +27,11 @@ class SendSubmissionListener implements ShouldQueue
 
         $mode_id = $this->pickLanguage($event->submission->mode); //Id of programming language
         $correct = true; // Bool to check if solution is correct
+        $exercise_contests = $event->exercise->contest()->where('contestStart', '<', time() + 10800)->where('contestEnd', '>', time() + 10800)->get();
+        $contestScore = 0;
+        //dd($exercise_contests);
 
-        dd($event->exercise->contest()->get());
+
 
         $data = $this->sendBatch($mode_id, $event);
         //dd($data);
@@ -88,8 +91,30 @@ class SendSubmissionListener implements ShouldQueue
             ]);
 
         }
-        $event->exercise->save();
 
+        foreach ($exercise_contests as $contest) {
+
+            $spent_time = (time() + 10800 - $contest->contestStart) / 60;
+            if ($contest->type == 'contest' && $correct == true) {
+                if ($event->exercise->score > $spent_time) {
+                    $contestScore = $event->exercise->score - $spent_time;
+                } else {
+                    $contestScore = $event->exercise->minScore;
+                }
+
+
+            } else {
+                $testCaseScore = $event->exercise->score / $event->exercise->tests()->count();
+                $correctTests = $event->submission->submissionTest()->where('correct', '=', true)->count();
+                $contestScore = $testCaseScore * $correctTests;
+            }
+
+            $event->submission->contest()->attach($contest, ['score'=>$contestScore, 'user_id'=>Auth::user()->id, 'exercise_id'=>$event->exercise->id]);
+
+        }
+
+
+        $event->exercise->save();
 
 
         return;

@@ -127,6 +127,7 @@
                                         <strong style="font-size: 15px;">{{ $errors->first('score') }}</strong>
                                     @endif
                                 </div>
+
                                 <div class="form-group  p-0 m-0">
                                     <label style="font-size: 20px;">Grūtība</label>
                                     <input class="form-control" type="number"
@@ -137,6 +138,20 @@
                                     </input>
                                     @if ($errors->has('difficulty'))
                                         <strong style="font-size: 15px;">{{ $errors->first('difficulty') }}</strong>
+                                    @endif
+                                </div>
+
+                                <!-- Ievadlauks start -->
+                                <div class="form-group PPS-page-title p-0 m-0">
+                                    <label style="font-size: 20px;">Minimālais punktu skaits</label>
+                                    <input class="form-control" type="number"
+                                           id="minScore"
+                                           name="minScore" step="1" min="0"
+                                           value="{{old('minScore')??$exercise->minScore}}"
+                                    >
+                                    </input>
+                                    @if ($errors->has('minScore'))
+                                        <strong style="font-size: 15px;">{{ $errors->first('minScore') }}</strong>
                                     @endif
                                 </div>
                             </div>

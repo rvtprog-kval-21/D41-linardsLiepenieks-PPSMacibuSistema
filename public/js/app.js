@@ -3165,14 +3165,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['exercises', 'course'],
@@ -36647,56 +36639,6 @@ var render = function() {
                         }
                       }
                     })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group",
-                    staticStyle: { display: "block" }
-                  },
-                  [
-                    _c(
-                      "label",
-                      {
-                        staticStyle: { display: "inline" },
-                        attrs: { for: "minScore" }
-                      },
-                      [_vm._v("Minimālais punktu skaits")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.fields.minScore,
-                          expression: "fields.minScore"
-                        }
-                      ],
-                      staticStyle: { display: "inline" },
-                      attrs: {
-                        type: "number",
-                        id: "minScore",
-                        name: "minScore"
-                      },
-                      domProps: { value: _vm.fields.minScore },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.fields, "minScore", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors && _vm.errors.minScore
-                      ? _c("div", { staticStyle: { "font-size": "20px" } }, [
-                          _vm._v("Norādiet minimālo punktu skaitu")
-                        ])
-                      : _vm._e()
                   ]
                 ),
                 _vm._v(" "),

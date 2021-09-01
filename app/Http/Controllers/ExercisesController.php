@@ -47,7 +47,9 @@ class ExercisesController extends Controller
 
     public function show(\App\Models\Exercise $exercise)
     {
-       if(!((strtotime(date("Y-m-d h:i:sa"))*1000)>(strtotime($exercise->scheduledContestExerciseTime)*1000))){
+        //dd((strtotime($exercise->scheduledContestExerciseTime))- time());
+
+        if((strtotime($exercise->scheduledContestExerciseTime))> time()+10800){
            abort(403);
        }
 
@@ -121,6 +123,7 @@ class ExercisesController extends Controller
             'difficulty' => 'required',
             'showExercise' => '',
             'showTime' => '',
+            'minScore' => 'required',
             'tags' => ''
 
         ]);
@@ -158,6 +161,7 @@ class ExercisesController extends Controller
             'difficulty' => $data['difficulty'],
             'scheduledExercise' => $data['showExercise'],
             'scheduledExerciseTime' => $data['showTime'],
+            'minScore' => $data['minScore'],
         ]);
         if ($data['tags'] ?? null) {
 
@@ -199,6 +203,7 @@ class ExercisesController extends Controller
             'time' => 'required',
             'score' => 'required',
             'difficulty' => 'required',
+            'minScore' => 'required',
             'tags' => ''
 
         ]);
@@ -226,6 +231,8 @@ class ExercisesController extends Controller
             'time' => $data['time'],
             'score' => $data['score'],
             'difficulty' => $data['difficulty'],
+            'minScore' => $data['minScore'],
+
         ]);
 
 

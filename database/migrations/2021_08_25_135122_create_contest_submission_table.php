@@ -16,10 +16,11 @@ class CreateContestSubmissionTable extends Migration
         Schema::create('contest_submission', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('exercise_id');
             $table->integer('contest_id');
-            $table->integer('solution_id');
+            $table->integer('submission_id');
             $table->integer('user_id');
+            $table->integer('exercise_id');
+            $table->integer('score');
         });
     }
 

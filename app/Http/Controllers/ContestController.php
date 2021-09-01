@@ -30,7 +30,6 @@ class ContestController extends Controller
             'type' => 'required',
             'exercises' => 'array',
             'private' => 'required',
-            'minScore' => 'required'
         ]);
 
 
@@ -41,7 +40,6 @@ class ContestController extends Controller
             'desc' => $data['apraksts'],
             'private' => $data['private'],
             'type' => $data['type'],
-            'minScore' => $data['minScore'],
             'user_id' => Auth::user()->id,
 
 
@@ -89,7 +87,6 @@ class ContestController extends Controller
             'type' => 'required',
             'exercises' => 'array',
             'private' => 'required',
-            'minScore' => 'required'
         ]);
 
 
@@ -114,7 +111,6 @@ class ContestController extends Controller
             'desc' => $data['apraksts'],
             'private' => $data['private'],
             'type' => $data['type'],
-            'minScore' => $data['minScore'],
             'user_id' => Auth::user()->id,
 
         ]);

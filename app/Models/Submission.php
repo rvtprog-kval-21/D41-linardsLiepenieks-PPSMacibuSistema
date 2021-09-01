@@ -30,4 +30,8 @@ class Submission extends Model
     {
         return $this->hasOne(Solution::class);
     }
+    public function  contest()
+    {
+        return $this->belongsToMany(Contest::class);
+    }
 }

@@ -31,15 +31,7 @@
                                    value="1"
                                    v-model="fields.private">
                         </div>
-                        <div class="form-group" style="display: block;">
-                            <label for="minScore" style="display: inline;">Minimālais punktu skaits</label>
-                            <input type="number" style="display: inline;"
-                                   id="minScore"
-                                   name="minScore"
-                                   v-model="fields.minScore">
-                            <div v-if="errors && errors.minScore" style="font-size: 20px;">Norādiet minimālo punktu skaitu</div>
 
-                        </div>
 
                         <!-- Ievadlauks start -->
                         <div class="form-group PPS-page-title">

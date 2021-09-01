@@ -27,6 +27,7 @@ class CreateExercisesTable extends Migration
             $table->boolean('scheduledExercise')->default(false);
             $table->date('scheduledExerciseTime')->nullable(); //Contest end
             $table->date('scheduledContestExerciseTime')->nullable(); //Contest Start
+            $table->integer('minScore');
             $table->timestamps();
 
             //$table->index('uzd_id');
