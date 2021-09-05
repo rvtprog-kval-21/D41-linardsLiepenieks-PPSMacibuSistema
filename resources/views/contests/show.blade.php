@@ -62,6 +62,14 @@ text-overflow: ellipsis;
                                     style="bottom: 0;"
                                     onclick="location.href='/contests/show/{{$contest->id}}'">
                                 Apskatīt sacensības
+
+                                @if($contest->contestStart > strtotime(\Carbon\Carbon::now())+10800)
+                                    SACENSĪBAS SĀKSIES {{date("d/m/Y H:i:s", $contest->contestStart)}}
+                                @elseif($contest->contestEnd < strtotime(\Carbon\Carbon::now())+10800)
+                                    SACENSĪBAS BEIGUŠĀS {{date("d/m/Y H:i:s",$contest->contestEnd)}}
+                                @else
+                                    SACENSĪBAS ŠOBRĪD NORISINĀS
+                                @endif
                             </button>
                         </div>
                     </div>
@@ -71,12 +79,12 @@ text-overflow: ellipsis;
     </div>
 
     <div class="m-0 justify-content-center">
-        @if(\Illuminate\Support\Facades\Auth::user()->contest()->count() >0)
+        @if(\Illuminate\Support\Facades\Auth::user()->contest()->where('contestStart', '<', strtotime(\Carbon\Carbon::now())+10800)->where('contestEnd', '>', strtotime(\Carbon\Carbon::now()))->count() >0)
             <h2 class="mb-4" style="color: black;">Manas sacensības</h2>
         @endif
         <div class="d-flex justify-content-center flex-wrap">
 
-            @foreach(\Illuminate\Support\Facades\Auth::user()->contest()->get() as $contest)
+            @foreach(\Illuminate\Support\Facades\Auth::user()->contest()->where('contestStart', '<', strtotime(\Carbon\Carbon::now())+10800)->where('contestEnd', '>', strtotime(\Carbon\Carbon::now()))->get() as $contest)
                 <div
                     class="PPS-content-wrapper PPS-exercise overflow-hidden col-5" style="border-radius: 10px 10px 5px 5px;
                         width: 50%;
@@ -104,15 +112,19 @@ text-overflow: ellipsis;
                                 style="bottom: 0;"
                                 onclick="location.href='/contests/show/{{$contest->id}}'">
                             Apskatīt sacensības
+
                         </button>
+
                     </div>
+
+
                 </div>
             @endforeach
         </div>
     </div>
 
     <div class="m-0 justify-content-center">
-        @if(\App\Models\Contest::all()->where('private','=', '0')->count() >0)
+        @if(\App\Models\Contest::all()->where('private','=', '0')->where('contestStart', '<', strtotime(\Carbon\Carbon::now())+10800)->where('contestEnd', '>', strtotime(\Carbon\Carbon::now()))->count() > 0)
             <h2 class="mb-4" style="color: black;">Publiskās sacensības</h2>
         @endif
         <div class="d-flex justify-content-center flex-wrap">

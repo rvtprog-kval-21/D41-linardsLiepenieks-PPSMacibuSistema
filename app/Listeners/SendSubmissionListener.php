@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Models\Contest;
 use App\Models\Profile;
 use App\Models\Solution;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,6 @@ class SendSubmissionListener implements ShouldQueue
         $exercise_contests = $event->exercise->contest()->where('contestStart', '<', time() + 10800)->where('contestEnd', '>', time() + 10800)->get();
         $contestScore = 0;
         //dd($exercise_contests);
-
 
 
         $data = $this->sendBatch($mode_id, $event);
@@ -95,11 +95,16 @@ class SendSubmissionListener implements ShouldQueue
         foreach ($exercise_contests as $contest) {
 
             $spent_time = (time() + 10800 - $contest->contestStart) / 60;
-            if ($contest->type == 'contest' && $correct == true) {
-                if ($event->exercise->score > $spent_time) {
-                    $contestScore = $event->exercise->score - $spent_time;
+            dd($contest->type == 'contest');
+            if ($contest->type == 'contest') {
+                if ($correct == true) {
+                    if ($event->exercise->score > $spent_time) {
+                        $contestScore = $event->exercise->score - $spent_time;
+                    } else {
+                        $contestScore = $event->exercise->minScore;
+                    }
                 } else {
-                    $contestScore = $event->exercise->minScore;
+                    $contestScore = 0;
                 }
 
 
@@ -109,7 +114,13 @@ class SendSubmissionListener implements ShouldQueue
                 $contestScore = $testCaseScore * $correctTests;
             }
 
-            $event->submission->contest()->attach($contest, ['score'=>$contestScore, 'user_id'=>Auth::user()->id, 'exercise_id'=>$event->exercise->id]);
+            $event->submission->contest()->attach($contest, ['score' => $contestScore, 'user_id' => Auth::user()->id, 'exercise_id' => $event->exercise->id]);
+
+            if ($event->submission->contest()->first()->private == false
+                &&
+                $event->submission->contest()->first()->user()->where('user_id', '=', Auth::user()->id)->get()->count() <= 0) {
+                Contest::Find($event->submission->contest()->first()->user()->attach(User::find(Auth::user()->id)));
+            }
 
         }
 

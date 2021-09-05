@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3e7c1963-f02d-40fb-bd8e-f4824eb88a0b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContestController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RatingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RatingsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendSubmissionListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contests/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contests/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contests/userExercises.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contests/userExercises.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/rating/rating.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/rating/rating.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +237,8 @@
       <workItem from="1629710250300" duration="9902000" />
       <workItem from="1629883878643" duration="5754000" />
       <workItem from="1630003145955" duration="661000" />
-      <workItem from="1630491001606" duration="9118000" />
+      <workItem from="1630491001606" duration="9365000" />
+      <workItem from="1630851683423" duration="4143000" />
     </task>
     <servers />
   </component>

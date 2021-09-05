@@ -17,7 +17,8 @@
             @php
                 $x = 0;
             @endphp
-            @foreach($contest->user()->get() as $user)
+            @foreach($users as $user)
+                <div>
                 <div class="card">
                     <div class="card-header" id="heading{{$user->id}}">
                         <h5 class="mb-0">
@@ -25,7 +26,7 @@
                                     data-target="#collapse{{$user->id}}"
                                     aria-expanded="true"
                                     aria-controls="collapseOne">
-                                {{$user->name}}
+                                {{$x+1}}. Vieta: {{$user->name}}
 
                             </button>
                         </h5>
@@ -169,6 +170,7 @@
                                 </div>
                             @endforeach
                         </div>
+                    </div>
                         @endforeach
 
                     </div>

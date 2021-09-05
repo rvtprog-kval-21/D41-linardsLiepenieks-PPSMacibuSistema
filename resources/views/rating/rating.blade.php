@@ -40,7 +40,7 @@
                                      : 0}}%
                     </div>
                     <div class="col ">{{$rating->score}}</div>
-                    <div class="col ">{{DB::table('contest_submission')->where('user_id','=', $rating->user->id)->orderBy('score')->groupBy('exercise_id')->sum('score')}}</div>
+                    <div class="col ">{{DB::table('contest_submission')->where('user_id', '=', $rating->user->id)->groupBy('exercise_id')->get()->sum('score')}}</div>
                 </div>
             </a>
         @endforeach

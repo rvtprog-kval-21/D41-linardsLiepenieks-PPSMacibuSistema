@@ -16,10 +16,12 @@ class ContestController extends Controller
 
         return view('/contests/show', compact('createdContests'));
     }
+
     public function create()
     {
         return view('/contests/create');
     }
+
     public function store()
     {
         $data = request()->validate([
@@ -44,7 +46,6 @@ class ContestController extends Controller
 
 
         ]);
-
 
 
         if ($data['exercises'] ?? null) {
@@ -90,7 +91,6 @@ class ContestController extends Controller
         ]);
 
 
-
         $contest->exercise()->detach();
         if ($data['exercises'] ?? null) {
             $exercises = $data['exercises'];
@@ -131,7 +131,7 @@ class ContestController extends Controller
     public function userEdit(Contest $contest)
     {
         $data = request()->validate([
-            'users'=>'array'
+            'users' => 'array'
         ]);
 
         $contest->user()->detach();
@@ -145,8 +145,11 @@ class ContestController extends Controller
         }
         //return $data['users'];
     }
-    public function  userExercises(Contest $contest)
+
+    public function userExercises(Contest $contest)
     {
-        return view('contests/userExercises', compact('contest'));
+        $users = $contest->user()->leftJoin('contest_submission', 'users.id', '=', 'contest_submission.user_id')->groupBy('exercise_id')->orderBy('score', 'DESC')->get();
+        //dd($users);
+        return view('contests/userExercises', compact('contest', 'users'));
     }
 }
