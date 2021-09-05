@@ -18,8 +18,8 @@
     <div>
         <div class="row PPS-content-header text-center align-items-center p-2 rounded"
              style="margin: 10px 0px 10px 0px;">
-            <div class="col">#</div>
-            <div class="col">Lietotājs</div>
+            <div class="col-1">#</div>
+            <div class="col-3">Lietotājs</div>
             <div class="col">Risināti uzdevumi</div>
             <div class="col">Atrisināti uzdevumi</div>
             <div class="col ">Atrisinājumu reitings</div>
@@ -31,8 +31,8 @@
             <a href="/profile/show/{{$rating->user->id}}">
                 <div class="m-0 mb-2 p-2 row PPS-content-wrapper PPS-exercise text-center align-items-center rounded"
                      style="color: black;">
-                    <div class="col">{{$loop->index+1}}.</div>
-                    <div class="col">{{$rating->user->profile()->first()->username}}</div>
+                    <div class="col-1">{{$loop->index+1}}.</div>
+                    <div class="col-3">{{$rating->user->profile()->first()->username}}</div>
                     <div class="col">{{$rating->user->submission->unique('exercise_id')->count()}}</div>
                     <div class="col">{{$rating->user->solution->unique('exercise_id')->count()}}</div>
                     <div class="col ">{{$rating->user->submission->count()>0 && $rating->user->solution->count()>0 ?
